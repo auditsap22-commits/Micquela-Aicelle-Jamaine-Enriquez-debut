@@ -91,15 +91,15 @@ export function LoveStory() {
         <div className="pointer-events-none  absolute right-0 top-0 z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/decoration/top-right-decos.png"
+            src="/decoration/right-top-deco.png"
             alt=""
-            className="block h-auto w-auto max-w-[220px] sm:max-w-[160px] md:max-w-[220px] lg:max-w-[260px]"
+            className={CORNER_DECO_CLASS}
           />
         </div>
         <div className="pointer-events-none absolute left-0 top-0 z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/decoration/top-left-decos.png"
+            src="/decoration/left-top-deco.png"
             alt=""
             className={CORNER_DECO_CLASS}
           />
@@ -125,12 +125,12 @@ export function LoveStory() {
   theme="light"
   layout="image-left"
   isFirst={true}
-  title="How It All Began"
-  imageSrc="/LoveStory/loveStory (1).webp"
+  title="A Glance Down the Corridor"
+  imageSrc="/LoveStory/story (13).webp"
   text={
     <>
       <p className="mb-4">
-      Every love story is different, and this one began the simplest way — a quiet hello that neither of them expected would lead to forever.
+      It all started with a glance in her direction. June and Jonas both happened to be working in the same hospital, at opposite ends of a corridor on the second floor. Nakita lang, pero hindi alam kung napansin. But there already seemed to be something there — or at least the promise of something.
       </p>
     </>
   }
@@ -139,12 +139,12 @@ export function LoveStory() {
 <StorySection
   theme="dark"
   layout="image-right"
-  imageSrc="/LoveStory/loveStory (2).webp"
-  title="When Paths Crossed"
+  imageSrc="/LoveStory/story (6).webp"
+  title="Introduced by a Friend"
   text={
     <>
       <p className="mb-4">
-      Carl and Niña's paths crossed at a moment neither of them planned for. Looking back now, they can see it was the beginning of something neither of them saw coming.
+      They were eventually introduced by a common friend, and no doubt there was a spark. Or at least there was a smile. From there, June and Jonas got to be friends — the kind that hinted at becoming something more.
       </p>
     </>
   }
@@ -153,12 +153,12 @@ export function LoveStory() {
 <StorySection
   theme="light"
   layout="image-left"
-  imageSrc="/LoveStory/loveStory (3).webp"
-  title="Getting to Know Each Other"
+  imageSrc="/LoveStory/story (2).webp"
+  title="Regular Dates"
   text={
     <>
       <p>
-      What started as an ordinary meeting slowly became something more meaningful. Two different lives, two different journeys, brought together at just the right time.
+      Dinners out, movies, afternoons of window shopping — the regular dates that slowly became something they both looked forward to, one small outing at a time.
       </p>
     </>
   }
@@ -167,12 +167,12 @@ export function LoveStory() {
 <StorySection
   theme="dark"
   layout="image-right"
-  imageSrc="/LoveStory/loveStory (4).webp"
-  title="From Conversations to Connection"
+  imageSrc="/LoveStory/story (8).webp"
+  title="Finding Common Ground"
   text={
     <>
       <p>
-      One conversation led to another, and soon the small talks turned into hours of talking about everything and nothing at all. Days turned into weeks, and weeks into months, and with every conversation, they found comfort and joy in each other's company.
+      Along the way, they found common interests — however small they seemed at first — and slowly, without either of them planning it, started building something real.
       </p>
     </>
   }
@@ -181,13 +181,12 @@ export function LoveStory() {
 <StorySection
   theme="light"
   layout="image-left"
-  isLast={true}
-  imageSrc="/LoveStory/loveStory (5).webp"
-  title="When Friendship Became Love"
+  imageSrc="/LoveStory/story (9).webp"
+  title="Conversations We Never Wanted to End"
   text={
     <>
-      <p className="mb-4">
-      Somewhere along the way, friendship quietly turned into love. Before they knew it, Carl and Niña had fallen for one another, and there was no turning back.
+      <p>
+      What began as easy small talk turned into conversations that didn't seem to want to end. The more they talked, the more they wanted to keep talking — and somewhere in there, the two of them became inseparable.
       </p>
     </>
   }
@@ -196,12 +195,12 @@ export function LoveStory() {
 <StorySection
   theme="dark"
   layout="image-right"
-  imageSrc="/LoveStory/loveStory (6).webp"
-  title="Growing Together"
+  imageSrc="/LoveStory/story (4).webp"
+  title="When Friendship Blossomed Into Love"
   text={
     <>
       <p className="mb-4">
-      Like any real love, theirs was tested along the way. But through every season, they chose each other — patient, understanding, and accepting one another exactly as they are.
+      And before they knew it, ang nakasanayan naging nakakakilig. Friendship blossomed into love, and June and Jonas were officially a couple.
       </p>
     </>
   }
@@ -210,26 +209,54 @@ export function LoveStory() {
 <StorySection
   theme="light"
   layout="image-left"
-  isLast={true}
-  imageSrc="/LoveStory/loveStory (7).webp"
-  title="A Love Made for Forever"
+  imageSrc="/LoveStory/story (1).webp"
+  title="Almost a Decade, Together"
   text={
     <>
       <p className="mb-4">
-      With faith and gratitude, Carl and Niña came to realize that they were made for each other — and that every step of their journey led them exactly where they were meant to be.
+      Their relationship spanned almost a decade, with a pandemic stuck right in the middle, and a couple of countries — even continents — at times.
       </p>
     </>
   }
 />
+ 
 <StorySection
   theme="dark"
   layout="image-right"
-  imageSrc="/LoveStory/loveStory (8).webp"
-  title="A Bond Worth Waiting For"
+  imageSrc="/LoveStory/story (11).webp"
+  title="Constant, Through the Distance"
   text={
     <>
       <p className="mb-4">
-      Through every high and low, their bond only grew stronger. What they found in each other was worth every moment of the journey it took to get here.
+      All throughout, they made sure to keep in constant communication, to keep providing each other support, reassurance, and inspiration, no matter how far apart they were.
+      </p>
+    </>
+  }
+/>
+
+<StorySection
+  theme="light"
+  layout="image-left"
+  imageSrc="/LoveStory/story (5).webp"
+  title="Patience, and Love at the Forefront"
+  text={
+    <>
+      <p className="mb-4">
+      They tried to have a bit more patience with each other — admittedly, at times more successful than others — and made sure to always, always keep love at the forefront, and sometimes in the background, holding everything together.
+      </p>
+    </>
+  }
+/>
+
+<StorySection
+  theme="dark"
+  layout="image-right"
+  imageSrc="/LoveStory/story (3).webp"
+  title="He Asked, and She Said Yes"
+  text={
+    <>
+      <p className="mb-4">
+      Until he asked the question... and she said yes. And so here they are, starting a new chapter in the journey to forever.
       </p>
     </>
   }
@@ -239,12 +266,12 @@ export function LoveStory() {
   theme="light"
   layout="image-left"
   isLast={true}
-  imageSrc="/mobile-background/couples (3).webp"
-  title="Celebration of Love"
+  imageSrc="/LoveStory/story (12).webp"
+  title="Habangbuhay"
   text={
     <>
       <p className="mb-4">
-      And now, with hearts full of joy and gratitude, Carl and Niña joyfully invite you to join them as they say "I do" and begin their forever together.
+      After 10 years of love, laughter, and countless memories, June and Jonas are finally saying "I do." Join us as we celebrate the beginning of their forever on December 26, 2026. We can't wait to celebrate with you!
       </p>
     </>
   }
@@ -256,7 +283,7 @@ export function LoveStory() {
         <div className="pointer-events-none absolute bottom-0 left-0 z-20">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/decoration/bottom-left-decos.png"
+            src="/decoration/left-bottom-deco.png"
             alt=""
             className={CORNER_DECO_CLASS}
           />
@@ -264,7 +291,7 @@ export function LoveStory() {
         <div className="pointer-events-none absolute bottom-0 right-0 z-20">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/decoration/bottom-right-decos.png"
+            src="/decoration/right-bottom-deco.png"
             alt=""
             className={CORNER_DECO_CLASS}
           />

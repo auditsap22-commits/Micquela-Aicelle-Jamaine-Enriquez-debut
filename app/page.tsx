@@ -96,6 +96,10 @@ export default function Home() {
   })
   const enableDecor = process.env.NEXT_PUBLIC_ENABLE_DECOR !== 'false'
   const [showInvitation, setShowInvitation] = useState(false)
+  const [loadingOverlayVisible, setLoadingOverlayVisible] = useState(
+    () => appState === AppState.LOADING,
+  )
+  const [heroEnterFromLoading, setHeroEnterFromLoading] = useState(false)
   const [enteringFromInvite, setEnteringFromInvite] = useState(false)
 
   // When returning from /gallery, scroll to the #gallery hash in the URL
@@ -111,9 +115,14 @@ export default function Home() {
     return () => clearTimeout(id)
   }, [appState])
 
+  const handleLoadingFadeStart = useCallback(() => {
+    setShowInvitation(true)
+    setHeroEnterFromLoading(true)
+  }, [])
+
   const handleLoadingComplete = useCallback(() => {
     setAppState(AppState.LANDING)
-    setShowInvitation(true)
+    setLoadingOverlayVisible(false)
   }, [])
 
   const handleTransitionStart = useCallback(() => {
@@ -134,13 +143,19 @@ export default function Home() {
 
   return (
       <div className={`relative min-h-screen bg-cloud text-charcoal selection:bg-birch selection:text-nut font-sans ${pageScrollLocked ? "overflow-hidden" : ""}`}>
-        {appState === AppState.LOADING && <LoadingScreen onComplete={handleLoadingComplete} />}
+        {loadingOverlayVisible && (
+          <LoadingScreen
+            onFadeStart={handleLoadingFadeStart}
+            onComplete={handleLoadingComplete}
+          />
+        )}
 
         <main className="relative w-full h-full">
           {showInvitation && (
             <InvitationHero
               onOpen={handleOpenInvitation}
               onTransitionStart={handleTransitionStart}
+              enterFromLoading={heroEnterFromLoading}
               visible
             />
           )}
@@ -170,7 +185,7 @@ export default function Home() {
                 transition={cinematicEntry ? undefined : { duration: 0.01 }}
               >
                 <Suspense fallback={<div className="w-full h-full bg-gradient-to-b from-primary/10 to-secondary/5" />}>
-                  <Silk speed={8} scale={0.9} color="#6B1726" noiseIntensity={0} rotation={0.3} />
+                  <Silk speed={8} scale={0.9} color="#A37CD2" noiseIntensity={0} rotation={0.3} />
                 </Suspense>
               </motion.div>
             )}
@@ -210,7 +225,7 @@ export default function Home() {
               <VideoMessage />
               <Messages />
               <Details />
-              <Accommodation />
+              {/* <Accommodation /> */}
               {/* <GuestInformation /> */}
               <WeddingTimeline />
               <Entourage />

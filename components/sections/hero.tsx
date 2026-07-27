@@ -9,22 +9,24 @@ import { parseWeddingDate } from "@/lib/wedding-date"
 import Image from "next/image"
 
 const desktopBackgroundSrcs: readonly string[] = [
-  '/desktop-background/couples (4).webp',
-  '/desktop-background/couples (2).webp',
-  '/desktop-background/couples (13).webp',
-  '/desktop-background/couples (20).webp',
-  '/desktop-background/couples (18).webp',
+  '/desktop-background/couple (1).webp',
+  '/desktop-background/couple (2).webp',
+  '/desktop-background/couple (3).webp',
+  '/desktop-background/couple (4).webp',
+  '/desktop-background/couple (5).webp',
 ]
 
 const mobileBackgroundSrcs: readonly string[] = [
-'/mobile-background/couples (5).webp',
-'/mobile-background/couples (6).webp',
-'/mobile-background/couples (44).webp',
-'/mobile-background/couples (45).webp',
-'/mobile-background/couples (39).webp',
-'/mobile-background/couples (30).webp',
-'/mobile-background/couples (9).webp',
-'/mobile-background/couples (10).webp',
+'/mobile-background/couple (1).webp',
+'/mobile-background/couple (2).webp',
+'/mobile-background/couple (3).webp',
+'/mobile-background/couple (4).webp',
+'/mobile-background/couple (5).webp',
+'/mobile-background/couple (6).webp',
+'/mobile-background/couple (7).webp',
+'/mobile-background/couple (8).webp',
+'/mobile-background/couple (9).webp',
+'/mobile-background/couple (10).webp',
 ]
 
 const SHOW_BUTTERFLIES = false
@@ -32,6 +34,10 @@ const SHOW_BUTTERFLIES = false
 const HERO_TEXT = "var(--color-motif-cream)"
 const HERO_TEXT_MUTED = "rgba(255, 246, 233, 0.9)"
 const HERO_TITLE_SHADOW = "0 2px 10px rgba(0, 0, 0, 0.65)"
+const COUPLE_NAME_IMAGE = "/decoration/couple (2).png"
+const COUPLE_NAME_ASPECT = 828 / 629
+const COUPLE_NAME_HERO_FILTER =
+  "brightness(0) saturate(100%) invert(97%) sepia(6%) saturate(350%) hue-rotate(230deg) drop-shadow(0 2px 28px rgba(0,0,0,0.75))"
 
 const cinzel = Cinzel({
   subsets: ["latin"],
@@ -561,22 +567,19 @@ export function Hero() {
 
           {/* Couple Names — script PNG tinted to motif cream */}
           <div
-            role="img"
-            aria-label={`${brideName} and ${groomName}`}
-            className="w-full max-w-[min(90vw,22rem)] sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl aspect-[528/473] mx-auto drop-shadow-2xl"
-            style={{
-              backgroundColor: "var(--color-motif-cream)",
-              WebkitMaskImage: "url(/Details/coupleName.png)",
-              maskImage: "url(/Details/coupleName.png)",
-              WebkitMaskSize: "contain",
-              maskSize: "contain",
-              WebkitMaskRepeat: "no-repeat",
-              maskRepeat: "no-repeat",
-              WebkitMaskPosition: "center",
-              maskPosition: "center",
-              filter: "drop-shadow(0 2px 28px rgba(0,0,0,0.75))",
-            }}
-          />
+            className="relative w-full max-w-[min(90vw,22rem)] sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto"
+            style={{ aspectRatio: COUPLE_NAME_ASPECT }}
+          >
+            <Image
+              src={COUPLE_NAME_IMAGE}
+              alt={`${brideName} and ${groomName}`}
+              fill
+              className="object-contain object-center"
+              sizes="(max-width: 640px) 90vw, (max-width: 1024px) 512px, 672px"
+              priority
+              style={{ filter: COUPLE_NAME_HERO_FILTER }}
+            />
+          </div>
 
           {/* Date & Time block */}
           <div className="w-full max-w-2xl mx-auto">

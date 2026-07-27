@@ -10,19 +10,26 @@ import {
 } from 'motion/react';
 import { useSiteConfig } from '@/hooks/use-site-config';
 import { parseWeddingDate } from '@/lib/wedding-date';
+import { InviteParticles } from '@/components/loader/InviteParticles';
 import './envelope-invite.css';
 
 interface HeroProps {
   onOpen: () => void;
   onTransitionStart?: () => void;
   visible: boolean;
+  enterFromLoading?: boolean;
 }
 
 const POLAROID_PHOTOS = [
-  { src: '/mobile-background/couples (43).webp', side: 'left' as const },
-  { src: '/mobile-background/couples (3).webp', side: 'center' as const },
-  { src: '/mobile-background/couples (42).webp', side: 'right' as const },
+  { src: '/envelope/back.png', side: 'left' as const },
+  { src: '/envelope/front.png', side: 'center' as const },
+  { src: '/envelope/back2.png', side: 'right' as const },
 ];
+
+const COUPLE_NAME_IMAGE = '/decoration/couple (2).png';
+
+const CORNER_DECO_CLASS =
+  'block h-auto w-auto max-w-[100px] sm:max-w-[140px] md:max-w-[180px] opacity-75';
 
 const photoInteractEase: Transition = { duration: 0.38, ease: [0.22, 1, 0.36, 1] };
 const focusLiftEase: Transition = { duration: 1.15, ease: [0.22, 1, 0.36, 1] };
@@ -61,10 +68,16 @@ const letterEmergenceEase: Transition = { duration: 2.85, ease: [0.08, 1, 0.2, 1
 const flapEase: Transition = { duration: 1.1, ease: [0.65, 0, 0.35, 1] };
 const envelopeEase: Transition = { duration: 0.85, ease: [0.22, 1, 0.36, 1] };
 const inviteExitEase: Transition = { duration: 1.75, ease: [0.22, 1, 0.36, 1] };
+const inviteEnterEase: Transition = { duration: 1.15, ease: [0.22, 1, 0.36, 1], delay: 0.06 };
 const letterExitEase: Transition = { duration: 1.35, ease: [0.16, 1, 0.3, 1] };
 const INVITE_EXIT_MS = 1850;
 
-export const Hero: React.FC<HeroProps> = ({ onOpen, onTransitionStart, visible }) => {
+export const Hero: React.FC<HeroProps> = ({
+  onOpen,
+  onTransitionStart,
+  visible,
+  enterFromLoading = false,
+}) => {
   const siteConfig = useSiteConfig();
   const reduceMotion = useReducedMotion();
   const openedRef = useRef(false);
@@ -81,12 +94,24 @@ export const Hero: React.FC<HeroProps> = ({ onOpen, onTransitionStart, visible }
     const parsed = parseWeddingDate(siteConfig.ceremony.date ?? siteConfig.wedding.date);
     const wedding = new Date(`${parsed.month} ${parsed.day}, ${parsed.year}`);
     if (Number.isNaN(wedding.getTime())) {
-      return `${parsed.day} ${parsed.year}`;
+      const monthDate = new Date(`${parsed.month} 1, ${parsed.year}`);
+      const month = Number.isNaN(monthDate.getTime())
+        ? '00'
+        : String(monthDate.getMonth() + 1).padStart(2, '0');
+      const day = String(parsed.day).padStart(2, '0');
+      const year = String(parsed.year).slice(-2);
+      return `${month} | ${day} | ${year}`;
     }
     const month = String(wedding.getMonth() + 1).padStart(2, '0');
     const day = String(wedding.getDate()).padStart(2, '0');
-    return `${month} ${day} ${wedding.getFullYear()}`;
+    const year = String(wedding.getFullYear()).slice(-2);
+    return `${month} | ${day} | ${year}`;
   }, [siteConfig.ceremony.date, siteConfig.wedding.date]);
+
+  const weddingDateGhost = useMemo(() => {
+    const [month, day, year] = letterDateNumeric.split(' | ');
+    return { month, day, year };
+  }, [letterDateNumeric]);
 
   const daysToGo = useMemo(() => {
     const parsed = parseWeddingDate(siteConfig.wedding.date);
@@ -144,16 +169,18 @@ export const Hero: React.FC<HeroProps> = ({ onOpen, onTransitionStart, visible }
   }, [visible]);
 
   useEffect(() => {
-    if (!visible || isExiting) return;
+    if (!visible || isExiting) {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+      return;
+    }
 
-    const previousOverflow = document.documentElement.style.overflow;
-    const previousBodyOverflow = document.body.style.overflow;
     document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
 
     return () => {
-      document.documentElement.style.overflow = previousOverflow;
-      document.body.style.overflow = previousBodyOverflow;
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
     };
   }, [visible, isExiting]);
 
@@ -264,11 +291,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpen, onTransitionStart, visible }
     slides upward through the lip. Positive y = inside; negative y = above pocket.
   */
   const letterVariants: Variants = {
-    hidden: { y: '8%', scale: 0.86, opacity: 1, rotate: -0.5 },
-    rising: { y: '-82%', scale: 1, opacity: 1, rotate: 0 },
-    out: { y: '-82%', scale: 1, opacity: 1, rotate: 0 },
+    hidden: { y: '6%', scale: 0.86, opacity: 1, rotate: -0.5 },
+    rising: { y: '-88%', scale: 1, opacity: 1, rotate: 0 },
+    out: { y: '-88%', scale: 1, opacity: 1, rotate: 0 },
     exitPortal: {
-      y: '-118%',
+      y: '-122%',
       scale: 2.75,
       opacity: 1,
       rotate: 0,
@@ -354,11 +381,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpen, onTransitionStart, visible }
   };
 
   const focusLiftVariants: Variants = {
-    idle: { y: 'clamp(2.35rem, 6dvh, 3.5rem)' },
-    opening: { y: 'clamp(1.45rem, 4dvh, 2.25rem)' },
-    photos: { y: 'clamp(1.45rem, 4dvh, 2.25rem)' },
-    revealed: { y: 'clamp(0.2rem, 0.8dvh, 0.65rem)' },
-    cta: { y: 'clamp(-0.35rem, -1.2dvh, 0.15rem)' },
+    idle: { y: 'clamp(3.75rem, 9dvh, 5.25rem)' },
+    opening: { y: 'clamp(2.85rem, 6.5dvh, 4rem)' },
+    photos: { y: 'clamp(2.85rem, 6.5dvh, 4rem)' },
+    revealed: { y: 'clamp(1.65rem, 4dvh, 2.5rem)' },
+    cta: { y: 'clamp(1.1rem, 2.75dvh, 1.75rem)' },
   };
 
   const daysToGoVariants: Variants = {
@@ -412,7 +439,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpen, onTransitionStart, visible }
       className={`env-invite-screen ${visible ? '' : 'is-hidden'}`}
       data-phase={isExiting ? 'exiting' : phase}
       aria-hidden={!visible}
-      initial={false}
+      initial={
+        enterFromLoading && !reduceMotion
+          ? { opacity: 0, scale: 1.04, y: 12, filter: 'blur(10px)' }
+          : false
+      }
       animate={
         isExiting
           ? {
@@ -428,12 +459,47 @@ export const Hero: React.FC<HeroProps> = ({ onOpen, onTransitionStart, visible }
               filter: 'blur(0px)',
             }
       }
-      transition={isExiting ? inviteExitEase : { duration: 0.01 }}
+      transition={
+        isExiting ? inviteExitEase : enterFromLoading ? inviteEnterEase : { duration: 0.01 }
+      }
       style={{
         pointerEvents: isExiting ? 'none' : undefined,
         transformOrigin: '50% 38%',
       }}
     >
+      {!reduceMotion && (
+        <div className="env-invite-particles pointer-events-none" aria-hidden="true">
+          <InviteParticles count={28} />
+        </div>
+      )}
+
+      <div className="env-invite-bg-glow pointer-events-none" aria-hidden="true" />
+
+      <div className="env-invite-corner env-invite-corner--tl pointer-events-none" aria-hidden="true">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/decoration/left-top-deco.png" alt="" className={CORNER_DECO_CLASS} />
+      </div>
+      <div className="env-invite-corner env-invite-corner--tr pointer-events-none" aria-hidden="true">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/decoration/right-top-deco.png" alt="" className={CORNER_DECO_CLASS} />
+      </div>
+      <div className="env-invite-corner env-invite-corner--bl pointer-events-none" aria-hidden="true">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/decoration/left-bottom-deco.png" alt="" className={CORNER_DECO_CLASS} />
+      </div>
+      <div className="env-invite-corner env-invite-corner--br pointer-events-none" aria-hidden="true">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/decoration/right-bottom-deco.png" alt="" className={CORNER_DECO_CLASS} />
+      </div>
+
+      <div className="env-invite-ghost-date pointer-events-none select-none" aria-hidden="true">
+        <span className="env-invite-ghost-date-part">{weddingDateGhost.month}</span>
+        <span className="env-invite-ghost-date-sep" aria-hidden="true" />
+        <span className="env-invite-ghost-date-part">{weddingDateGhost.day}</span>
+        <span className="env-invite-ghost-date-sep" aria-hidden="true" />
+        <span className="env-invite-ghost-date-part">{weddingDateGhost.year}</span>
+      </div>
+
       {isExiting && !reduceMotion && (
         <>
           <motion.div
@@ -554,17 +620,20 @@ export const Hero: React.FC<HeroProps> = ({ onOpen, onTransitionStart, visible }
                           : { duration: 0.01 }
                     }
                   >
-                    <div className="env-invite-letter-lace" aria-hidden="true" />
                     <div className="env-invite-letter-frame" aria-hidden="true" />
                     <div className="env-invite-letter-inner">
                       <span className="env-invite-letter-label">Save the Date</span>
                       <span className="env-invite-letter-date">{letterDateNumeric}</span>
                       <span className="env-invite-letter-invited">You are Invited</span>
-                      <div
-                        className="env-invite-letter-names"
-                        role="img"
-                        aria-label={coupleNames}
-                      />
+                      <div className="env-invite-letter-names">
+                        <Image
+                          src={COUPLE_NAME_IMAGE}
+                          alt={coupleNames}
+                          fill
+                          className="env-invite-letter-names-image object-contain object-center"
+                          sizes="220px"
+                        />
+                      </div>
                     </div>
                   </motion.div>
 

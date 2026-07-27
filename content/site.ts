@@ -5,11 +5,11 @@ import {
 
 export const siteConfig = {
   couple: {
-    bride: "May Manalo", //Noenyl Bryle M. Gonzaga
-    brideNickname: "NIÑA", //Ltryl
-    groom: "Toto Irinco", //Ltryl B. Benitez
-    groomNickname: "CARL",
-    monogram:"/monogram/monogram.png" ,//Ltryl
+    bride: "Mary June Fazon", //Noenyl Bryle M. Gonzaga
+    brideNickname: "June", //Ltryl
+    groom: "Jonas Don Castelo", //Ltryl B. Benitez
+    groomNickname: "Jonas",
+    monogram:"/monogram/monogram.webp" ,//Ltryl
     backgroundMusic:"/background_music/Keenan Te - Rest of My Life (Wedding Version).mp3"
   },
   googleAPI:{
@@ -25,9 +25,9 @@ export const siteConfig = {
     googleShare: "https://docs.google.com/spreadsheets/d/1K952wOAK-0U4SRL4xa9DWHjJ4dr7m2VvsiCKd8D4mC4/edit?usp=sharing", 
   },
   wedding: {
-    date: "January 14, 2027",
-    time: "1:00 PM",
-    venue: "Santuario de San Antonio Parish",
+    date: "December 26, 2026",
+    time: "3:00 PM",
+    venue: "San Agustin Church, Intramuros",
     tagline: "are getting married!!!!!",
     theme: "Our wedding palette is inspired by timeless elegance and warmth.Motif Colors: Champagne Gold, Soft Beige, Warm Soft Brown",
     motif: "#BBCED5, #B9C3A8, #F3D8C5, #D1C4D4, #ECD8BA, #F4E8D8, #E1DCCF",
@@ -40,73 +40,94 @@ export const siteConfig = {
   },
   details: {
     rsvp: {
-      deadline: "November 27, 2026",
-      coordinator: "Imbitado Events",
-      phone: "​+63 926 058 5954",
+      deadline: "December 10, 2026",
+      coordinator: "Karis Events Management",
+      phone: "​0922 888 8888",
     },
   },
   contact: {
-    bridePhone: "+63 945 580 1039",
-    groomPhone: "+63 945 580 1039",
-    email: "maymanalo009@gmail.com",
+    bridePhone: "to be announced",
+    groomPhone: "to be announced",
+    email: "to be announced",
   },
   giftRegistry: {
     QR_1:{
     id: "BDO",
-    src: "/QR/BPI.JPG",
+    src: "/QR/pleaseProvideQR.png",
     label: "BDO",
-    accountNumber: "CN : ******3793",
+    accountNumber: "to be announced",
     },
     QR_2:{
     id: "Venmo",
-    src: "/QR/venmo.JPG",
+    src: "/QR/pleaseProvideQR.png",
     label: "Venmo",
-    accountNumber: "@CdotRey",
+    accountNumber: "to be announced",
+    },
+    QR_3:{
+    id: "Gcash",
+    src: "/QR/pleaseProvideQR.png",
+    label: "Gcash",
+    accountNumber: "to be announced",
     }
   },
   ceremony: {
-    location: "Santuario de San Antonio Parish",
-    venue: "Forbes Park, 3117 McKinley Rd, Forbes Park, Makati City",
-    map: "https://share.google/Fajs4jN4nePUfvelV",
-    date: "January 14, 2027",
-    day: "Thursday",
-    time: "1:00 PM",
-    entourageTime: "11:30 AM",
-    guestsTime: "12:00 PM",
-    image: ["/Details/ceremony.webp", "/Details/ceremony2.webp"],
+    location: "San Agustin Church, Intramuros",
+    venue: "General Luna St, Intramuros, Manila, 1002 Metro Manila",
+    map: "https://maps.app.goo.gl/pisCCRQ4ZGkHrc4e7",
+    date: "December 26, 2026",
+    day: "Saturday",
+    time: "3:00 PM",
+    entourageTime: "2:00 PM",
+    guestsTime: "2:30 PM",
+    image: ["/Details/Ceremony.webp", "/Details/Ceremony2.webp"],
   },
   reception: {
-    location: "Shangri La The Fort, Fourth floor, Bonifacio Hall",
-    venue: "30th Street, corner Fifth Ave, Taguig, Metro Manila",
-    map: "https://share.google/t2gPfVkOvjJcElEZl",
-    date: "January 14, 2027",
-    day: "Thursday",
+    location: "Manila Hotel",
+    venue: "1 Rizal Park, Ermita, Manila, 0913 Metro Manila",
+    map: "https://maps.app.goo.gl/E9dDgP9CVbsiu7AN9",
+    date: "December 26, 2026",
+    day: "Saturday",
     time: "6:00 PM",
     image: ["/Details/reception.webp", "/Details/reception2.webp"],
   },
   dressCode: {
     theme: "STRICTLY FORMAL",
-    guests: {
-      title: "Strictly Formal",
-      gentlemen: {
-        description: "Suit and tie in black or deep jewel tones.",
-        image: "/Details/Guest gentlemen.webp",
+    sponsors: {
+      title: "Sponsors",
+      ninang: {
+        label: "Ninang",
+        description: "Long gown in the shade of silver gray.",
+        image: "/Details/Ninang.png",
+        palette: ["#D8D3CD", "#C0C0C0", "#A9A9A9", "#969090", "#8C8686"],
       },
-      ladies: {
-        description:
-          "A structured evening gown or full-length formal dress in deep jewel tones.",
-        image: "/Details/Guest ladies.webp",
+      ninong: {
+        label: "Ninong",
+        description: "Barong Tagalog and black slacks.",
+        image: "/Details/Ninong.png",
+        palette: ["#D0A386", "#E3C5B3", "#E4DCD1"],
       },
     },
-    sponsors: {
-      title: "For Our Primary Sponsors",
-      ladies: {
-        description: "Plum evening gown.",
+    entourage: {
+      title: "Entourage",
+      bridesmaid: {
+        label: "Bridesmaids",
+        description: "Long gown that suits our color motif.",
+        image: "/Details/bridesmaid.png",
+        palette: ["#B4A3D4", "#C8A2C8"],
       },
-      gentlemen: {
-        description: "Black suit with a plum tie.",
+      groomsmen: {
+        label: "Groomsmen",
+        description: "Long sleeve Barong Tagalog and black slacks.",
+        image: "/Details/Groomsmen.png",
+        palette: ["#D0A386", "#E3C5B3", "#E4DCD1"],
       },
-      image: "/Details/Primary sponsors.webp",
+    },
+    guests: {
+      title: "Guests",
+      label: "Guests",
+      description: "Formal attire and formal dress.",
+      image: "/Details/guest.png",
+      palette: ["#D9B8F5", "#A37CD2", "#E6DDD2", "#E4C5B2", "#727E40"],
     },
     paletteNote:
       "To create a cohesive and elegant celebration, we kindly encourage our guests to follow the suggested color palette. To allow our wedding party to be easily distinguished, we respectfully ask that guests refrain from wearing white, ivory, champagne, and shades of red, as these colors have been reserved for the bride and members of our entourage.",
@@ -144,23 +165,23 @@ Now, as they prepare to say yes before God and the people they love most, Cather
   playlist: {
     title: "A Playlist from our hearts",
     subtitle: "Songs that have been part of our journey together",
-    playlistName: "Carlo and Niña Wedding",
+    playlistName: "June and Jonas Wedding",
     embedUrl:
-    //https://open.spotify.com/embed/playlist/0mdM2N4wX14crL3RWfMV8J?utm_source=generator&si=8f1f66d60dae4117
-      "https://open.spotify.com/embed/playlist/0mdM2N4wX14crL3RWfMV8J?utm_source=generator&theme=0&si=8f1f66d60dae4117",
-    spotifyUrl: "https://open.spotify.com/playlist/0mdM2N4wX14crL3RWfMV8J",
+    //https://open.spotify.com/embed/playlist/5ICXgzCtklT3VSvPtZ5icI?utm_source=generator&si=f2c0ef127bf04951
+      "https://open.spotify.com/embed/playlist/5ICXgzCtklT3VSvPtZ5icI?utm_source=generator&theme=0&si=f2c0ef127bf04951",
+    spotifyUrl: "https://open.spotify.com/playlist/5ICXgzCtklT3VSvPtZ5icI",
   },
   snapShare: {
     googleDriveLink:
       "https://drive.google.com/drive/folders/1Jpz2_rmDy6kxuRwKIhpzNfHEzNx4aIrS?usp=sharing",
     albumQR: "/QR/AlbumQR.png",
-    hashtag: ["#CarloandNiñaWedding"],
+    hashtag: ["#JuneandJonasWedding"],
     instructions: "Please scan this QR Code and upload the photos and videos you have taken during our wedding reception. We are delighted to see your snaps too!",
   },
   accommodation: {
     coordinator: {
-      name: "Imbitado Events",
-      phone: "0926 058 5954",
+      name: "Karis Events Management",
+      phone: "to be announced",
     },
     hotels: [
       {

@@ -336,7 +336,10 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   return (
     <>
       {isFixed ? (
-        <div className={(className ? className + ' ' : '') + 'sm-toggle-host relative z-[60] flex items-center justify-center'}>
+        <div
+          className={(className ? className + ' ' : '') + 'sm-toggle-host relative z-[60] flex items-center justify-center'}
+          data-open={open || undefined}
+        >
           {toggleButton}
         </div>
       ) : null}
@@ -468,6 +471,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 .sm-scope[data-open] .staggered-menu-panel { pointer-events: auto; visibility: visible; }
 .sm-scope[data-open] .sm-panel-item { pointer-events: auto; }
 .sm-toggle-host { display: flex; align-items: center; justify-content: center; }
+.sm-toggle-host[data-open] { position: relative; z-index: 70; }
 .sm-scope .staggered-menu-header { position: absolute; top: 0; left: 0; width: 100%; display: flex; align-items: center; justify-content: flex-end; padding: 2em; background: transparent; pointer-events: none; z-index: 20; }
 .sm-scope .staggered-menu-header > * { pointer-events: auto; }
 .sm-scope .sm-toggle, .sm-toggle-host .sm-toggle { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 2.5rem; height: 2.5rem; background: transparent; border: none; cursor: pointer; color: var(--color-motif-deep); font-weight: 500; line-height: 1; overflow: visible; }

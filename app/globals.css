@@ -144,21 +144,21 @@
 ========================================== */
 
 /* Background */
---color-motif-cream:   #FDF9EE; /* Main page background */
+--color-motif-cream:   #F6F1F9; /* Main page background */
 
 /* Primary Highlight */
---color-motif-yellow:  #E9DABD; /* Gold accents */
+--color-motif-yellow:  #DCCEEB; /* Gold accents */
 
 /* Secondary */
---color-motif-soft:    #F8F4EC; /* Soft ivory sections */
---color-motif-accent:  #D3B988; /* Gold buttons, icons, borders */
+--color-motif-soft:    #FBF8FD; /* Soft ivory sections */
+--color-motif-accent:  #C8B0D8; /* Gold buttons, icons, borders */
 
 /* Primary Brand */
---color-motif-deep:    #6B1726; /* Navbar, headings, footer */
---color-motif-medium:  #E9DABD; /* Navbar bottom border */
+--color-motif-deep:    #6C547D; /* Navbar, headings, footer */
+--color-motif-medium:  #DCCEEB; /* Navbar bottom border */
 
 /* Neutral */
---color-motif-silver:  #FCFBF8; /* Cards, alternate backgrounds */
+--color-motif-silver:  #F8F6FB; /* Cards, alternate backgrounds */
 
 /* ==========================================
    WELCOME SECTION
@@ -168,20 +168,20 @@
 --color-welcome-bg-soft:   color-mix(in srgb, var(--color-motif-cream) 25%, white);
 
 /* Paragraphs */
---color-welcome-text:      #4D3B35;
---color-welcome-text-soft: #8A8177;
+--color-welcome-text:      #5A5264;
+--color-welcome-text-soft: #8D8698;
 
 /* Small Headings */
---color-welcome-heading:   #6B1726;
+--color-welcome-heading:   #6C547D;
 
 /* Script Font */
---color-welcome-script:    #D3B988;
+--color-welcome-script:    #A887C5;
 
 /* Main Hero Heading */
---color-welcome-navy:      #6B1726;
+--color-welcome-navy:      #6C547D;
 
 /* Buttons / Decorative Lines / Icons */
---color-welcome-green:     #D3B988;
+--color-welcome-green:     #B89AD4;
   /* ─────────────────────────────────────────────────────────── */
   --font-imperial-script: "Imperial Script", cursive;
   --font-beautiful-malera: "Beautiful Malera", cursive;

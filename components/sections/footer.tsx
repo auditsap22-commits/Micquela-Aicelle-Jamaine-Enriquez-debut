@@ -231,7 +231,7 @@ export function Footer() {
         <div className="pointer-events-none absolute left-0 top-0 z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/decoration/top-left-decos.png"
+            src="/decoration/left-top-deco.png"
             alt=""
             className={CORNER_DECO_CLASS}
           />
@@ -239,26 +239,26 @@ export function Footer() {
         <div className="pointer-events-none absolute right-0 top-0 z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/decoration/top-right-decos.png"
+            src="/decoration/right-top-deco.png"
             alt=""
-            className="block h-auto w-auto max-w-[220px] sm:max-w-[160px] md:max-w-[220px] lg:max-w-[260px]"
+            className={CORNER_DECO_CLASS}
           />
         </div>
         <div className="pointer-events-none absolute bottom-0 left-0 z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          {/* <img
-            src="/decoration/decorations/botto-left-corner.png"
+          <img
+            src="/decoration/left-bottom-deco.png"
             alt=""
             className={CORNER_DECO_CLASS}
-          /> */}
+          />
         </div>
         <div className="pointer-events-none absolute bottom-0 right-0 z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          {/* <img
-            src="/decoration/decorations/botto-right-corner.png"
+          <img
+            src="/decoration/right-bottom-deco.png"
             alt=""
             className={CORNER_DECO_CLASS}
-          /> */}
+          />
         </div>
 
         {/* Monogram + couple header */}
