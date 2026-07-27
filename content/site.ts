@@ -13,16 +13,16 @@ export const siteConfig = {
     backgroundMusic:"/background_music/Keenan Te - Rest of My Life (Wedding Version).mp3"
   },
   googleAPI:{
-    messageForm: "https://docs.google.com/forms/d/e/1FAIpQLSfZm5-4CMAQIfsIsdmHik5QxgFqCP9CrQ27y0JhjIz__zimhQ/formResponse",   //done
-    message: "https://script.google.com/macros/s/AKfycbzHc0EAyH0mQ8IDCX1KnD5Sy3iNrv-fvP6-6_OxJoCNIQi7iZ5mNtQv-UeOvRsnd18j/exec",  //done
-    guestList: "https://script.google.com/macros/s/AKfycbxVd3g0Pui7Ed420dq4A51fHXhZk2Tpp8r8559_SRvc-jJpvk-VSw5P2wViCysDU2ht/exec",  //done
-    guestRequest: "https://script.google.com/macros/s/AKfycbwV8bltkrU-QBLWAMuq7AzUvVjLPuPffv4RV5n78E0pjPgR_UR_BQsR2x42qCF3-fp2/exec",   //done
-    entourage: "https://script.google.com/macros/s/AKfycbxs73ttAyXxH527YTqs7NF5sCgjXkUDaHYs74ihIaH9rjorA9cdK9RpPNqPeOGvd5_c/exec",  //done
-    sponsors: "https://script.google.com/macros/s/AKfycbyDDLvyMYzDd2hmN5fwQgprhjau8T5YX_bp12I07yEfQOGgHfhS0LWg5v_AOqDK4FUl/exec",  //done 
+    messageForm: "https://docs.google.com/forms/d/e/1FAIpQLSdQmDsG6orFACRqaSSwOK8MHPfi3FY3LSKaJWaL1Ic57p0VXQ/formResponse",   //done
+    message: "https://script.google.com/macros/s/AKfycbwV8MnoQ5b4NB3loafQKpphMJ1LBHrthwV7yS51F8oR3ugsiTRli1DOarT822tToQHc-A/exec",  //done
+    guestList: "https://script.google.com/macros/s/AKfycbzMI-VWk9a_o28TdW7wBFsUXdZNH0bwwNJ1XA0okUyGjYBZja42wzIUOyeWTBJXkKXzKg/exec",  //done
+    guestRequest: "https://script.google.com/macros/s/AKfycbzYDJZWSFIifY9HfTqJaolT412KLKWTNaXdMBWHZ6m_bAZVcgtIF08JeZqD4YKERfhE9A/exec",   //done
+    entourage: "https://script.google.com/macros/s/AKfycbykKK7CK8XnLPVh0r07YUBwm6uK223HFTiu9rgmdsQHb8vxvDlNPL3Eu5pGcDN55u3sxQ/exec",  //done
+    sponsors: "https://script.google.com/macros/s/AKfycbzcHsyM2KO0PYANArRef3urzmT2rUzwCmoN7Tc31MNunFMZg_FfqCoxcOyZuu1OXdq60Q/exec",  //done 
     proposalResponses: "https://script.google.com/macros/s/AKfycbwIUDKMoMIHVwbmr6KbgmBtlGRpMGj1Z9maeHSEwsFaXNi0dAH8WYhqbtiAfg_p5D4lgw/exec", // uses entourage script with action: proposal
-    weddingDetails: "https://script.google.com/macros/s/AKfycbwtpWcRi0MfnDm2Zk5RcWrgKWcc_kTR3bpVbSVZpvvVj5-Z4wUZxFT5xpbbEvgOMKYp/exec",   //done
+    weddingDetails: "https://script.google.com/macros/s/AKfycbwzT-5Ve8ZR-Jvxui0RsBSC7JJg43JLikYD1lqOungptTyDHQ8ZLYeZbsi3waHDS1gA/exec",   //done
 ////google share 
-    googleShare: "https://docs.google.com/spreadsheets/d/1K952wOAK-0U4SRL4xa9DWHjJ4dr7m2VvsiCKd8D4mC4/edit?usp=sharing", 
+    googleShare: "https://docs.google.com/spreadsheets/d/1F05KhYslU-a3NgUiJhUhHJrBMHnYK4xuJ8MfwcyhU3I/edit?usp=sharing", 
   },
   wedding: {
     date: "December 26, 2026",
@@ -173,7 +173,7 @@ Now, as they prepare to say yes before God and the people they love most, Cather
   },
   snapShare: {
     googleDriveLink:
-      "https://drive.google.com/drive/folders/1Jpz2_rmDy6kxuRwKIhpzNfHEzNx4aIrS?usp=sharing",
+      "https://drive.google.com/drive/folders/1KLl8pyF0iH00jPx0YPUMWcn5DBec8dzW?usp=sharing",
     albumQR: "/QR/AlbumQR.png",
     hashtag: ["#JuneandJonasWedding"],
     instructions: "Please scan this QR Code and upload the photos and videos you have taken during our wedding reception. We are delighted to see your snaps too!",
