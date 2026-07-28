@@ -997,9 +997,9 @@ export function Details() {
 
                 <ReminderCard title="Strictly Formal" variant="accent">
                   <p>
-                    Kindly follow our suggested attire guidelines above. Please refrain from
-                    wearing white, ivory, champagne, and shades of red, as these colors are
-                    reserved for the bride and entourage.
+                  Kindly follow our suggested color palette above. 
+                  To honor the wedding theme, please refrain from wearing white or black, 
+                  as these colors are reserved for the couple and the wedding party.
                   </p>
                 </ReminderCard>
 

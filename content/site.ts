@@ -130,7 +130,7 @@ export const siteConfig = {
       palette: ["#D9B8F5", "#A37CD2", "#E6DDD2", "#E4C5B2", "#727E40"],
     },
     paletteNote:
-      "To create a cohesive and elegant celebration, we kindly encourage our guests to follow the suggested color palette. To allow our wedding party to be easily distinguished, we respectfully ask that guests refrain from wearing white, ivory, champagne, and shades of red, as these colors have been reserved for the bride and members of our entourage.",
+      "To create a cohesive and elegant celebration, we kindly encourage our guests to follow the suggested color palette above. To allow our wedding party to be easily distinguished, we respectfully ask that guests refrain from wearing white or black, as these colors are reserved for the couple and the wedding party.",
     closing:
       "Thank you for helping us bring our wedding vision to life. We can't wait to celebrate with you!",
     note: "We kindly request our guests to dress in attire following our wedding palette.",

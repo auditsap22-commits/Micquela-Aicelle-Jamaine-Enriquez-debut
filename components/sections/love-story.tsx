@@ -172,7 +172,7 @@ export function LoveStory() {
   text={
     <>
       <p>
-      Along the way, they found common interests — however small they seemed at first — and slowly, without either of them planning it, started building something real.
+      Along the way, they found common interests — traveling chief among them. And that is how, during the tail end of 2015, they found themselves in Georgia, discovering the world a little more, together.
       </p>
     </>
   }
@@ -186,7 +186,7 @@ export function LoveStory() {
   text={
     <>
       <p>
-      What began as easy small talk turned into conversations that didn't seem to want to end. The more they talked, the more they wanted to keep talking — and somewhere in there, the two of them became inseparable.
+      What began as easy small talk turned into conversations that didnt seem to want to end. The more they talked, the more they wanted to keep talking — and somewhere in there, the two of them became inseparable.
       </p>
     </>
   }
@@ -214,7 +214,8 @@ export function LoveStory() {
   text={
     <>
       <p className="mb-4">
-      Their relationship spanned almost a decade, with a pandemic stuck right in the middle, and a couple of countries — even continents — at times.
+      Their relationship spanned almost a decade — together in Abu Dhabi through the first few years, <br className="hidden md:block" />
+      then apart in different countries, even different continents, during the latter part, with a global pandemic stuck right in the middle.
       </p>
     </>
   }
@@ -233,21 +234,21 @@ export function LoveStory() {
     </>
   }
 />
-
+ 
 <StorySection
   theme="light"
   layout="image-left"
   imageSrc="/LoveStory/story (5).webp"
-  title="Patience, and Love at the Forefront"
+  title="Time Together, Miles Apart"
   text={
     <>
       <p className="mb-4">
-      They tried to have a bit more patience with each other — admittedly, at times more successful than others — and made sure to always, always keep love at the forefront, and sometimes in the background, holding everything together.
+      Even though they were apart most of the time, they still found a few weeks each year to be with each other — chasing new destinations like Italy, Slovenia, and Prague, and revisiting favorite places back home in the Philippines.
       </p>
     </>
   }
 />
-
+ 
 <StorySection
   theme="dark"
   layout="image-right"
@@ -256,7 +257,7 @@ export function LoveStory() {
   text={
     <>
       <p className="mb-4">
-      Until he asked the question... and she said yes. And so here they are, starting a new chapter in the journey to forever.
+      Then in the spring of 2025, during a visit to her in Austria, he popped the question — under a giant ferris wheel somewhere in Vienna. And she said yes. And so here they are, starting a new chapter in the journey to forever.
       </p>
     </>
   }
@@ -271,7 +272,11 @@ export function LoveStory() {
   text={
     <>
       <p className="mb-4">
-      After 10 years of love, laughter, and countless memories, June and Jonas are finally saying "I do." Join us as we celebrate the beginning of their forever on December 26, 2026. We can't wait to celebrate with you!
+      In front of family, friends, and the rest of the world, June and Jonas are tying the knot, making their vows, saying "I do," and one more time exchanging their I love yous. All the cliches, and yet they mean a little bit more. <br className="hidden md:block" />
+      But that is what 10 years — after a longing glance, a friendship that blossomed into romance, and maybe even a heartfelt (albeit choreographed) wedding dance — can lead to. Habangbuhay.
+      </p>
+      <p>
+      See you on the 26th of December, 2026!
       </p>
     </>
   }
