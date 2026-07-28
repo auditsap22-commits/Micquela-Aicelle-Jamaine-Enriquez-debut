@@ -9,8 +9,8 @@ export const siteConfig = {
     brideNickname: "June", //Ltryl
     groom: "Jonas Don Castelo", //Ltryl B. Benitez
     groomNickname: "Jonas",
-    monogram:"/monogram/monogram.webp" ,//Ltryl
-    backgroundMusic:"/background_music/Keenan Te - Rest of My Life (Wedding Version).mp3"
+    monogram:"/monogram/newMonogram.png" ,//Ltryl
+    backgroundMusic:"/background_music/Pasilyo (Wedding Version) by SunKissed Lola (Cover) - David La Sol.mp3"
   },
   googleAPI:{
     messageForm: "https://docs.google.com/forms/d/e/1FAIpQLSdQmDsG6orFACRqaSSwOK8MHPfi3FY3LSKaJWaL1Ic57p0VXQ/formResponse",   //done
@@ -82,13 +82,13 @@ export const siteConfig = {
     image: ["/Details/Ceremony.webp", "/Details/Ceremony2.webp"],
   },
   reception: {
-    location: "Manila Hotel",
+    location: "The Manila Hotel - Centennial Hall A",
     venue: "1 Rizal Park, Ermita, Manila, 0913 Metro Manila",
     map: "https://maps.app.goo.gl/E9dDgP9CVbsiu7AN9",
     date: "December 26, 2026",
     day: "Saturday",
     time: "6:00 PM",
-    image: ["/Details/reception.webp", "/Details/reception2.webp"],
+    image: ["/Details/reception.webp", "/Details/reception4.png","/Details/reception3.png"],
   },
   dressCode: {
     theme: "STRICTLY FORMAL",
