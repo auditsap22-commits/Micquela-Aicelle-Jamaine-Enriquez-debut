@@ -7,7 +7,7 @@ import "./globals.css"
 import { siteConfig } from "@/content/site"
 import { ClientLayout } from "@/components/client-layout"
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://https://gilbert-and-kameel.vercel.app/"
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://gilbert-and-kameel.weddinginvitationrsvp.com/"
 const canonicalUrl = siteUrl.replace(/\/$/, "")
   const desktopHero = "/Details/linkPreview.jpg"
 const mobileHero = "/Details/linkPreview.jpg"
@@ -15,7 +15,7 @@ const eventImageUrl = `${canonicalUrl}${desktopHero}`
 
 // Hardcoded Cloudinary URL — image is already uploaded and always accessible via CDN.
 // f_jpg forces JPEG so all OG scrapers (iMessage, Viber, Facebook, etc.) can display it.
-// The public-folder URL is kept only as a fallback in the images array below.
+// The public-folder URL  is kept only as a fallback in the images array below.
 //https://res.cloudinary.com/dlkznubkj/image/upload/v1776167457/wedding-projects/arra-and-robert/Details/PreviewLink.jpg
 // const OG_IMAGE_CLOUDINARY =
 //     "https://res.cloudinary.com/dlkznubkj/image/upload/v1777281742/wedding-projects/ken-and-ely/Details/newLinkPreview.png"
