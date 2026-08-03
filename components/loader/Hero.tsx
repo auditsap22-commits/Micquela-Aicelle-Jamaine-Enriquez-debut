@@ -29,7 +29,7 @@ const POLAROID_PHOTOS = [
 const COUPLE_NAME_IMAGE = '/decoration/newCoupleName.png';
 
 const CORNER_DECO_CLASS =
-  'block h-auto w-auto max-w-[200px] sm:max-w-[240px] md:max-w-[280px] opacity-75';
+  'block h-auto w-auto max-w-[200px] sm:max-w-[245px] md:max-w-[280px] opacity-75';
 
 function letterNamesMaskStyle(src: string): CSSProperties {
   return {

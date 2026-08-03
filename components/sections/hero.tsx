@@ -36,7 +36,6 @@ const COUPLE_NAME_HERO_FILTER =
 
 const cinzel = Cinzel({
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
 })
 
 const theSeasons = localFont({
