@@ -150,47 +150,60 @@ const ct = {
 
 const attireGuide = {
   sponsors: {
-    image: "/Details/sponsorsnew.png",
-    imageAspect: "500/400",
-    ladies: {
-      colors: [
-        "#F6D6DE", // Blush Pink
-        "#EEC3CF", // Soft Rose
-        "#DFA8B8", // Dusty Blush
-        "#CD857D", // Light Blush
-      ] as const,
-      description: "Any style of elegant formal dress or long gown in shades of blush pink",
-    },
-    
-    gentlemen: {
-      colors: [
-        "#F5F1E8", // Ivory Barong
-        "#000000", // Dark Trousers
-        "#4A4A4A", // Charcoal Accent
-      ] as const,
-      description: "Traditional Barong Tagalog paired with dark trousers",
-    },
+    image: "/Details/entourage.png",
+imageAspect: "500/400",
+
+ladies: {
+  colors: [
+    "#9A52A6", // Orchid Purple
+    "#DF6B90", // Warm Rose Pink
+    "#F8C353", // Marigold Yellow
+    "#E76A32", // Tangerine Orange
+    "#ABC3DB", // Soft Sky Blue
+    "#988C38", // Olive Gold
+  ] as const,
+
+  description:
+    "Elegant floor-length formal gowns in a vibrant True Spring palette featuring Orchid Purple, Warm Rose Pink, Marigold Yellow, Tangerine Orange, Soft Sky Blue, and Olive Gold. Dresses may vary in style while maintaining a sophisticated and coordinated formal look.",
+},
+
+gentlemen: {
+  colors: [
+    "#F6F1E7", // Cream Barong
+    "#000000", // Black Trousers
+    "#1E1E1E", // Black Formal Shoes
+  ] as const,
+
+  description:
+    "Traditional long-sleeved Cream Barong Tagalog paired with tailored black trousers and polished black formal shoes for a timeless and elegant Filipino formal ensemble.",
+},
   },
   entourage: {
-    image: "/Details/entouurageAttire.png",
+    image: "/Details/guest (2).png",
     imageAspect: "500/400",
+    
     ladies: {
       colors: [
-        "#F6D6DE", // Blush Pink
-        "#EEC3CF", // Soft Rose
-        "#DFA8B8", // Dusty Pink
-        "#F8E8EC", // Light Blush
+        "#F8F3E8", // Champagne
+        "#F7E6C4", // Warm Beige
+        "#F8DFAE", // Soft Apricot
+        "#ABC3DB", // Soft Sky Blue (optional accent)
       ] as const,
-      description: "Any style of long gown in shades of Blush Pink",
+    
+      description:
+        "Any style of elegant formal or semi-formal long gown in warm neutrals such as Champagne, Warm Beige, Soft Apricot, or Soft Sky Blue. Floral prints and subtle textures are welcome while keeping the overall look refined and sophisticated.",
     },
     
     gentlemen: {
       colors: [
-        "#000000", // Black Coat & Pants
-        "#FFFFFF", // White Long Sleeve
-        "#F6D6DE", // Blush Pink Necktie/Bow Tie
+        "#000000", // Black Suit
+        "#FFFFFF", // White Dress Shirt
+        "#988C38", // Olive Gold Tie
+        "#DF6B90", // Warm Rose Tie (optional)
       ] as const,
-      description: "Black coat, white long sleeve, black pants with a blush pink necktie or bow tie",
+    
+      description:
+        "Black or charcoal suit with a white long-sleeved dress shirt, paired with an Olive Gold or Warm Rose Pink necktie or bow tie and black formal shoes.",
     },
   },
   guests: {
@@ -907,10 +920,10 @@ export function Details() {
         {/* Attire cards — Bridal Party, Principal Sponsors & Guests */}
         <div className="mb-6 grid grid-cols-1 items-start gap-6 sm:mb-8 sm:gap-8 md:mb-10 sm:grid-cols-2 lg:grid-cols-3">
           <AttireCard
-            title="Principal Sponsors"
+            title="Entourage"
             image={attireGuide.sponsors.image}
             imageAspect={attireGuide.sponsors.imageAspect}
-            alt="Bridal party attire guide"
+            alt="Entourage attire guide"
           >
             <div className="grid grid-cols-1 gap-5 sm:gap-6">
               <AttirePaletteGroup
@@ -927,10 +940,10 @@ export function Details() {
           </AttireCard>
 
           <AttireCard
-            title="Entourage"
+            title="Guests"
             image={attireGuide.entourage.image}
             imageAspect={attireGuide.entourage.imageAspect}
-            alt="Entourage attire guide"
+            alt="Guests attire guide"
           >
             <div className="grid grid-cols-1 gap-5 sm:gap-6">
               <AttirePaletteGroup
@@ -946,7 +959,7 @@ export function Details() {
             </div>
           </AttireCard>
 
-          <AttireCard
+          {/* <AttireCard
             title="Guests"
             image={attireGuide.guests.image}
             imageAspect={attireGuide.guests.imageAspect}
@@ -964,7 +977,7 @@ export function Details() {
                 description={attireGuide.guests.gentlemen.description}
               />
             </div>
-          </AttireCard>
+          </AttireCard> */}
         </div>
 
         {/* <div
@@ -1037,7 +1050,7 @@ export function Details() {
                       Kindly follow our suggested attire and color palette above to match our wedding
                       theme.
                     </p>
-                    <ColorPalette colors={attireGuide.guests.ladies.colors} />
+                    <ColorPalette colors={attireGuide.sponsors.ladies.colors} />
                     <p>Strictly no casual clothes, shoes, or white-colored attire.</p>
                   </div>
                 </ReminderCard>
