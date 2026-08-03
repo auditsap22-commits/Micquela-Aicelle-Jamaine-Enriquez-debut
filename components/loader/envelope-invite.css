@@ -1,18 +1,28 @@
 /* ── Design tokens ── */
 .env-invite-screen {
-  --env-base: var(--color-motif-deep);
-  --env-highlight: var(--color-welcome-script);
-  --env-shadow: color-mix(in srgb, var(--color-motif-deep) 70%, #1e1828);
-  --env-fold: color-mix(in srgb, var(--color-motif-deep) 52%, var(--color-welcome-script));
-  --env-wax: #d3b988;
-  --env-seal-light: #f0dfa8;
-  --env-seal-gold: #d3b988;
-  --env-seal-mid: #c4a86a;
-  --env-seal-deep: #a8843a;
-  --env-seal-shadow: #6b4f1a;
+  /* Envelope — fixed coral orange */
+  --env-envelope: #E76A32;
+  --env-base: #E76A32;
+  --env-highlight: color-mix(in srgb, #E76A32 74%, white);
+  --env-shadow: color-mix(in srgb, #E76A32 68%, #4a2210);
+  --env-fold: color-mix(in srgb, #E76A32 52%, #8f3a18);
+
+  /* UI + surfaces — from globals motif palette */
+  --env-ui-brand: var(--color-motif-deep);
+  --env-ui-accent: var(--color-motif-accent);
+  --env-text: var(--color-welcome-text);
+  --env-text-soft: var(--color-welcome-text-soft);
+  --env-wax: #F8C454;
+  --env-seal-light: color-mix(in srgb, #F8C454 78%, white);
+  --env-seal-gold: #F8C454;
+  --env-seal-mid: color-mix(in srgb, #F8C454 82%, #c89820);
+  --env-seal-deep: color-mix(in srgb, #F8C454 68%, #a87818);
+  --env-seal-shadow: color-mix(in srgb, #F8C454 48%, #6a5010);
   --env-paper: var(--color-motif-soft);
-  --env-gold: var(--color-motif-accent);
+  --env-gold: var(--color-welcome-green);
   --env-ivory: var(--color-motif-cream);
+  --env-border: color-mix(in srgb, var(--env-envelope) 32%, transparent);
+  --env-border-soft: color-mix(in srgb, var(--env-ui-accent) 28%, transparent);
 
   /*
     Physical stack (always):
@@ -88,9 +98,21 @@
   pointer-events: none;
   z-index: 0;
   background:
-    radial-gradient(920px 620px at 50% 18%, rgba(220, 206, 235, 0.48) 0, transparent 58%),
-    radial-gradient(560px 400px at 10% 86%, rgba(108, 84, 125, 0.06) 0, transparent 55%),
-    radial-gradient(440px 320px at 92% 72%, rgba(200, 176, 216, 0.1) 0, transparent 52%);
+    radial-gradient(
+      920px 620px at 50% 18%,
+      color-mix(in srgb, var(--env-ui-accent) 14%, transparent) 0,
+      transparent 58%
+    ),
+    radial-gradient(
+      560px 400px at 10% 86%,
+      color-mix(in srgb, var(--env-ui-brand) 6%, transparent) 0,
+      transparent 55%
+    ),
+    radial-gradient(
+      440px 320px at 92% 72%,
+      color-mix(in srgb, var(--env-gold) 10%, transparent) 0,
+      transparent 52%
+    );
   transition: opacity 1.15s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -107,8 +129,16 @@
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(700px 500px at 50% 44%, rgba(243, 216, 197, 0.14) 0, transparent 62%),
-    radial-gradient(520px 380px at 78% 82%, rgba(200, 176, 216, 0.1) 0, transparent 58%);
+    radial-gradient(
+      700px 500px at 50% 44%,
+      color-mix(in srgb, var(--env-envelope) 10%, transparent) 0,
+      transparent 62%
+    ),
+    radial-gradient(
+      520px 380px at 78% 82%,
+      color-mix(in srgb, var(--env-ui-accent) 10%, transparent) 0,
+      transparent 58%
+    );
 }
 
 .env-invite-corner {
@@ -153,7 +183,7 @@
   font-size: clamp(3.25rem, 13vw, 7.5rem);
   line-height: 0.82;
   letter-spacing: 0.04em;
-  color: var(--color-motif-deep);
+  color: var(--env-ui-brand);
   opacity: 0.07;
   pointer-events: none;
   user-select: none;
@@ -171,7 +201,7 @@
   background: linear-gradient(
     90deg,
     transparent,
-    color-mix(in srgb, var(--color-motif-deep) 55%, transparent),
+    color-mix(in srgb, var(--env-ui-brand) 55%, transparent),
     transparent
   );
   opacity: 0.65;
@@ -186,8 +216,16 @@
 .env-invite-screen[data-phase="exiting"]::before {
   opacity: 0.2;
   background:
-    radial-gradient(980px 680px at 50% 38%, rgba(246, 241, 249, 0.88) 0, transparent 64%),
-    radial-gradient(720px 480px at 50% 92%, rgba(108, 84, 125, 0.1) 0, transparent 58%);
+    radial-gradient(
+      980px 680px at 50% 38%,
+      color-mix(in srgb, var(--color-motif-cream) 88%, transparent) 0,
+      transparent 64%
+    ),
+    radial-gradient(
+      720px 480px at 50% 92%,
+      color-mix(in srgb, var(--env-ui-brand) 10%, transparent) 0,
+      transparent 58%
+    );
   transition: opacity 1.75s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -201,7 +239,7 @@
 
 .env-invite-screen[data-phase="exiting"] .env-invite-letter {
   z-index: 48;
-  filter: drop-shadow(0 28px 56px rgba(108, 84, 125, 0.22));
+  filter: drop-shadow(0 28px 56px color-mix(in srgb, var(--env-ui-brand) 22%, transparent));
 }
 
 .env-invite-screen[data-phase="exiting"] .env-invite-reveal-copy,
@@ -228,18 +266,27 @@
   margin-top: calc(min(420px, 72vw) * -0.5);
   margin-left: calc(min(420px, 72vw) * -0.5);
   border-radius: 50%;
-  border: 1px solid rgba(200, 176, 216, 0.55);
+  border: 1px solid color-mix(in srgb, var(--env-ui-accent) 40%, transparent);
   box-shadow:
-    0 0 0 1px rgba(246, 241, 249, 0.35),
-    0 0 80px rgba(200, 176, 216, 0.35),
-    inset 0 0 60px rgba(246, 241, 249, 0.25);
+    0 0 0 1px color-mix(in srgb, var(--color-motif-cream) 35%, transparent),
+    0 0 80px color-mix(in srgb, var(--env-ui-accent) 35%, transparent),
+    inset 0 0 60px color-mix(in srgb, var(--color-motif-cream) 25%, transparent);
 }
 
 .env-invite-exit-bloom {
   inset: 0;
   background:
-    radial-gradient(circle at 50% 38%, rgba(251, 248, 253, 0.98) 0%, rgba(248, 246, 251, 0.88) 28%, transparent 68%),
-    radial-gradient(circle at 50% 38%, rgba(200, 176, 216, 0.18) 0%, transparent 52%);
+    radial-gradient(
+      circle at 50% 38%,
+      color-mix(in srgb, var(--color-motif-cream) 98%, transparent) 0%,
+      color-mix(in srgb, var(--color-motif-soft) 88%, transparent) 28%,
+      transparent 68%
+    ),
+    radial-gradient(
+      circle at 50% 38%,
+      color-mix(in srgb, var(--env-ui-accent) 18%, transparent) 0%,
+      transparent 52%
+    );
   transform-origin: 50% 38%;
 }
 
@@ -251,13 +298,13 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(246, 241, 249, 0.15),
-    rgba(200, 176, 216, 0.85),
-    rgba(246, 241, 249, 0.15),
+    color-mix(in srgb, var(--color-motif-cream) 15%, transparent),
+    color-mix(in srgb, var(--env-ui-accent) 85%, transparent),
+    color-mix(in srgb, var(--color-motif-cream) 15%, transparent),
     transparent
   );
   filter: blur(0.5px);
-  box-shadow: 0 0 24px rgba(200, 176, 216, 0.45);
+  box-shadow: 0 0 24px color-mix(in srgb, var(--env-ui-accent) 45%, transparent);
 }
 
 .env-invite-exit-curtain {
@@ -267,8 +314,8 @@
   background:
     linear-gradient(
       105deg,
-      var(--env-base) 0%,
-      color-mix(in srgb, var(--env-base) 88%, #1e1828) 100%
+      var(--env-envelope) 0%,
+      color-mix(in srgb, var(--env-envelope) 88%, #3a1808) 100%
     );
   box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.22);
 }
@@ -276,13 +323,13 @@
 .env-invite-exit-curtain--left {
   left: 0;
   transform-origin: left center;
-  border-right: 1px solid rgba(200, 176, 216, 0.22);
+  border-right: 1px solid var(--env-border-soft);
 }
 
 .env-invite-exit-curtain--right {
   right: 0;
   transform-origin: right center;
-  border-left: 1px solid rgba(200, 176, 216, 0.22);
+  border-left: 1px solid var(--env-border-soft);
 }
 
 /* ── Cluster ── */
@@ -393,7 +440,7 @@
   background:
     linear-gradient(165deg, rgba(255, 255, 255, 0.07) 0%, transparent 28%),
     linear-gradient(180deg, color-mix(in srgb, var(--env-highlight) 78%, white) 0%, var(--env-base) 42%, var(--env-fold) 78%, var(--env-shadow) 100%);
-  border: 1px solid rgba(200, 176, 216, 0.42);
+  border: 1px solid var(--env-border);
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.1) inset,
     0 -1px 0 rgba(0, 0, 0, 0.15) inset,
@@ -425,7 +472,7 @@
   content: "";
   position: absolute;
   inset: 8px;
-  border: 1px solid rgba(200, 176, 216, 0.22);
+  border: 1px solid var(--env-border-soft);
   border-radius: 1px;
   pointer-events: none;
 }
@@ -557,12 +604,12 @@
     var(--env-paper) 72%,
     color-mix(in srgb, var(--env-paper) 72%, var(--color-motif-silver)) 100%
   );
-  border: 1px solid rgba(200, 176, 216, 0.5);
+  border: 1px solid color-mix(in srgb, var(--env-border) 55%, transparent);
   box-shadow:
     0 12px 32px rgba(0, 0, 0, 0.22),
     0 4px 10px rgba(0, 0, 0, 0.1),
     inset 0 0 0 1px rgba(255, 255, 255, 0.45),
-    inset 0 -18px 24px rgba(200, 176, 216, 0.06);
+    inset 0 -18px 24px color-mix(in srgb, var(--env-ui-accent) 6%, transparent);
   overflow: hidden;
   transform-origin: bottom center;
   z-index: var(--z-letter);
@@ -579,7 +626,7 @@
     clamp(6px, calc(var(--env-letter-w) * 0.038), 9px)
     clamp(14px, calc(var(--env-letter-w) * 0.062), 20px)
     clamp(6px, calc(var(--env-letter-w) * 0.038), 9px);
-  border: 1px solid rgba(200, 176, 216, 0.35);
+  border: 1px solid var(--env-border-soft);
   pointer-events: none;
 }
 
@@ -587,7 +634,7 @@
   content: "";
   position: absolute;
   inset: 4px;
-  border: 1px solid rgba(200, 176, 216, 0.2);
+  border: 1px solid color-mix(in srgb, var(--env-border-soft) 70%, transparent);
   pointer-events: none;
 }
 
@@ -617,7 +664,7 @@
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--color-welcome-text);
+  color: var(--env-text);
   margin: 0;
 }
 
@@ -638,7 +685,7 @@
   font-style: italic;
   font-weight: 500;
   line-height: 1.2;
-  color: rgba(90, 82, 100, 0.9);
+  color: var(--env-ui-brand);
   margin: 0.06em 0;
 }
 
@@ -648,23 +695,30 @@
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: lowercase;
-  color: rgba(90, 82, 100, 0.75);
+  color: var(--env-text-soft);
   margin: 0;
 }
 
 .env-invite-letter-names {
   position: relative;
   width: min(100%, calc(var(--env-letter-w) * 0.72));
-  aspect-ratio: 828 / 629;
+  aspect-ratio: 1018 / 622;
   margin: 0;
   flex-shrink: 0;
+  background-color: var(--env-ui-brand);
+  -webkit-mask-image: var(--env-letter-names-mask, none);
+  mask-image: var(--env-letter-names-mask, none);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  opacity: 0.92;
 }
 
 .env-invite-letter-names-image {
-  filter:
-    brightness(0) saturate(100%) invert(38%) sepia(14%) saturate(1600%) hue-rotate(248deg)
-    brightness(0.88);
-  opacity: 0.92;
+  display: none;
 }
 
 .env-invite-polaroid {
@@ -673,7 +727,7 @@
   width: var(--env-polaroid-w);
   margin: 0;
   padding: 9px 9px 30px;
-  border: 1px solid rgba(200, 176, 216, 0.42);
+  border: 1px solid var(--env-border);
   appearance: none;
   font: inherit;
   color: inherit;
@@ -682,12 +736,12 @@
   -webkit-tap-highlight-color: transparent;
   background:
     linear-gradient(145deg, rgba(255, 255, 255, 0.55) 0%, transparent 42%),
-    linear-gradient(180deg, var(--color-motif-silver) 0%, #F0EBF5 52%, #E4DCEF 100%);
+    linear-gradient(180deg, var(--color-motif-silver) 0%, var(--color-motif-soft) 52%, var(--color-motif-cream) 100%);
   box-shadow:
     0 16px 30px rgba(0, 0, 0, 0.2),
     0 5px 12px rgba(0, 0, 0, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.72),
-    inset 0 -2px 4px rgba(108, 84, 125, 0.06);
+    inset 0 -2px 4px color-mix(in srgb, var(--env-ui-brand) 6%, transparent);
   transform-origin: bottom center;
   z-index: var(--z-photos);
   overflow: hidden;
@@ -707,7 +761,7 @@
     0 22px 38px rgba(0, 0, 0, 0.28),
     0 10px 18px rgba(0, 0, 0, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.78),
-    inset 0 -2px 4px rgba(108, 84, 125, 0.06);
+    inset 0 -2px 4px color-mix(in srgb, var(--env-ui-brand) 6%, transparent);
 }
 
 .env-invite-polaroid.is-lifted {
@@ -753,8 +807,8 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(200, 176, 216, 0.22) 20%,
-    rgba(200, 176, 216, 0.22) 80%,
+    color-mix(in srgb, var(--env-ui-accent) 22%, transparent) 20%,
+    color-mix(in srgb, var(--env-ui-accent) 22%, transparent) 80%,
     transparent
   );
   pointer-events: none;
@@ -766,12 +820,12 @@
   height: var(--env-polaroid-h);
   aspect-ratio: 4 / 5;
   overflow: hidden;
-  background: #E4DCEF;
+  background: var(--color-motif-silver);
   border-radius: 1px;
-  border: 1px solid rgba(200, 176, 216, 0.32);
+  border: 1px solid color-mix(in srgb, var(--env-border) 32%, transparent);
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.25),
-    inset 0 2px 8px rgba(90, 82, 100, 0.08);
+    inset 0 2px 8px color-mix(in srgb, var(--env-text) 8%, transparent);
 }
 
 .env-invite-polaroid-photo::after {
@@ -780,8 +834,8 @@
   inset: 0;
   z-index: 1;
   background:
-    radial-gradient(ellipse 85% 75% at 50% 42%, transparent 55%, rgba(86, 66, 107, 0.12) 100%),
-    linear-gradient(180deg, rgba(246, 241, 249, 0.1) 0%, rgba(108, 84, 125, 0.07) 100%);
+    radial-gradient(ellipse 85% 75% at 50% 42%, transparent 55%, color-mix(in srgb, var(--env-ui-brand) 12%, transparent) 100%),
+    linear-gradient(180deg, color-mix(in srgb, var(--color-motif-cream) 10%, transparent) 0%, color-mix(in srgb, var(--env-ui-brand) 7%, transparent) 100%);
   mix-blend-mode: multiply;
   pointer-events: none;
 }
@@ -1027,7 +1081,7 @@
   background:
     linear-gradient(145deg, rgba(255, 255, 255, 0.1) 0%, transparent 38%),
     linear-gradient(160deg, var(--env-highlight) 0%, var(--env-base) 55%, var(--env-fold) 100%);
-  border-bottom: 1px solid rgba(200, 176, 216, 0.32);
+  border-bottom: 1px solid var(--env-border);
   box-shadow:
     inset 0 -12px 20px rgba(0, 0, 0, 0.14),
     inset 0 2px 0 rgba(255, 255, 255, 0.06),
@@ -1180,7 +1234,7 @@
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(90, 82, 100, 0.88);
+  color: var(--env-text-soft);
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
   transition:
     opacity 0.35s ease,
@@ -1204,7 +1258,7 @@
   letter-spacing: 0.12em;
   line-height: 1.4;
   text-transform: uppercase;
-  color: var(--env-base);
+  color: var(--env-ui-brand);
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
   pointer-events: none;
   transition:
@@ -1258,7 +1312,7 @@
   letter-spacing: 0.15em;
   text-transform: uppercase;
   line-height: 1.75;
-  color: var(--env-base);
+  color: var(--env-ui-brand);
   font-weight: 500;
 }
 
@@ -1266,7 +1320,7 @@
   margin-top: 0.45rem;
   font-family: "SortsMillGoudy", serif;
   font-size: 0.88rem;
-  color: rgba(141, 134, 152, 0.55);
+  color: color-mix(in srgb, var(--env-text-soft) 72%, transparent);
 }
 
 .env-invite-reveal-copy .script {
@@ -1275,7 +1329,7 @@
   font-family: "SortsMillGoudy", serif;
   font-style: italic;
   font-size: clamp(1.25rem, 3.6vw, 1.65rem);
-  color: var(--env-base);
+  color: var(--env-ui-brand);
 }
 
 .env-invite-enter-btn {
@@ -1290,16 +1344,16 @@
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--env-ivory);
-  background: var(--env-base);
-  border: 1px solid rgba(200, 176, 216, 0.38);
-  box-shadow: 0 8px 22px rgba(108, 84, 125, 0.2);
+  background: var(--color-welcome-green);
+  border: 1px solid color-mix(in srgb, var(--env-gold) 38%, transparent);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--color-welcome-green) 20%, transparent);
   cursor: pointer;
   transition: background 0.25s ease, box-shadow 0.25s ease;
 }
 
 .env-invite-enter-btn:hover {
-  background: var(--env-shadow);
-  box-shadow: 0 10px 26px rgba(108, 84, 125, 0.28);
+  background: color-mix(in srgb, var(--color-welcome-green) 88%, black);
+  box-shadow: 0 10px 26px color-mix(in srgb, var(--color-welcome-green) 28%, transparent);
 }
 
 .env-invite-enter-btn:focus-visible {

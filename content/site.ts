@@ -5,27 +5,27 @@ import {
 
 export const siteConfig = {
   couple: {
-    bride: "Mary June Fazon", //Noenyl Bryle M. Gonzaga
-    brideNickname: "June", //Ltryl
-    groom: "Jonas Don Castelo", //Ltryl B. Benitez
-    groomNickname: "Jonas",
-    monogram:"/monogram/newMonogram.png" ,//Ltryl
+    bride: "Jesie Kameel E. Erojo", //Noenyl Bryle M. Gonzaga
+    brideNickname: "Kameel", //Ltryl
+    groom: "Gilbert Kiling Pinongcos II", //Ltryl B. Benitez
+    groomNickname: "Gilbert",
+    monogram:"/monogram/monogram.png" ,//Ltryl
     backgroundMusic:"/background_music/Pasilyo (Wedding Version) by SunKissed Lola (Cover) - David La Sol.mp3"
   },
   googleAPI:{
-    messageForm: "https://docs.google.com/forms/d/e/1FAIpQLSdQmDsG6orFACRqaSSwOK8MHPfi3FY3LSKaJWaL1Ic57p0VXQ/formResponse",   //done
-    message: "https://script.google.com/macros/s/AKfycbwV8MnoQ5b4NB3loafQKpphMJ1LBHrthwV7yS51F8oR3ugsiTRli1DOarT822tToQHc-A/exec",  //done
-    guestList: "https://script.google.com/macros/s/AKfycbzMI-VWk9a_o28TdW7wBFsUXdZNH0bwwNJ1XA0okUyGjYBZja42wzIUOyeWTBJXkKXzKg/exec",  //done
-    guestRequest: "https://script.google.com/macros/s/AKfycbzYDJZWSFIifY9HfTqJaolT412KLKWTNaXdMBWHZ6m_bAZVcgtIF08JeZqD4YKERfhE9A/exec",   //done
-    entourage: "https://script.google.com/macros/s/AKfycbykKK7CK8XnLPVh0r07YUBwm6uK223HFTiu9rgmdsQHb8vxvDlNPL3Eu5pGcDN55u3sxQ/exec",  //done
-    sponsors: "https://script.google.com/macros/s/AKfycbzcHsyM2KO0PYANArRef3urzmT2rUzwCmoN7Tc31MNunFMZg_FfqCoxcOyZuu1OXdq60Q/exec",  //done 
+    messageForm: "https://docs.google.com/forms/d/e/1FAIpQLSfnzqIGp1BR_ILvjTa4XLmzB9J7KdZ_WuX7s2rmEqNUJdm7KA/formResponse",   //done
+    message: "https://script.google.com/macros/s/AKfycbwK186d2jD_4NlHjQVg3o3o0A2dIuKnxRzJ1UMztoTKChpn2-OyHaT4PDWrbjRXVvdu3Q/exec",  //done
+    guestList: "https://script.google.com/macros/s/AKfycbykVUHnIeQkwhCa9mUoJ0-A9EdDC-2UyQPZw4tvD5kJy76RpHmDHzq2pksLJEUjW9fwMw/exec",  //done
+    guestRequest: "https://script.google.com/macros/s/AKfycbx406fkIvqLkbh3CwuhamZAarn_hR8RHXXBNLWvgtFoN58drr8whTUbtNWt9-GQh3T0ig/exec",   //done
+    entourage: "https://script.google.com/macros/s/AKfycbxJvLVUXm6BU86TflWK3V3hzzQAvZmBjMxGJ3pitGqJVoOrr8_-gKGly7Gn9oaKF_BwWQ/exec",  //done
+    sponsors: "https://script.google.com/macros/s/AKfycbxEVdRjUr_oGThiamflZXQ-rK6Hmq71zVMcESUJ--383Kb-yqHp1vaTY71tVZM-Yo2TPQ/exec",  //done 
     proposalResponses: "https://script.google.com/macros/s/AKfycbwIUDKMoMIHVwbmr6KbgmBtlGRpMGj1Z9maeHSEwsFaXNi0dAH8WYhqbtiAfg_p5D4lgw/exec", // uses entourage script with action: proposal
-    weddingDetails: "https://script.google.com/macros/s/AKfycbwzT-5Ve8ZR-Jvxui0RsBSC7JJg43JLikYD1lqOungptTyDHQ8ZLYeZbsi3waHDS1gA/exec",   //done
+    weddingDetails: "https://script.google.com/macros/s/AKfycbz-wYIIdMsGf38BGfRRLlxbg8mfuRQgyQES7BUvEgnYfMVUSkxVaDxr0EdFuoBj2XhH9w/exec",   //done
 ////google share 
-    googleShare: "https://docs.google.com/spreadsheets/d/1F05KhYslU-a3NgUiJhUhHJrBMHnYK4xuJ8MfwcyhU3I/edit?usp=sharing", 
+    googleShare: "https://docs.google.com/spreadsheets/d/1qFMmYURdS98lp_Ngwg43l1P3K7ce4AwrQDn1f3_KpJk/edit?usp=sharing", 
   },
   wedding: {
-    date: "December 26, 2026",
+    date: "October 11, 2026",
     time: "3:00 PM",
     venue: "San Agustin Church, Intramuros",
     tagline: "are getting married!!!!!",
@@ -40,7 +40,7 @@ export const siteConfig = {
   },
   details: {
     rsvp: {
-      deadline: "December 10, 2026",
+      deadline: "October 11, 2026",
       coordinator: "Karis Events Management",
       phone: "​0922 888 8888",
     },
@@ -71,21 +71,21 @@ export const siteConfig = {
     }
   },
   ceremony: {
-    location: "San Agustin Church, Intramuros",
-    venue: "General Luna St, Intramuros, Manila, 1002 Metro Manila",
-    map: "https://maps.app.goo.gl/pisCCRQ4ZGkHrc4e7",
-    date: "December 26, 2026",
-    day: "Saturday",
+    location: "Greenleaf Hotel Gensan",
+    venue: "San Miguel St, General Santos City, Philippines, 9500",
+    map: "https://maps.app.goo.gl/NjhHEUzecnRHSgsH8",
+    date: "October 11, 2026",
+    day: "Friday",
     time: "3:00 PM",
     entourageTime: "2:00 PM",
     guestsTime: "2:30 PM",
-    image: ["/Details/Ceremony.webp", "/Details/Ceremony2.webp"],
+    image: ["/Details/ceremony.webp", "/Details/ceremony2.webp","/Details/ceremony3.webp"],
   },
   reception: {
     location: "The Manila Hotel - Centennial Hall A",
     venue: "1 Rizal Park, Ermita, Manila, 0913 Metro Manila",
     map: "https://maps.app.goo.gl/E9dDgP9CVbsiu7AN9",
-    date: "December 26, 2026",
+    date: "October 11, 2026",
     day: "Saturday",
     time: "6:00 PM",
     image: ["/Details/reception.webp", "/Details/reception4.png","/Details/reception3.png"],
@@ -167,9 +167,9 @@ Now, as they prepare to say yes before God and the people they love most, Cather
     subtitle: "Songs that have been part of our journey together",
     playlistName: "June and Jonas Wedding",
     embedUrl:
-    //https://open.spotify.com/embed/playlist/5ICXgzCtklT3VSvPtZ5icI?utm_source=generator&si=f2c0ef127bf04951
-      "https://open.spotify.com/embed/playlist/5ICXgzCtklT3VSvPtZ5icI?utm_source=generator&theme=0&si=f2c0ef127bf04951",
-    spotifyUrl: "https://open.spotify.com/playlist/5ICXgzCtklT3VSvPtZ5icI",
+    //https://open.spotify.com/embed/playlist/7ArRR3Wuvez1Yjbqge4pyF?utm_source=generator&si=364420158fc548a3
+      "https://open.spotify.com/embed/playlist/7ArRR3Wuvez1Yjbqge4pyF?utm_source=generator&theme=0&si=364420158fc548a3",
+    spotifyUrl: "https://open.spotify.com/playlist/7ArRR3Wuvez1Yjbqge4pyF",
   },
   snapShare: {
     googleDriveLink:

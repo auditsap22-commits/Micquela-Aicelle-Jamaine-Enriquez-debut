@@ -5,11 +5,10 @@ import './invite-particles.css';
 
 interface InviteParticlesProps {
   count?: number;
+  palette?: readonly string[];
 }
 
-const PARTICLE_PALETTE = ['#DCCEEB', '#C8B0D8', '#6C547D', '#E8DDF2'] as const;
-
-function buildParticleSeeds(count: number) {
+function buildParticleSeeds(count: number, palette?: readonly string[]) {
   return Array.from({ length: count }, (_, index) => ({
     id: index,
     left: `${((index * 17 + 7) % 96) + 2}%`,
@@ -18,12 +17,17 @@ function buildParticleSeeds(count: number) {
     delay: (index * 0.37) % 6,
     duration: 8 + (index % 5) * 2.4,
     opacity: 0.18 + (index % 5) * 0.07,
-    color: PARTICLE_PALETTE[index % PARTICLE_PALETTE.length],
+    color: palette?.length
+      ? palette[index % palette.length]
+      : `var(--particle-${(index % 4) + 1})`,
   }));
 }
 
-export function InviteParticles({ count = 28 }: InviteParticlesProps) {
-  const particles = useMemo(() => buildParticleSeeds(count), [count]);
+export function InviteParticles({ count = 28, palette }: InviteParticlesProps) {
+  const particles = useMemo(
+    () => buildParticleSeeds(count, palette),
+    [count, palette],
+  );
 
   return (
     <div className="invite-particles__field" aria-hidden="true">

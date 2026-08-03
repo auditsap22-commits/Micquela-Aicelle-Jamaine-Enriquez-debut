@@ -28,7 +28,7 @@ const aboveTheBeyond = localFont({
 })
 
 const CORNER_DECO_CLASS =
-  "block h-auto w-auto max-w-[120px] sm:max-w-[180px] md:max-w-[260px] lg:max-w-[320px] xl:max-w-[380px]"
+  "block h-auto w-auto max-w-[200px] sm:max-w-[240px] md:max-w-[280px] lg:max-w-[320px] xl:max-w-[380px]"
 
 function GalleryCoupleLabel({ groom, bride }: { groom: string; bride: string }) {
   const lineStyle = {
@@ -109,16 +109,17 @@ function GalleryTitle() {
 }
 
 const galleryItems = [
-  { image: "/mobile-background/couple (13).webp", text: " " },
-  { image: "/mobile-background/couple (12).webp", text: " " },
-  { image: "/mobile-background/couple (3).webp", text: " " },
-  { image: "/mobile-background/couple (4).webp", text: " " },
-  { image: "/mobile-background/couple (5).webp", text: " " },
-  { image: "/mobile-background/couple (6).webp", text: " " },
-  { image: "/mobile-background/couple (7).webp", text: " " },
-  { image: "/mobile-background/couple (8).webp", text: " " },
-  { image: "/mobile-background/couple (9).webp", text: " " },
-  { image: "/mobile-background/couple (11).webp", text: " " },
+  { image: "/mobile-background/couples (10).webp", text: " " },
+  { image: "/mobile-background/couples (11).webp", text: " " },
+  { image: "/mobile-background/couples (12).webp", text: " " },
+  { image: "/mobile-background/couples (13).webp", text: " " },
+  { image: "/mobile-background/couples (14).webp", text: " " },
+  { image: "/mobile-background/couples (15).webp", text: " " },
+  { image: "/mobile-background/couples (16).webp", text: " " },
+  { image: "/mobile-background/couples (17).webp", text: " " },
+  { image: "/mobile-background/couples (18).webp", text: " " },
+  { image: "/mobile-background/couples (19).webp", text: " " },
+  { image: "/mobile-background/couples (20).webp", text: " " },
 
 ]
 
@@ -213,7 +214,7 @@ export function Gallery() {
       <div className="pointer-events-none absolute left-0 top-0 z-10">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/decoration/left-top-deco.png"
+          src="/decoration/deco/left-top-corner.png"
           alt=""
           className={CORNER_DECO_CLASS}
         />
@@ -221,7 +222,7 @@ export function Gallery() {
       <div className="pointer-events-none absolute right-0 top-0 z-10">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/decoration/right-top-deco.png"
+          src="/decoration/deco/right-top-corner.png"
           alt=""
           className={CORNER_DECO_CLASS}
         />
@@ -229,7 +230,7 @@ export function Gallery() {
       <div className="pointer-events-none absolute bottom-0 left-0 z-10">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/decoration/left-bottom-deco.png"
+          src="/decoration/deco/left-bottom-corner.png"
           alt=""
           className={CORNER_DECO_CLASS}
         />
@@ -237,7 +238,7 @@ export function Gallery() {
       <div className="pointer-events-none absolute bottom-0 right-0 z-10">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/decoration/right-bottom-deco.png"
+          src="/decoration/deco/right-bottom-corner.png"
           alt=""
           className={CORNER_DECO_CLASS}
         />

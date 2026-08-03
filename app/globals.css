@@ -140,25 +140,25 @@
   /* ─── Motif palette — edit here, affects every component ─── */
 /* ==========================================
    MOTIF COLORS
-   Theme: Minimal Ivory + Champagne Gold + Wine Red
+   Theme: Botanical Cream + Olive + Dusty Rose + Orchid + Gold
 ========================================== */
 
 /* Background */
---color-motif-cream:   #F6F1F9; /* Main page background */
+--color-motif-cream:   #F9F4E8; /* Parchment cream */
 
 /* Primary Highlight */
---color-motif-yellow:  #DCCEEB; /* Gold accents */
+--color-motif-yellow:  #C5A059; /* Champagne gold */
 
 /* Secondary */
---color-motif-soft:    #FBF8FD; /* Soft ivory sections */
---color-motif-accent:  #C8B0D8; /* Gold buttons, icons, borders */
+--color-motif-soft:    #FDFBF5; /* Soft ivory sections */
+--color-motif-accent:  #C67283; /* Dusty rose */
 
 /* Primary Brand */
---color-motif-deep:    #6C547D; /* Navbar, headings, footer */
---color-motif-medium:  #DCCEEB; /* Navbar bottom border */
+--color-motif-deep:    #7D7D46; /* Olive green */
+--color-motif-medium:  #8B5DA3; /* Orchid purple */
 
 /* Neutral */
---color-motif-silver:  #F8F6FB; /* Cards, alternate backgrounds */
+--color-motif-silver:  #F5F1E6; /* Warm alternate backgrounds */
 
 /* ==========================================
    WELCOME SECTION
@@ -168,20 +168,20 @@
 --color-welcome-bg-soft:   color-mix(in srgb, var(--color-motif-cream) 25%, white);
 
 /* Paragraphs */
---color-welcome-text:      #5A5264;
---color-welcome-text-soft: #8D8698;
+--color-welcome-text:      #4A453E;
+--color-welcome-text-soft: #7A756C;
 
 /* Small Headings */
---color-welcome-heading:   #6C547D;
+--color-welcome-heading:   #7D7D46;
 
 /* Script Font */
---color-welcome-script:    #A887C5;
+--color-welcome-script:    #C67283;
 
 /* Main Hero Heading */
---color-welcome-navy:      #6C547D;
+--color-welcome-navy:      #988C38;
 
 /* Buttons / Decorative Lines / Icons */
---color-welcome-green:     #B89AD4;
+--color-welcome-green:     #E76A32;
   /* ─────────────────────────────────────────────────────────── */
   --font-imperial-script: "Imperial Script", cursive;
   --font-beautiful-malera: "Beautiful Malera", cursive;

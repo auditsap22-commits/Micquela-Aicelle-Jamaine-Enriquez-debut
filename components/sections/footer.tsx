@@ -231,7 +231,7 @@ export function Footer() {
         <div className="pointer-events-none absolute left-0 top-0 z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/decoration/left-top-deco.png"
+            src="/decoration/deco/left-top-corner.png"
             alt=""
             className={CORNER_DECO_CLASS}
           />
@@ -239,7 +239,7 @@ export function Footer() {
         <div className="pointer-events-none absolute right-0 top-0 z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/decoration/right-top-deco.png"
+            src="/decoration/deco/right-top-corner.png"
             alt=""
             className={CORNER_DECO_CLASS}
           />
@@ -247,7 +247,7 @@ export function Footer() {
         <div className="pointer-events-none absolute bottom-0 left-0 z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/decoration/left-bottom-deco.png"
+            src="/decoration/deco/left-bottom-corner.png"
             alt=""
             className={CORNER_DECO_CLASS}
           />
@@ -255,7 +255,7 @@ export function Footer() {
         <div className="pointer-events-none absolute bottom-0 right-0 z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/decoration/right-bottom-deco.png"
+            src="/decoration/deco/right-bottom-corner.png"
             alt=""
             className={CORNER_DECO_CLASS}
           />

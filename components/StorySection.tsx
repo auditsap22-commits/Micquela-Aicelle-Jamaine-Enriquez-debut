@@ -13,8 +13,7 @@ const theSeasons = localFont({
 })
 
 const lightBg = "var(--color-welcome-bg)"
-const darkBg = "var(--color-motif-accent)"
-
+const darkBg = "var(--color-welcome-green)"
 interface StorySectionProps {
   imageSrc: string
   title?: string

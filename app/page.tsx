@@ -185,7 +185,7 @@ export default function Home() {
                 transition={cinematicEntry ? undefined : { duration: 0.01 }}
               >
                 <Suspense fallback={<div className="w-full h-full bg-gradient-to-b from-primary/10 to-secondary/5" />}>
-                  <Silk speed={8} scale={0.9} color="#A37CD2" noiseIntensity={0} rotation={0.3} />
+                  <Silk speed={8} scale={0.9} color="#E86B33" noiseIntensity={0} rotation={0.3} />
                 </Suspense>
               </motion.div>
             )}

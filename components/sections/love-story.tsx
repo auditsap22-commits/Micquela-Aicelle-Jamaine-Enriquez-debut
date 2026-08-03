@@ -91,7 +91,7 @@ export function LoveStory() {
         <div className="pointer-events-none  absolute right-0 top-0 z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/decoration/right-top-deco.png"
+            src="/decoration/deco/right-top-corner.png"
             alt=""
             className={CORNER_DECO_CLASS}
           />
@@ -99,7 +99,7 @@ export function LoveStory() {
         <div className="pointer-events-none absolute left-0 top-0 z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/decoration/left-top-deco.png"
+            src="/decoration/deco/left-top-corner.png"
             alt=""
             className={CORNER_DECO_CLASS}
           />
@@ -125,158 +125,156 @@ export function LoveStory() {
   theme="light"
   layout="image-left"
   isFirst={true}
-  title="A Glance Down the Corridor"
-  imageSrc="/LoveStory/story (13).webp"
+  title="Two Strangers, One Unexpected Journey"
+  imageSrc="/mobile-background/couples (1).webp"
   text={
     <>
       <p className="mb-4">
-      It all started with a glance in her direction. June and Jonas both happened to be working in the same hospital, at opposite ends of a corridor on the second floor. Nakita lang, pero hindi alam kung napansin. But there already seemed to be something there — or at least the promise of something.
+      In 2018, what started as two strangers meeting turned into a beautiful journey neither of them expected.
       </p>
     </>
   }
 />
- 
+
 <StorySection
   theme="dark"
   layout="image-right"
-  imageSrc="/LoveStory/story (6).webp"
-  title="Introduced by a Friend"
+  imageSrc="/mobile-background/couples (2).webp"
+  title="Endless Teasing, Growing Friendship"
   text={
     <>
       <p className="mb-4">
-      They were eventually introduced by a common friend, and no doubt there was a spark. Or at least there was a smile. From there, June and Jonas got to be friends — the kind that hinted at becoming something more.
+      From playful conversations and Gilbert's endless teasing of Kameel, a friendship slowly grew into something deeper.
       </p>
     </>
   }
 />
- 
+
 <StorySection
   theme="light"
   layout="image-left"
-  imageSrc="/LoveStory/story (2).webp"
-  title="Regular Dates"
+  imageSrc="/mobile-background/couples (3).webp"
+  title="A Love That Grew Stronger"
   text={
     <>
       <p>
-      Dinners out, movies, afternoons of window shopping — the regular dates that slowly became something they both looked forward to, one small outing at a time.
+      Behind the jokes and little arguments was a love that continued to grow stronger every day.
       </p>
     </>
   }
 />
- 
+
 <StorySection
   theme="dark"
   layout="image-right"
-  imageSrc="/LoveStory/story (8).webp"
-  title="Finding Common Ground"
+  imageSrc="/mobile-background/couples (4).webp"
+  title="The Season of Distance"
   text={
     <>
       <p>
-      Along the way, they found common interests — traveling chief among them. And that is how, during the tail end of 2015, they found themselves in Georgia, discovering the world a little more, together.
+      Then in 2024, came the season of distance. As they began their long-distance relationship, they learned that love is not measured by the miles between them, but by the choice to keep choosing each other.
       </p>
     </>
   }
 />
- 
+
 <StorySection
   theme="light"
   layout="image-left"
-  imageSrc="/LoveStory/story (9).webp"
-  title="Conversations We Never Wanted to End"
+  imageSrc="/mobile-background/couples (5).webp"
+  title="Calls, Prayers, and Patience"
   text={
     <>
       <p>
-      What began as easy small talk turned into conversations that didnt seem to want to end. The more they talked, the more they wanted to keep talking — and somewhere in there, the two of them became inseparable.
+      Through countless calls, prayers, patience, and waiting, they proved that love can overcome any distance.
       </p>
     </>
   }
 />
- 
+
 <StorySection
   theme="dark"
   layout="image-right"
-  imageSrc="/LoveStory/story (4).webp"
-  title="When Friendship Blossomed Into Love"
+  imageSrc="/mobile-background/couples (6).webp"
+  title="The Question, in Taiwan"
   text={
     <>
       <p className="mb-4">
-      And before they knew it, ang nakasanayan naging nakakakilig. Friendship blossomed into love, and June and Jonas were officially a couple.
+      In 2025, in Taiwan, Gilbert asked Kameel the most important question of their lives.
       </p>
     </>
   }
 />
- 
+
 <StorySection
   theme="light"
   layout="image-left"
-  imageSrc="/LoveStory/story (1).webp"
-  title="Almost a Decade, Together"
+  imageSrc="/mobile-background/couples (7).webp"
+  title="A Heart Full of Love, and a Yes"
   text={
     <>
       <p className="mb-4">
-      Their relationship spanned almost a decade — together in Abu Dhabi through the first few years, <br className="hidden md:block" />
-      then apart in different countries, even different continents, during the latter part, with a global pandemic stuck right in the middle.
+      And with a heart full of love, Kameel said yes.
       </p>
     </>
   }
 />
- 
+
 <StorySection
   theme="dark"
   layout="image-right"
-  imageSrc="/LoveStory/story (11).webp"
-  title="Constant, Through the Distance"
+  imageSrc="/mobile-background/couples (8).webp"
+  title="Surrounded by Those Who Matter Most"
   text={
     <>
       <p className="mb-4">
-      All throughout, they made sure to keep in constant communication, to keep providing each other support, reassurance, and inspiration, no matter how far apart they were.
+      Now in 2026, surrounded by the people who mean the most to them, they begin their forever.
       </p>
     </>
   }
 />
- 
+
 <StorySection
   theme="light"
   layout="image-left"
-  imageSrc="/LoveStory/story (5).webp"
-  title="Time Together, Miles Apart"
+  imageSrc="/mobile-background/couples (9).webp"
+  title="From Strangers to Best Friends"
   text={
     <>
       <p className="mb-4">
-      Even though they were apart most of the time, they still found a few weeks each year to be with each other — chasing new destinations like Italy, Slovenia, and Prague, and revisiting favorite places back home in the Philippines.
+      From strangers, to best friends, to forever partners.
       </p>
     </>
   }
 />
- 
+
 <StorySection
   theme="dark"
   layout="image-right"
-  imageSrc="/LoveStory/story (3).webp"
-  title="He Asked, and She Said Yes"
+  imageSrc="/mobile-background/couples (10).webp"
+  title="Their Greatest Adventure Begins"
   text={
     <>
       <p className="mb-4">
-      Then in the spring of 2025, during a visit to her in Austria, he popped the question — under a giant ferris wheel somewhere in Vienna. And she said yes. And so here they are, starting a new chapter in the journey to forever.
+      Their greatest adventure begins — a lifetime of love, chosen again and again, no matter the distance.
       </p>
     </>
   }
 />
- 
+
 <StorySection
   theme="light"
   layout="image-left"
   isLast={true}
-  imageSrc="/LoveStory/story (12).webp"
+  imageSrc="/mobile-background/couples (11).webp"
   title="Habangbuhay"
   text={
     <>
       <p className="mb-4">
-      In front of family, friends, and the rest of the world, June and Jonas are tying the knot, making their vows, saying "I do," and one more time exchanging their I love yous. All the cliches, and yet they mean a little bit more. <br className="hidden md:block" />
-      But that is what 10 years — after a longing glance, a friendship that blossomed into romance, and maybe even a heartfelt (albeit choreographed) wedding dance — can lead to. Habangbuhay.
+      From two strangers meeting in 2018, through years of teasing, laughter, distance, and prayer, to a yes in Taiwan — Gilbert and Kameel are ready to say "I do."
       </p>
       <p>
-      See you on the 26th of December, 2026!
+      Join us as we begin forever.
       </p>
     </>
   }
@@ -288,7 +286,7 @@ export function LoveStory() {
         <div className="pointer-events-none absolute bottom-0 left-0 z-20">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/decoration/left-bottom-deco.png"
+            src="/decoration/deco/left-bottom-corner.png"
             alt=""
             className={CORNER_DECO_CLASS}
           />
@@ -296,7 +294,7 @@ export function LoveStory() {
         <div className="pointer-events-none absolute bottom-0 right-0 z-20">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/decoration/right-bottom-deco.png"
+            src="/decoration/deco/right-bottom-corner.png"
             alt=""
             className={CORNER_DECO_CLASS}
           />

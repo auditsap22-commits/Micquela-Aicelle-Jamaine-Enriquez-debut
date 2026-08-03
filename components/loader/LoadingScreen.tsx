@@ -1,10 +1,9 @@
 'use client';
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState, type CSSProperties } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import { useSiteConfig } from '@/hooks/use-site-config';
 import { parseWeddingDate } from '@/lib/wedding-date';
-import Image from 'next/image';
 import { InviteParticles } from '@/components/loader/InviteParticles';
 import './loading-screen.css';
 
@@ -13,7 +12,8 @@ interface LoadingScreenProps {
   onFadeStart?: () => void;
 }
 
-const MESSAGE_HOLD_MS = 3000;
+const TOTAL_DURATION_MS = 9000;
+const MESSAGE_HOLD_MS = TOTAL_DURATION_MS / 4;
 const FADE_OUT_MS = 950;
 
 const LOADING_MESSAGES = [
@@ -23,17 +23,23 @@ const LOADING_MESSAGES = [
   'Your invitation awaits',
 ] as const;
 
-const TOTAL_DURATION_MS = LOADING_MESSAGES.length * MESSAGE_HOLD_MS;
-
 const entryEase = [0.22, 1, 0.36, 1] as const;
 const rollerEase = [0.16, 1, 0.3, 1] as const;
 const ROLLER_TRANSITION_MS = 680;
 const STATUS_LINE_HEIGHT_REM = 2.85;
-const COUPLE_NAME_IMAGE = '/decoration/couple (1).png';
-const COUPLE_NAME_ASPECT = 1417 / 242;
+const SAVE_THE_DATE_IMAGE = '/decoration/saveTheDate.png';
+const SAVE_THE_DATE_ASPECT = 637 / 108;
+const COUPLE_NAME_IMAGE = '/decoration/newCoupleName.png';
+const COUPLE_NAME_ASPECT = 1018 / 622;
 
 const CORNER_DECO_CLASS =
-  'block h-auto w-auto max-w-[100px] sm:max-w-[140px] md:max-w-[180px] opacity-75';
+  'block h-auto w-auto max-w-[200px] sm:max-w-[240px] md:max-w-[280px] opacity-75';
+
+function brandMaskStyle(src: string): CSSProperties {
+  return {
+    ['--brand-mask-image' as string]: `url("${src}")`,
+  };
+}
 
 export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete, onFadeStart }) => {
   const siteConfig = useSiteConfig();
@@ -43,6 +49,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete, onFade
   const [messageIndex, setMessageIndex] = useState(0);
 
   const coupleNames = `${siteConfig.couple.groomNickname} & ${siteConfig.couple.brideNickname}`;
+  const venue = siteConfig.ceremony.location ?? siteConfig.wedding.venue;
 
   const weddingDateGhost = useMemo(() => {
     const parsed = parseWeddingDate(siteConfig.ceremony.date ?? siteConfig.wedding.date);
@@ -135,19 +142,19 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete, onFade
 
       <div className="loading-screen__corner loading-screen__corner--tl pointer-events-none" aria-hidden="true">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/decoration/left-top-deco.png" alt="" className={CORNER_DECO_CLASS} />
+        <img src="/decoration/deco/left-top-corner.png" alt="" className={CORNER_DECO_CLASS} />
       </div>
       <div className="loading-screen__corner loading-screen__corner--tr pointer-events-none" aria-hidden="true">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/decoration/right-top-deco.png" alt="" className={CORNER_DECO_CLASS} />
+        <img src="/decoration/deco/right-top-corner.png" alt="" className={CORNER_DECO_CLASS} />
       </div>
       <div className="loading-screen__corner loading-screen__corner--bl pointer-events-none" aria-hidden="true">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/decoration/left-bottom-deco.png" alt="" className={CORNER_DECO_CLASS} />
+        <img src="/decoration/deco/left-bottom-corner.png" alt="" className={CORNER_DECO_CLASS} />
       </div>
       <div className="loading-screen__corner loading-screen__corner--br pointer-events-none" aria-hidden="true">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/decoration/right-bottom-deco.png" alt="" className={CORNER_DECO_CLASS} />
+        <img src="/decoration/deco/right-bottom-corner.png" alt="" className={CORNER_DECO_CLASS} />
       </div>
 
       <div className="loading-screen__ghost-date pointer-events-none select-none" aria-hidden="true">
@@ -159,20 +166,51 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete, onFade
       </div>
 
       <motion.div
+        className="loading-screen__monogram-slot loading-screen__monogram-slot--top loading-screen__brand-mask"
+        style={brandMaskStyle(siteConfig.couple.monogram)}
+        initial={reduceMotion ? false : { opacity: 0, scale: 0.88 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.7, ease: entryEase, delay: reduceMotion ? 0 : 0.2 }}
+        role="img"
+        aria-label="Couple monogram"
+      />
+
+      <motion.div
         className="loading-screen__content relative px-6 text-center"
-        initial={reduceMotion ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.85, ease: entryEase, delay: reduceMotion ? 0 : 0.12 }}
       >
-        <div className="loading-screen__monogram-slot">
-          <Image
-            src={siteConfig.couple.monogram}
-            alt=""
-            fill
-            className="object-contain loading-screen__monogram"
-            priority
-          />
-        </div>
+        <motion.div
+          className="loading-screen__save-date-slot loading-screen__brand-mask"
+          style={{ aspectRatio: SAVE_THE_DATE_ASPECT, ...brandMaskStyle(SAVE_THE_DATE_IMAGE) }}
+          initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.75, ease: entryEase, delay: reduceMotion ? 0 : 0.32 }}
+          role="img"
+          aria-label="Save the date"
+        />
+
+        <motion.div
+          className="loading-screen__names-slot loading-screen__brand-mask"
+          style={{ aspectRatio: COUPLE_NAME_ASPECT, ...brandMaskStyle(COUPLE_NAME_IMAGE) }}
+          initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.75, ease: entryEase, delay: reduceMotion ? 0 : 0.44 }}
+          role="img"
+          aria-label={coupleNames}
+        />
+
+        <motion.div
+          className="loading-screen__venue"
+          initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.75, ease: entryEase, delay: reduceMotion ? 0 : 0.52 }}
+        >
+          <span className="loading-screen__venue-label">VENUE</span>
+          <span className="loading-screen__venue-sep" aria-hidden="true" />
+          <span className="loading-screen__venue-value">{venue}</span>
+        </motion.div>
 
         <div
           className="loading-screen__status-slot"
@@ -196,20 +234,6 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete, onFade
           </motion.div>
         </div>
 
-        <div
-          className="loading-screen__names-slot"
-          style={{ aspectRatio: COUPLE_NAME_ASPECT }}
-        >
-          <Image
-            src={COUPLE_NAME_IMAGE}
-            alt={coupleNames}
-            fill
-            className="loading-screen__names-image object-contain object-center"
-            sizes="(max-width: 640px) 92vw, 22rem"
-            priority
-          />
-        </div>
-
         <div className="loading-screen__track-slot">
           <div className="loading-screen__track">
             <div
@@ -217,6 +241,9 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete, onFade
               style={{ width: `${progress}%` }}
             />
           </div>
+          <span className="loading-screen__progress-label" aria-hidden="true">
+            {Math.round(progress)}%
+          </span>
         </div>
       </motion.div>
     </motion.div>

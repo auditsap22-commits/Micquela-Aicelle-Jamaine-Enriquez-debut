@@ -9,24 +9,19 @@ import { parseWeddingDate } from "@/lib/wedding-date"
 import Image from "next/image"
 
 const desktopBackgroundSrcs: readonly string[] = [
-  '/desktop-background/couple (1).webp',
-  '/desktop-background/couple (2).webp',
-  '/desktop-background/couple (3).webp',
-  '/desktop-background/couple (4).webp',
-  '/desktop-background/couple (5).webp',
+  '/desktop-background/couples (1).webp',
+  '/desktop-background/couples (2).webp',
+  '/desktop-background/couples (3).webp',
+  '/desktop-background/couples (4).webp',
+  '/desktop-background/couples (5).webp',
 ]
 
 const mobileBackgroundSrcs: readonly string[] = [
-'/mobile-background/couple (1).webp',
-'/mobile-background/couple (2).webp',
-'/mobile-background/couple (3).webp',
-'/mobile-background/couple (4).webp',
-'/mobile-background/couple (5).webp',
-'/mobile-background/couple (6).webp',
-'/mobile-background/couple (7).webp',
-'/mobile-background/couple (8).webp',
-'/mobile-background/couple (9).webp',
-'/mobile-background/couple (10).webp',
+'/mobile-background/couples (1).webp',
+'/mobile-background/couples (2).webp',
+'/mobile-background/couples (3).webp',
+'/mobile-background/couples (4).webp',
+'/mobile-background/couples (5).webp',
 ]
 
 const SHOW_BUTTERFLIES = false
@@ -34,7 +29,7 @@ const SHOW_BUTTERFLIES = false
 const HERO_TEXT = "var(--color-motif-cream)"
 const HERO_TEXT_MUTED = "rgba(255, 246, 233, 0.9)"
 const HERO_TITLE_SHADOW = "0 2px 10px rgba(0, 0, 0, 0.65)"
-const COUPLE_NAME_IMAGE = "/decoration/couple (2).png"
+const COUPLE_NAME_IMAGE = "/decoration/newCoupleName.png"
 const COUPLE_NAME_ASPECT = 828 / 629
 const COUPLE_NAME_HERO_FILTER =
   "brightness(0) saturate(100%) invert(97%) sepia(6%) saturate(350%) hue-rotate(230deg) drop-shadow(0 2px 28px rgba(0,0,0,0.75))"

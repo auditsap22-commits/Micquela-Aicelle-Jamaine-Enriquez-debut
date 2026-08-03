@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import Image from 'next/image';
 import {
   motion,
@@ -21,15 +21,21 @@ interface HeroProps {
 }
 
 const POLAROID_PHOTOS = [
-  { src: '/envelope/back.png', side: 'left' as const },
-  { src: '/envelope/front.png', side: 'center' as const },
-  { src: '/envelope/back2.png', side: 'right' as const },
+  { src: '/envelope/box (5).jpg', side: 'left' as const },
+  { src: '/envelope/box (4).jpg', side: 'center' as const },
+  { src: '/envelope/box (6).jpg', side: 'right' as const },
 ];
 
-const COUPLE_NAME_IMAGE = '/decoration/couple (2).png';
+const COUPLE_NAME_IMAGE = '/decoration/newCoupleName.png';
 
 const CORNER_DECO_CLASS =
-  'block h-auto w-auto max-w-[100px] sm:max-w-[140px] md:max-w-[180px] opacity-75';
+  'block h-auto w-auto max-w-[200px] sm:max-w-[240px] md:max-w-[280px] opacity-75';
+
+function letterNamesMaskStyle(src: string): CSSProperties {
+  return {
+    ['--env-letter-names-mask' as string]: `url("${src}")`,
+  };
+}
 
 const photoInteractEase: Transition = { duration: 0.38, ease: [0.22, 1, 0.36, 1] };
 const focusLiftEase: Transition = { duration: 1.15, ease: [0.22, 1, 0.36, 1] };
@@ -477,19 +483,19 @@ export const Hero: React.FC<HeroProps> = ({
 
       <div className="env-invite-corner env-invite-corner--tl pointer-events-none" aria-hidden="true">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/decoration/left-top-deco.png" alt="" className={CORNER_DECO_CLASS} />
+        <img src="/decoration/deco/left-top-corner.png" alt="" className={CORNER_DECO_CLASS} />
       </div>
       <div className="env-invite-corner env-invite-corner--tr pointer-events-none" aria-hidden="true">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/decoration/right-top-deco.png" alt="" className={CORNER_DECO_CLASS} />
+        <img src="/decoration/deco/right-top-corner.png" alt="" className={CORNER_DECO_CLASS} />
       </div>
       <div className="env-invite-corner env-invite-corner--bl pointer-events-none" aria-hidden="true">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/decoration/left-bottom-deco.png" alt="" className={CORNER_DECO_CLASS} />
+        <img src="/decoration/deco/left-bottom-corner.png" alt="" className={CORNER_DECO_CLASS} />
       </div>
       <div className="env-invite-corner env-invite-corner--br pointer-events-none" aria-hidden="true">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/decoration/right-bottom-deco.png" alt="" className={CORNER_DECO_CLASS} />
+        <img src="/decoration/deco/right-bottom-corner.png" alt="" className={CORNER_DECO_CLASS} />
       </div>
 
       <div className="env-invite-ghost-date pointer-events-none select-none" aria-hidden="true">
@@ -625,15 +631,12 @@ export const Hero: React.FC<HeroProps> = ({
                       <span className="env-invite-letter-label">Save the Date</span>
                       <span className="env-invite-letter-date">{letterDateNumeric}</span>
                       <span className="env-invite-letter-invited">You are Invited</span>
-                      <div className="env-invite-letter-names">
-                        <Image
-                          src={COUPLE_NAME_IMAGE}
-                          alt={coupleNames}
-                          fill
-                          className="env-invite-letter-names-image object-contain object-center"
-                          sizes="220px"
-                        />
-                      </div>
+                      <div
+                        className="env-invite-letter-names"
+                        style={letterNamesMaskStyle(COUPLE_NAME_IMAGE)}
+                        role="img"
+                        aria-label={coupleNames}
+                      />
                     </div>
                   </motion.div>
 
