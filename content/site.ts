@@ -41,8 +41,8 @@ export const siteConfig = {
   details: {
     rsvp: {
       deadline: "August 30, 2026",
-      coordinator: "Karis Events Management",
-      phone: "​0922 888 8888",
+      coordinator: "Gilbert / Kameel",
+      phone: "+63 967 697 8754",
     },
   },
   contact: {
@@ -52,23 +52,24 @@ export const siteConfig = {
   },
   giftRegistry: {
     QR_1:{
-    id: "BDO",
-    src: "/QR/pleaseProvideQR.png",
-    label: "BDO",
-    accountNumber: "to be announced",
+    id: "BPI",
+    src: "/QR/BPI.png",
+    label: "BPI",
+    accountNumber: "KAMS : ***********569",
     },
     QR_2:{
-    id: "Venmo",
-    src: "/QR/pleaseProvideQR.png",
-    label: "Venmo",
-    accountNumber: "to be announced",
-    },
-    QR_3:{
-    id: "Gcash",
-    src: "/QR/pleaseProvideQR.png",
-    label: "Gcash",
-    accountNumber: "to be announced",
+    id: "MariBank",
+    src: "/QR/MariBank.png",
+    label: "MariBank",
+    accountNumber: "****7672",
     }
+    // ,
+    // QR_3:{
+    // id: "Gcash",
+    // src: "/QR/pleaseProvideQR.png",
+    // label: "Gcash",
+    // accountNumber: "to be announced",
+    // }
   },
   ceremony: {
     location: "Greenleaf Hotel Gensan",
@@ -173,15 +174,15 @@ Now, as they prepare to say yes before God and the people they love most, Cather
   },
   snapShare: {
     googleDriveLink:
-      "https://drive.google.com/drive/folders/1KLl8pyF0iH00jPx0YPUMWcn5DBec8dzW?usp=sharing",
+      "https://drive.google.com/drive/folders/1DjjumaJ3e26-9NHtLkT8dADEXibc2Rsd?usp=sharing",
     albumQR: "/QR/AlbumQR.png",
     hashtag: ["#KAMEELfoundherforeBERT"],
     instructions: "Please scan this QR Code and upload the photos and videos you have taken during our wedding reception. We are delighted to see your snaps too!",
   },
   accommodation: {
     coordinator: {
-      name: "Karis Events Management",
-      phone: "to be announced",
+      name: "Gilbert / Kameel",
+      phone: "+63 967 697 8754",
     },
     hotels: [
       {

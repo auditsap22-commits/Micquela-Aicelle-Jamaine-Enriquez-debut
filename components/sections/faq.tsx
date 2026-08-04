@@ -129,38 +129,16 @@ function getFaqItems(siteConfig: SiteConfig): FAQItem[] {
       answer: `Our ceremony will begin promptly at ${siteConfig.ceremony.time}. We kindly ask guests to arrive by ${guestArrival} to allow enough time for parking, walking to the ceremony area, and finding your seats so we can begin on time.`,
     },
     {
-      question: "Where will the ceremony and reception take place?",
+      question: "Where will the ceremony take place?",
       answer: (
         <>
           <p className="mb-4">
-            Our wedding ceremony and reception will be held at two different venues, both
-            conveniently located within Metro Manila.
-          </p>
-          <p
-            className={`${cinzel.className} mb-2 font-semibold`}
-            style={{ color: palette.heading }}
-          >
-            Ceremony
-          </p>
-          <p className="mb-4">
-            Our ceremony will take place at Santuario de San Antonio, one of Manila&apos;s most
-            beautiful churches, located in the charming neighborhood of Forbes Park, Makati.
-          </p>
-          <p
-            className={`${cinzel.className} mb-2 font-semibold`}
-            style={{ color: palette.heading }}
-          >
-            Reception
-          </p>
-          <p className="mb-4">
-            Following the ceremony, we invite you to celebrate with us at Shangri-La The Fort,
-            Manila, located in Bonifacio Global City (BGC), Taguig. Cocktails, dinner, and dancing
-            will all take place here, and we can&apos;t wait to celebrate the evening together with
-            all of you.
+            Our ceremony will be held at {siteConfig.ceremony.location}, located at{" "}
+            {siteConfig.ceremony.venue}.
           </p>
           <p>
-            The drive between the church and the hotel typically takes around 15–30 minutes,
-            depending on traffic.
+            Guest arrival is at {guestArrival}, and the ceremony will begin at{" "}
+            {siteConfig.ceremony.time}.
           </p>
         </>
       ),
@@ -185,7 +163,7 @@ function getFaqItems(siteConfig: SiteConfig): FAQItem[] {
           {"\n\n"}
           Please respond by {siteConfig.details.rsvp.deadline.replace(/\.\s*$/, "")}.
           {"\n\n"}
-          If you have questions, please contact our coordinator {siteConfig.details.rsvp.coordinator} at{" "}
+          If you have questions, please contact {siteConfig.details.rsvp.coordinator} at{" "}
           {siteConfig.details.rsvp.phone}.
         </>
       ),

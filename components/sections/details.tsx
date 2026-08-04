@@ -160,7 +160,7 @@ ladies: {
   ] as const,
 
   description:
-    "Elegant floor-length formal gowns in a vibrant True Spring palette featuring Orchid Purple, Warm Rose Pink, Marigold Yellow, Tangerine Orange, Soft Sky Blue, and Olive Gold. Dresses may vary in style while maintaining a sophisticated and coordinated formal look.",
+    "Elegant floor-length formal gowns in a vibrant True Spring palette. Dresses may vary in style while maintaining a sophisticated and coordinated formal look.",
 },
 
 gentlemen: {
@@ -299,27 +299,7 @@ function DressCodePaletteSwatch({
         >
           {name}
         </span>
-      </div>
-      <div className="space-y-0.5 px-0.5 pb-1 pt-1.5 text-center font-sans sm:space-y-1 sm:pb-1.5 sm:pt-2 md:pt-2.5">
-        <div>
-          <p className="text-[5px] font-bold uppercase leading-tight sm:text-[6px] md:text-[7px] lg:text-[8px]">
-            PANTONE®
-          </p>
-          <p className="text-[5px] leading-tight sm:text-[6px] md:text-[7px] lg:text-[8px]">{pantone}</p>
-        </div>
-        <div>
-          <p className="text-[5px] font-bold uppercase leading-tight sm:text-[6px] md:text-[7px] lg:text-[8px]">
-            HEX
-          </p>
-          <p className="text-[5px] leading-tight sm:text-[6px] md:text-[7px] lg:text-[8px]">{hex}</p>
-        </div>
-        <div>
-          <p className="text-[5px] font-bold uppercase leading-tight sm:text-[6px] md:text-[7px] lg:text-[8px]">
-            RGB
-          </p>
-          <p className="text-[5px] leading-tight sm:text-[6px] md:text-[7px] lg:text-[8px]">{rgb}</p>
-        </div>
-      </div>
+      </div>    
     </div>
   )
 }
@@ -588,6 +568,7 @@ type EventVenueCardProps = {
   day: string
   dateString: string
   time: string
+  arrivalTime?: string
   venueSectionLabel: string
   mapsLink: string
   copyId: string
@@ -608,6 +589,7 @@ function EventVenueCard({
   day,
   dateString,
   time,
+  arrivalTime,
   venueSectionLabel,
   mapsLink,
   copyId,
@@ -723,12 +705,29 @@ function EventVenueCard({
               </>
             )}
 
-            <p
-              className={`${cinzel.className} text-sm sm:text-base md:text-lg lg:text-xl font-semibold tracking-[0.14em] uppercase ${showDateDetails ? "" : "py-2 sm:py-3"}`}
-              style={{ color: detailText.heading }}
-            >
-              At {time}
-            </p>
+            {arrivalTime ? (
+              <div className="space-y-1 sm:space-y-1.5">
+                <p
+                  className={`${cinzel.className} text-sm sm:text-base md:text-lg lg:text-xl font-semibold tracking-[0.1em] uppercase ${showDateDetails ? "" : "py-2 sm:py-3"}`}
+                  style={{ color: detailText.heading }}
+                >
+                  Arrival: {arrivalTime}
+                </p>
+                <p
+                  className={`${cinzel.className} text-sm sm:text-base md:text-lg lg:text-xl font-semibold tracking-[0.1em] uppercase`}
+                  style={{ color: detailText.heading }}
+                >
+                  Wedding Starts: {time}
+                </p>
+              </div>
+            ) : (
+              <p
+                className={`${cinzel.className} text-sm sm:text-base md:text-lg lg:text-xl font-semibold tracking-[0.14em] uppercase ${showDateDetails ? "" : "py-2 sm:py-3"}`}
+                style={{ color: detailText.heading }}
+              >
+                At {time}
+              </p>
+            )}
           </div>
 
           <div className="rounded-xl p-3 sm:p-4 md:p-5 mb-4 sm:mb-6 border" style={softPanelStyle}>
@@ -1000,6 +999,7 @@ export function Details() {
           day={siteConfig.ceremony.day}
           dateString={siteConfig.ceremony.date}
           time={siteConfig.ceremony.time}
+          arrivalTime={siteConfig.ceremony.guestsTime}
           venueSectionLabel="Ceremony & Reception"
           mapsLink={ceremonyMapsLink}
           copyId="ceremony & reception"
@@ -1197,13 +1197,9 @@ export function Details() {
                 </ReminderCard>
 
                 <ReminderCard title="Arrival">
-                  <p>
-                    To ensure everything runs smoothly, please arrive at least 30 minutes before the
-                    ceremony starts. The program will begin at {siteConfig.ceremony.time}, so we kindly
-                    ask everyone to arrive by {siteConfig.ceremony.guestsTime}. This will give you time
-                    to find your seat, take in the beautiful setup, and be fully present for our special
-                    moment.
-                  </p>
+                <p>
+  To ensure everything runs smoothly, please arrive at {siteConfig.ceremony.guestsTime}. This will give you enough time to find your seat, settle in comfortably, and fully enjoy the beautiful ceremony before it begins at {siteConfig.ceremony.time}. We truly appreciate your punctuality and look forward to celebrating this special moment with you.
+</p>
                 </ReminderCard>
               </div>
             </div>
