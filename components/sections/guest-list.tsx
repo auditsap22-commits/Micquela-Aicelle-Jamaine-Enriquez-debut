@@ -473,21 +473,19 @@ export function GuestList() {
             {
               "--title-size": welcomeTitleSize.main,
               "--script-size": welcomeTitleSize.script,
-              "--script-overlap": welcomeTitleSize.overlap,
             } as CSSProperties
           }
         >
           <span
-            className={`${theSeasons.className} block uppercase leading-[0.78] tracking-[0.08em] min-[400px]:tracking-[0.11em] sm:tracking-[0.13em] md:tracking-[0.14em]`}
+            className={`${theSeasons.className} block uppercase leading-[0.78] tracking-[0.08em] min-[400px]:tracking-[0.11em] sm:tracking-[0.13em] md:tracking-[0.14em] pb-1 sm:pb-1.5`}
             style={{ fontSize: "var(--title-size)", color: OUTSIDE_TEXT, textShadow: OUTSIDE_TITLE_SHADOW }}
           >
             RSVP
           </span>
           <span
             aria-hidden
-            className={`${aboveTheBeyond.className} relative z-10 mx-auto block w-fit max-w-full px-1 leading-[0.88] sm:leading-[0.9]`}
+            className={`${aboveTheBeyond.className} mx-auto block w-fit max-w-full px-1 leading-[0.88] sm:leading-[0.9] mt-2 sm:mt-2.5 md:mt-3`}
             style={{
-              marginTop: "var(--script-overlap)",
               fontSize: "var(--script-size)",
               color: OUTSIDE_TEXT_MUTED,
               textShadow: OUTSIDE_TITLE_SHADOW,
@@ -509,9 +507,9 @@ export function GuestList() {
           <p className={`${cinzel.className} ${sectionType.text} font-semibold tracking-wide`} style={{ color: OUTSIDE_TEXT }}>
             RSVP Deadline: {siteConfig.details.rsvp.deadline}
           </p>
-          <p className={`${cinzel.className} ${sectionType.text} font-semibold tracking-wide`} style={{ color: OUTSIDE_TEXT }}>
+          {/* <p className={`${cinzel.className} ${sectionType.text} font-semibold tracking-wide`} style={{ color: OUTSIDE_TEXT }}>
             Coordinator: {siteConfig.details.rsvp.coordinator} · {siteConfig.details.rsvp.phone}
-          </p>
+          </p> */}
         </div>
 
         {/* Divider below header */}
@@ -687,25 +685,21 @@ export function GuestList() {
                   {
                     "--title-size": modalTitleSize.main,
                     "--script-size": modalTitleSize.script,
-                    "--script-overlap": modalTitleSize.overlap,
                   } as CSSProperties
                 }
               >
                 <span
-                  className={`${theSeasons.className} block uppercase leading-[0.78] tracking-[0.08em] min-[400px]:tracking-[0.11em] sm:tracking-[0.13em]`}
+                  className={`${theSeasons.className} block uppercase leading-[0.78] tracking-[0.08em] min-[400px]:tracking-[0.11em] sm:tracking-[0.13em] pb-1 sm:pb-1.5`}
                   style={{ fontSize: "var(--title-size)", color: palette.heading }}
                 >
                   You are Invited
                 </span>
                 <span
                   aria-hidden
-                  className={`${aboveTheBeyond.className} relative z-10 mx-auto block w-fit max-w-full px-1 leading-[0.88] mt-2 sm:mt-3 md:mt-4`}
+                  className={`${aboveTheBeyond.className} mx-auto block w-fit max-w-full px-1 leading-[0.88] sm:leading-[0.9] mt-2 sm:mt-2.5 md:mt-3`}
                   style={{
-                    marginTop: "calc(var(--script-overlap) + clamp(0.5rem, 2vw, 1rem))",
                     fontSize: "var(--script-size)",
                     color: palette.accent,
-                    textShadow:
-                      "0 1px 0 color-mix(in srgb, var(--color-welcome-bg) 95%, white), 0 0 10px color-mix(in srgb, var(--color-welcome-bg) 65%, white)",
                   }}
                 >
                   {selectedGuest?.Name || "to our celebration"}
@@ -1225,25 +1219,21 @@ export function GuestList() {
                     {
                       "--title-size": modalTitleSize.main,
                       "--script-size": modalTitleSize.script,
-                      "--script-overlap": modalTitleSize.overlap,
                     } as CSSProperties
                   }
                 >
                   <span
-                    className={`${theSeasons.className} block uppercase leading-[0.78] tracking-[0.08em] min-[400px]:tracking-[0.11em] sm:tracking-[0.13em]`}
+                    className={`${theSeasons.className} block uppercase leading-[0.78] tracking-[0.08em] min-[400px]:tracking-[0.11em] sm:tracking-[0.13em] pb-1 sm:pb-1.5`}
                     style={{ fontSize: "var(--title-size)", color: palette.heading }}
                   >
                     Request to Join
                   </span>
                   <span
                     aria-hidden
-                    className={`${aboveTheBeyond.className} relative z-10 mx-auto block w-fit max-w-full px-1 leading-[0.88] mt-2 sm:mt-3 md:mt-4`}
+                    className={`${aboveTheBeyond.className} mx-auto block w-fit max-w-full px-1 leading-[0.88] sm:leading-[0.9] mt-2 sm:mt-2.5 md:mt-3`}
                     style={{
-                      marginTop: "calc(var(--script-overlap) + clamp(0.5rem, 2vw, 1rem))",
                       fontSize: "var(--script-size)",
                       color: palette.accent,
-                      textShadow:
-                        "0 1px 0 color-mix(in srgb, var(--color-welcome-bg) 95%, white), 0 0 10px color-mix(in srgb, var(--color-welcome-bg) 65%, white)",
                     }}
                   >
                     celebrate with us

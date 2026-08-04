@@ -110,7 +110,7 @@ function LayeredWelcomeTitle() {
         aria-hidden
         className={`${aboveTheBeyond.className} relative z-10 mx-auto block w-fit max-w-full px-1 leading-[0.88] sm:leading-[0.9]`}
         style={{
-          marginTop: "var(--script-overlap)",
+          // marginTop: "var(--script-overlap)",
           fontSize: "var(--script-size)",
           color: "var(--color-welcome-green)",
           textShadow:
@@ -184,14 +184,14 @@ export function Welcome() {
                   className={`font-goudy-italic ${sectionType.textSnug}`}
                   style={{ color: "var(--color-welcome-text)" }}
                 >
-                  &ldquo;He has made everything beautiful in its time.&rdquo;
+                  &ldquo;When the time is right, I , the Lord will make it happen.&rdquo;
                 </p>
                 <figcaption className="mt-2 sm:mt-2.5">
                   <cite
                     className={`${cinzel.className} ${sectionType.label} not-italic uppercase tracking-[0.2em] sm:tracking-[0.24em]`}
                     style={{ color: "var(--color-welcome-heading)" }}
                   >
-                    Ecclesiastes 3:11
+                    Isaiah 60:22
                   </cite>
                 </figcaption>
               </blockquote>

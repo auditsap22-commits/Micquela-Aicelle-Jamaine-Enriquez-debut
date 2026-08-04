@@ -79,12 +79,11 @@ function TimelineTitle() {
         {
           "--title-size": layeredSectionTitleSize.main,
           "--script-size": layeredSectionTitleSize.script,
-          "--script-overlap": layeredSectionTitleSize.overlap,
         } as React.CSSProperties
       }
     >
       <span
-        className={`${theSeasons.className} block uppercase leading-[0.78] tracking-[0.08em] min-[400px]:tracking-[0.11em] sm:tracking-[0.13em] md:tracking-[0.14em]`}
+        className={`${theSeasons.className} block uppercase leading-[0.78] tracking-[0.08em] min-[400px]:tracking-[0.11em] sm:tracking-[0.13em] md:tracking-[0.14em] pb-1 sm:pb-1.5`}
         style={{
           fontSize: "var(--title-size)",
           color: OUTSIDE_TEXT,
@@ -95,9 +94,8 @@ function TimelineTitle() {
       </span>
       <span
         aria-hidden
-        className={`${aboveTheBeyond.className} relative z-10 mx-auto block w-fit max-w-full px-1 leading-[0.88] sm:leading-[0.9]`}
+        className={`${aboveTheBeyond.className} mx-auto block w-fit max-w-full px-1 leading-[0.88] sm:leading-[0.9] mt-2 sm:mt-2.5 md:mt-3`}
         style={{
-          marginTop: "var(--script-overlap)",
           fontSize: "var(--script-size)",
           color: OUTSIDE_TEXT_MUTED,
           textShadow: OUTSIDE_TITLE_SHADOW,
@@ -122,21 +120,21 @@ function buildTimelineEvents(siteConfig: SiteConfig): TimelineEvent[] {
     //   imageSrc: "/weddingtimeline/assemble.png",
     // },
     {
-      time: "2:30 PM",
+      time: "3:30 PM",
       title: "Assembly  ",
       location: siteConfig.ceremony.location,
       icon: GuestsIcon,
       imageSrc: "/weddingtimeline/arrivalimage.png",
     },
     {
-      time: "3:00 PM",
+      time: "4:00 PM",
       title: "Processional ",
       location: siteConfig.ceremony.location,
       icon: RingsIcon,
       imageSrc: "/weddingtimeline/WeddingCeremony.png",
     }, 
     {
-      time: "4:30 PM",
+      time: "5:00 PM",
       title: "Photos",
       location: siteConfig.ceremony.location,
       icon: RingsIcon,
@@ -144,9 +142,9 @@ function buildTimelineEvents(siteConfig: SiteConfig): TimelineEvent[] {
     },
 
     {
-      time: "5:00 PM",
+      time: "5:30 PM",
       title: "Cocktail Hour",
-      location: siteConfig.reception.location,
+      location: siteConfig.ceremony.location,
       icon: CocktailIcon,
       imageSrc: "/weddingtimeline/CockTailHour.png",
     },
@@ -154,7 +152,7 @@ function buildTimelineEvents(siteConfig: SiteConfig): TimelineEvent[] {
     {
       time: "6:00 PM",
       title: "Reception",
-      location: siteConfig.reception.location,
+      location: siteConfig.ceremony.location,
       icon: DinnerIcon,
       imageSrc: "/weddingtimeline/reception welcom.png",
     },
@@ -168,14 +166,14 @@ function buildTimelineEvents(siteConfig: SiteConfig): TimelineEvent[] {
     {
       time: "7:00 PM",
       title: "Dinner",
-      location: siteConfig.reception.location,
+      location: siteConfig.ceremony.location,
       icon: DinnerIcon,
       imageSrc: "/weddingtimeline/DinnerService.png",
     },
      {
       time: "8:30 PM",
        title: "End of Program",
-     location: siteConfig.reception.location,
+     location: siteConfig.ceremony.location,
      icon: DanceIcon,
      imageSrc: "/weddingtimeline/SendOff.png",
   },

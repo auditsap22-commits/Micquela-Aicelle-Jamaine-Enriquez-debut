@@ -10,7 +10,7 @@ export const siteConfig = {
     groom: "Gilbert Kiling Pinongcos II", //Ltryl B. Benitez
     groomNickname: "Gilbert",
     monogram:"/monogram/monogram.png" ,//Ltryl
-    backgroundMusic:"/background_music/Pasilyo (Wedding Version) by SunKissed Lola (Cover) - David La Sol.mp3"
+    backgroundMusic:"/background_music/Mike Mains & The Branches - I Love You Always Forever (Lyric Video).mp3"
   },
   googleAPI:{
     messageForm: "https://docs.google.com/forms/d/e/1FAIpQLSfnzqIGp1BR_ILvjTa4XLmzB9J7KdZ_WuX7s2rmEqNUJdm7KA/formResponse",   //done
@@ -26,8 +26,8 @@ export const siteConfig = {
   },
   wedding: {
     date: "October 11, 2026",
-    time: "3:00 PM",
-    venue: "San Agustin Church, Intramuros",
+    time: "4:00 PM",
+    venue: "Greenleaf Hotel Gensan",
     tagline: "are getting married!!!!!",
     theme: "Our wedding palette is inspired by timeless elegance and warmth.Motif Colors: Champagne Gold, Soft Beige, Warm Soft Brown",
     motif: "#BBCED5, #B9C3A8, #F3D8C5, #D1C4D4, #ECD8BA, #F4E8D8, #E1DCCF",
@@ -40,7 +40,7 @@ export const siteConfig = {
   },
   details: {
     rsvp: {
-      deadline: "October 11, 2026",
+      deadline: "August 30, 2026",
       coordinator: "Karis Events Management",
       phone: "​0922 888 8888",
     },
@@ -76,9 +76,9 @@ export const siteConfig = {
     map: "https://maps.app.goo.gl/NjhHEUzecnRHSgsH8",
     date: "October 11, 2026",
     day: "Friday",
-    time: "3:00 PM",
-    entourageTime: "2:00 PM",
-    guestsTime: "2:30 PM",
+    time: "4:00 PM",
+    entourageTime: "3:00 PM",
+    guestsTime: "3:30 PM",
     image: ["/Details/ceremony.webp", "/Details/ceremony2.webp","/Details/ceremony3.webp"],
   },
   reception: {
@@ -87,7 +87,7 @@ export const siteConfig = {
     map: "https://maps.app.goo.gl/E9dDgP9CVbsiu7AN9",
     date: "October 11, 2026",
     day: "Saturday",
-    time: "6:00 PM",
+    time: "4:00 PM",
     image: ["/Details/reception.webp", "/Details/reception4.png","/Details/reception3.png"],
   },
   dressCode: {
@@ -175,7 +175,7 @@ Now, as they prepare to say yes before God and the people they love most, Cather
     googleDriveLink:
       "https://drive.google.com/drive/folders/1KLl8pyF0iH00jPx0YPUMWcn5DBec8dzW?usp=sharing",
     albumQR: "/QR/AlbumQR.png",
-    hashtag: ["#JuneandJonasWedding"],
+    hashtag: ["#KAMEELfoundherforeBERT"],
     instructions: "Please scan this QR Code and upload the photos and videos you have taken during our wedding reception. We are delighted to see your snaps too!",
   },
   accommodation: {

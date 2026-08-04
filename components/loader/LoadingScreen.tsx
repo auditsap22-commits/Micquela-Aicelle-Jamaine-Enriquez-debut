@@ -29,7 +29,7 @@ const ROLLER_TRANSITION_MS = 680;
 const STATUS_LINE_HEIGHT_REM = 2.85;
 const SAVE_THE_DATE_IMAGE = '/decoration/saveTheDate.png';
 const SAVE_THE_DATE_ASPECT = 637 / 108;
-const COUPLE_NAME_IMAGE = '/decoration/newCoupleName.png';
+const COUPLE_NAME_IMAGE = '/decoration/new-couple-name.png';
 const COUPLE_NAME_ASPECT = 1018 / 622;
 
 const CORNER_DECO_CLASS =

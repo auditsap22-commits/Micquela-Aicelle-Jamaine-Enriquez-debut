@@ -50,12 +50,11 @@ function LoveStoryTitle() {
         {
           "--title-size": layeredSectionTitleSize.main,
           "--script-size": layeredSectionTitleSize.script,
-          "--script-overlap": layeredSectionTitleSize.overlap,
         } as React.CSSProperties
       }
     >
       <span
-        className={`${theSeasons.className} block uppercase leading-[0.78] tracking-[0.08em] min-[400px]:tracking-[0.11em] sm:tracking-[0.13em] md:tracking-[0.14em] mt-4 sm:mt-5 md:mt-6`}
+        className={`${theSeasons.className} block uppercase leading-[0.78] tracking-[0.08em] min-[400px]:tracking-[0.11em] sm:tracking-[0.13em] md:tracking-[0.14em] mt-4 pb-1 sm:mt-5 sm:pb-1.5 md:mt-6`}
         style={{
           fontSize: "var(--title-size)",
           color: "var(--color-welcome-navy)",
@@ -65,13 +64,10 @@ function LoveStoryTitle() {
       </span>
       <span
         aria-hidden
-        className={`${aboveTheBeyond.className} relative z-10 mx-auto block w-fit max-w-full px-1 leading-[0.88] sm:leading-[0.9]`}
+        className={`${aboveTheBeyond.className} mx-auto block w-fit max-w-full px-1 leading-[0.88] sm:leading-[0.9] mt-2 sm:mt-2.5 md:mt-3`}
         style={{
-          marginTop: "calc(var(--script-overlap) + clamp(0.5rem, 2vw, 1rem))",
           fontSize: "var(--script-size)",
           color: "var(--color-welcome-green)",
-          textShadow:
-            "0 1px 0 color-mix(in srgb, var(--color-welcome-bg) 95%, white), 0 0 10px color-mix(in srgb, var(--color-welcome-bg) 65%, white)",
         }}
       >
         Our Journey to Forever
@@ -140,7 +136,7 @@ export function LoveStory() {
   theme="dark"
   layout="image-right"
   imageSrc="/mobile-background/couples (2).webp"
-  title="Endless Teasing, Growing Friendship"
+  // title="Endless Teasing, Growing Friendship"
   text={
     <>
       <p className="mb-4">
@@ -154,7 +150,7 @@ export function LoveStory() {
   theme="light"
   layout="image-left"
   imageSrc="/mobile-background/couples (3).webp"
-  title="A Love That Grew Stronger"
+  // title="A Love That Grew Stronger"
   text={
     <>
       <p>
@@ -168,7 +164,7 @@ export function LoveStory() {
   theme="dark"
   layout="image-right"
   imageSrc="/mobile-background/couples (4).webp"
-  title="The Season of Distance"
+  // title="The Season of Distance"
   text={
     <>
       <p>
@@ -182,7 +178,7 @@ export function LoveStory() {
   theme="light"
   layout="image-left"
   imageSrc="/mobile-background/couples (5).webp"
-  title="Calls, Prayers, and Patience"
+  // title="Calls, Prayers, and Patience"
   text={
     <>
       <p>
@@ -196,7 +192,7 @@ export function LoveStory() {
   theme="dark"
   layout="image-right"
   imageSrc="/mobile-background/couples (6).webp"
-  title="The Question, in Taiwan"
+  // title="The Question, in Taiwan"
   text={
     <>
       <p className="mb-4">
@@ -210,7 +206,7 @@ export function LoveStory() {
   theme="light"
   layout="image-left"
   imageSrc="/mobile-background/couples (7).webp"
-  title="A Heart Full of Love, and a Yes"
+  // title="A Heart Full of Love, and a Yes"
   text={
     <>
       <p className="mb-4">
@@ -224,7 +220,7 @@ export function LoveStory() {
   theme="dark"
   layout="image-right"
   imageSrc="/mobile-background/couples (8).webp"
-  title="Surrounded by Those Who Matter Most"
+  // title="Surrounded by Those Who Matter Most"
   text={
     <>
       <p className="mb-4">
@@ -238,7 +234,7 @@ export function LoveStory() {
   theme="light"
   layout="image-left"
   imageSrc="/mobile-background/couples (9).webp"
-  title="From Strangers to Best Friends"
+  // title="From Strangers to Best Friends"
   text={
     <>
       <p className="mb-4">
@@ -252,7 +248,7 @@ export function LoveStory() {
   theme="dark"
   layout="image-right"
   imageSrc="/mobile-background/couples (10).webp"
-  title="Their Greatest Adventure Begins"
+  // title="Their Greatest Adventure Begins"
   text={
     <>
       <p className="mb-4">
@@ -267,7 +263,7 @@ export function LoveStory() {
   layout="image-left"
   isLast={true}
   imageSrc="/mobile-background/couples (11).webp"
-  title="Habangbuhay"
+  // title="Habangbuhay"
   text={
     <>
       <p className="mb-4">

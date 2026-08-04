@@ -359,12 +359,12 @@ export function Footer() {
 
             {/* Event details — ceremony and reception always separate */}
             <motion.div className="space-y-4 sm:space-y-5 min-w-0" variants={fadeInUp}>
-              <FooterCard>
+              {/* <FooterCard>
                 <h4
                   className={`${cinzel.className} ${ct.cardTitle} font-semibold mb-3`}
                   style={{ color: palette.heading }}
                 >
-                  Ceremony
+                  Ceremony 
                 </h4>
                 <div className="space-y-3">
                   <DetailRow label="Venue" value={toTitleCase(ceremonyVenue)} />
@@ -373,21 +373,22 @@ export function Footer() {
                   )}
                   <DetailRow label="Time" value={ceremonyTime} />
                 </div>
-              </FooterCard>
+              </FooterCard> */}
 
               <FooterCard>
                 <h4
                   className={`${cinzel.className} ${ct.cardTitle} font-semibold mb-3`}
                   style={{ color: palette.heading }}
                 >
-                  Reception
+                  Ceremony &Reception
                 </h4>
                 <div className="space-y-3">
-                  <DetailRow label="Venue" value={toTitleCase(receptionVenue)} />
+                  <DetailRow label="Venue" value={siteConfig.ceremony.location} />
                   {receptionAddress && receptionAddress !== receptionVenue && (
-                    <DetailRow label="Address" value={toTitleCase(receptionAddress)} />
+                    <DetailRow label="Address" value={siteConfig.ceremony.venue} />
                   )}
-                  <DetailRow label="Time" value={receptionTime} />
+                  <DetailRow label="Assembly Time" value={siteConfig.ceremony.guestsTime} />
+                  <DetailRow label="Wedding Starts:" value={receptionTime} />
                 </div>
               </FooterCard>
 

@@ -94,12 +94,11 @@ function DetailsTitle() {
         {
           "--title-size": "clamp(2.15rem, 11vw, 4.5rem)",
           "--script-size": "clamp(1.1rem, 4.5vw, 2.25rem)",
-          "--script-overlap": "clamp(-0.65rem, -2.8vw, -1.5rem)",
         } as React.CSSProperties
       }
     >
       <span
-        className={`${theSeasons.className} block uppercase leading-[0.78] tracking-[0.08em] min-[400px]:tracking-[0.11em] sm:tracking-[0.15em] md:tracking-[0.18em]`}
+        className={`${theSeasons.className} block uppercase leading-[0.78] tracking-[0.08em] min-[400px]:tracking-[0.11em] sm:tracking-[0.15em] md:tracking-[0.18em] pb-1 sm:pb-1.5`}
         style={{
           fontSize: "var(--title-size)",
           color: "var(--color-welcome-navy)",
@@ -109,13 +108,10 @@ function DetailsTitle() {
       </span>
       <span
         aria-hidden
-        className={`${aboveTheBeyond.className} relative z-10 mx-auto block w-fit max-w-full px-1 leading-[0.88] sm:leading-[0.9]`}
+        className={`${aboveTheBeyond.className} mx-auto block w-fit max-w-full px-1 leading-[0.88] sm:leading-[0.9] mt-2 sm:mt-2.5 md:mt-3`}
         style={{
-          marginTop: "var(--script-overlap)",
           fontSize: "var(--script-size)",
           color: "var(--color-motif-accent)",
-          textShadow:
-            "0 1px 0 color-mix(in srgb, var(--color-welcome-bg) 95%, white), 0 0 10px color-mix(in srgb, var(--color-welcome-bg) 65%, white)",
         }}
       >
         our special day
@@ -243,6 +239,147 @@ gentlemen: {
   },
 } as const
 
+const dressCodePalette = [
+  {
+    name: "PURPLE ORCHID",
+    pantone: "18-3531 TCX",
+    hex: "#9B4CB5",
+    rgb: "(155, 76, 181)",
+  },
+  {
+    name: "GOLDEN CYPRESS",
+    pantone: "18-0537 TCX",
+    hex: "#8A8D3B",
+    rgb: "(138, 141, 59)",
+  },
+  {
+    name: "SANGRIA SUNSET",
+    pantone: "17-2233 TCX",
+    hex: "#E06C9A",
+    rgb: "(224, 108, 154)",
+  },
+  {
+    name: "LEMON DROP",
+    pantone: "13-0757 TCX",
+    hex: "#F2C94C",
+    rgb: "(242, 201, 76)",
+  },
+  {
+    name: "GOLDEN POPPY",
+    pantone: "16-1462 TCX",
+    hex: "#E9703A",
+    rgb: "(233, 112, 58)",
+  },
+  {
+    name: "NANTUCKET BREEZE",
+    pantone: "14-4005 TCX",
+    hex: "#A9C6DF",
+    rgb: "(169, 198, 223)",
+  },
+] as const
+
+function DressCodePaletteSwatch({
+  name,
+  pantone,
+  hex,
+  rgb,
+  isLast = false,
+}: (typeof dressCodePalette)[number] & { isLast?: boolean }) {
+  return (
+    <div
+      className={`flex min-w-0 flex-1 flex-col ${isLast ? "" : "border-r border-white"}`}
+    >
+      <div
+        className="relative flex min-h-[88px] w-full items-center justify-center sm:min-h-[108px] md:min-h-[128px] lg:min-h-[148px]"
+        style={{ backgroundColor: hex }}
+      >
+        <span
+          className="text-[6px] font-semibold uppercase tracking-[0.08em] text-white sm:text-[7px] md:text-[8px] lg:text-[9px]"
+          style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
+        >
+          {name}
+        </span>
+      </div>
+      <div className="space-y-0.5 px-0.5 pb-1 pt-1.5 text-center font-sans sm:space-y-1 sm:pb-1.5 sm:pt-2 md:pt-2.5">
+        <div>
+          <p className="text-[5px] font-bold uppercase leading-tight sm:text-[6px] md:text-[7px] lg:text-[8px]">
+            PANTONE®
+          </p>
+          <p className="text-[5px] leading-tight sm:text-[6px] md:text-[7px] lg:text-[8px]">{pantone}</p>
+        </div>
+        <div>
+          <p className="text-[5px] font-bold uppercase leading-tight sm:text-[6px] md:text-[7px] lg:text-[8px]">
+            HEX
+          </p>
+          <p className="text-[5px] leading-tight sm:text-[6px] md:text-[7px] lg:text-[8px]">{hex}</p>
+        </div>
+        <div>
+          <p className="text-[5px] font-bold uppercase leading-tight sm:text-[6px] md:text-[7px] lg:text-[8px]">
+            RGB
+          </p>
+          <p className="text-[5px] leading-tight sm:text-[6px] md:text-[7px] lg:text-[8px]">{rgb}</p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function DressCodePaletteDisplay() {
+  return (
+    <div
+      className="border-t px-3 py-5 sm:px-4 sm:py-6 md:px-5 md:py-7"
+      style={{
+        borderColor: "color-mix(in srgb, var(--color-motif-deep) 10%, transparent)",
+        backgroundColor: "#FDF8F2",
+        color: "#3D3429",
+      }}
+    >
+      <div className="mx-auto max-w-3xl text-center">
+        <h5
+          className={`${cinzel.className} text-sm font-semibold uppercase tracking-[0.14em] sm:text-base md:text-lg lg:text-xl`}
+        >
+          Dress Code Palette
+        </h5>
+        <p
+          className={`${aboveTheBeyond.className} mt-1 text-lg leading-none sm:mt-1.5 sm:text-xl md:text-2xl`}
+          style={{ color: "var(--color-motif-accent)" }}
+        >
+          Long Gown
+        </p>
+
+        <div className="mx-auto mt-3 flex max-w-xs items-center justify-center gap-2 sm:mt-4 sm:max-w-sm md:max-w-md">
+          <span className="h-px flex-1 bg-[#3D3429]/30" />
+          <Heart className="h-2.5 w-2.5 shrink-0 fill-[#3D3429]/40 text-[#3D3429]/40 sm:h-3 sm:w-3" aria-hidden />
+          <span className="h-px flex-1 bg-[#3D3429]/30" />
+        </div>
+
+        <p
+          className={`${cinzel.className} mt-3 text-[10px] font-bold uppercase tracking-[0.12em] sm:mt-4 sm:text-xs md:text-sm`}
+        >
+          Color Guide
+        </p>
+        <p className="font-goudy-italic mt-1.5 text-[10px] italic leading-relaxed sm:mt-2 sm:text-xs md:text-sm">
+          Please refer to the exact colors below for dress code.
+        </p>
+      </div>
+
+      <div
+        className="mx-auto mt-4 flex max-w-4xl border border-white sm:mt-5 md:mt-6"
+        role="img"
+        aria-label="Dress code color palette: Purple Orchid, Golden Cypress, Sangria Sunset, Lemon Drop, Golden Poppy, Nantucket Breeze"
+      >
+        {dressCodePalette.map((color, index) => (
+          <DressCodePaletteSwatch
+            key={color.hex}
+            {...color}
+            isLast={index === dressCodePalette.length - 1}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
 function ColorPalette({ colors }: { colors: readonly string[] }) {
   const widthClass = colors.length > 4 ? "max-w-md" : "max-w-xs sm:max-w-sm"
 
@@ -352,7 +489,7 @@ function AttirePaletteGroup({
   description,
 }: {
   label: string
-  colors: readonly string[]
+  colors?: readonly string[]
   description: string
 }) {
   return (
@@ -363,7 +500,7 @@ function AttirePaletteGroup({
       >
         {label}
       </p>
-      <ColorPalette colors={colors} />
+      {colors ? <ColorPalette colors={colors} /> : null}
       <p
         className={`font-goudy-italic ${ct.body} px-1 text-center leading-relaxed`}
         style={{ color: detailText.body }}
@@ -380,13 +517,15 @@ function AttireCard({
   alt,
   imageAspect,
   children,
-  imageClassName = "object-contain object-center",
+  belowImage,
+  imageClassName = "object-contain object-center w-full h-full",
 }: {
   title: string
   image: string
   alt: string
   imageAspect: string
   children: ReactNode
+  belowImage?: ReactNode
   imageClassName?: string
 }) {
   return (
@@ -414,18 +553,19 @@ function AttireCard({
           </h4>
         </div>
 
-        <div
-          className="relative w-full shrink-0 bg-[#FAF7F2]"
-          style={{ aspectRatio: imageAspect }}
-        >
-          <Image
-            src={image}
-            alt={alt}
-            fill
-            className={`${imageClassName} p-2 transition-transform duration-700 group-hover:scale-[1.01] sm:p-3`}
-            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-          />
+        <div className="relative flex w-full shrink-0 items-center justify-center overflow-hidden bg-[#FAF7F2]">
+          <div className="relative w-full" style={{ aspectRatio: imageAspect }}>
+            <Image
+              src={image}
+              alt={alt}
+              fill
+              className={`${imageClassName} transition-transform duration-700 group-hover:scale-[1.01]`}
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 80vw, 1024px"
+            />
+          </div>
         </div>
+
+        {belowImage}
 
         <div
           className="flex flex-1 flex-col border-t px-4 py-4 sm:px-5 sm:py-5 md:px-6"
@@ -823,7 +963,7 @@ export function Details() {
         <div className="relative z-20 mb-6 px-6 text-center sm:mb-8 sm:px-10 md:mb-10 md:px-12">
           <p
             className={`${cinzel.className} mb-2 text-[0.525rem] font-semibold uppercase tracking-[0.34em] min-[400px]:text-[0.55rem] min-[400px]:tracking-[0.38em] sm:text-[0.575rem] sm:tracking-[0.44em]`}
-            style={{ color: "var(--color-welcome-heading)" }}
+            style={{ color: "var(--color-welcome-green)" }}
           >
             Our Celebration
           </p>
@@ -918,28 +1058,29 @@ export function Details() {
         </div>
 
         {/* Attire cards — Bridal Party, Principal Sponsors & Guests */}
-        <div className="mb-6 grid grid-cols-1 items-start gap-6 sm:mb-8 sm:gap-8 md:mb-10 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mb-6 grid grid-cols-1 items-start gap-6 sm:mb-8 sm:gap-8 md:mb-10">
+          <div className="mx-auto w-full max-w-5xl">
           <AttireCard
-            title="Entourage"
+            title="Guests"
             image={attireGuide.sponsors.image}
             imageAspect={attireGuide.sponsors.imageAspect}
-            alt="Entourage attire guide"
+            alt="Guests attire guide"
+            belowImage={<DressCodePaletteDisplay />}
           >
             <div className="grid grid-cols-1 gap-5 sm:gap-6">
               <AttirePaletteGroup
                 label="Ladies"
-                colors={attireGuide.sponsors.ladies.colors}
                 description={attireGuide.sponsors.ladies.description}
               />
               <AttirePaletteGroup
                 label="Gentlemen"
-                colors={attireGuide.sponsors.gentlemen.colors}
                 description={attireGuide.sponsors.gentlemen.description}
               />
             </div>
           </AttireCard>
+          </div>
 
-          <AttireCard
+          {/* <AttireCard
             title="Guests"
             image={attireGuide.entourage.image}
             imageAspect={attireGuide.entourage.imageAspect}
@@ -957,7 +1098,7 @@ export function Details() {
                 description={attireGuide.entourage.gentlemen.description}
               />
             </div>
-          </AttireCard>
+          </AttireCard> */}
 
           {/* <AttireCard
             title="Guests"

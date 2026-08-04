@@ -21,12 +21,12 @@ interface HeroProps {
 }
 
 const POLAROID_PHOTOS = [
-  { src: '/envelope/box (5).jpg', side: 'left' as const },
-  { src: '/envelope/box (4).jpg', side: 'center' as const },
-  { src: '/envelope/box (6).jpg', side: 'right' as const },
+  { src: '/envelope/box (4).jpg', side: 'left' as const },
+  { src: '/envelope/box (5).jpg', side: 'center' as const },
+  { src: '/envelope/couples (13).jpg', side: 'right' as const },
 ];
 
-const COUPLE_NAME_IMAGE = '/decoration/newCoupleName.png';
+const COUPLE_NAME_IMAGE = '/decoration/new-couple-name.png';
 
 const CORNER_DECO_CLASS =
   'block h-auto w-auto max-w-[200px] sm:max-w-[245px] md:max-w-[280px] opacity-75';
@@ -823,7 +823,7 @@ export const Hero: React.FC<HeroProps> = ({
         }
       >
         <motion.h2 variants={revealCopyItemVariants}>
-          We look forward to celebrate with you!
+          We can't wait to celebrate with you!
         </motion.h2>
         <motion.span className="script" variants={revealCopyItemVariants}>
           With love, {coupleNames}
