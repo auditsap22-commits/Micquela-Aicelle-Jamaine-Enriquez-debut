@@ -30,7 +30,7 @@ const aboveTheBeyond = localFont({
 const CORNER_DECO_CLASS =
   "block h-auto w-auto max-w-[200px] sm:max-w-[240px] md:max-w-[280px] lg:max-w-[320px] xl:max-w-[380px]"
 
-function GalleryCoupleLabel({ groom, bride }: { groom: string; bride: string }) {
+function GalleryDebutantLabel({ nickname }: { nickname: string }) {
   const lineStyle = {
     background:
       "linear-gradient(to right, transparent, color-mix(in srgb, var(--color-welcome-navy) 35%, transparent))",
@@ -43,7 +43,7 @@ function GalleryCoupleLabel({ groom, bride }: { groom: string; bride: string }) 
         className={`${cinzel.className} ${sectionType.label} shrink-0 py-0.5 font-semibold uppercase leading-normal tracking-[0.34em] min-[400px]:tracking-[0.38em] sm:tracking-[0.44em]`}
         style={{ color: "var(--color-welcome-navy)" }}
       >
-        With {groom}
+        {nickname}
         <span
           className={`${aboveTheBeyond.className} mx-1.5 inline-block normal-case tracking-normal sm:mx-2`}
           style={{
@@ -53,9 +53,9 @@ function GalleryCoupleLabel({ groom, bride }: { groom: string; bride: string }) 
           }}
           aria-hidden
         >
-          &
+          turns
         </span>
-        {bride}
+        eighteen
       </p>
       <span
         className="h-px w-5 sm:w-7 md:w-9"
@@ -97,32 +97,31 @@ function GalleryTitle() {
           color: "var(--color-welcome-green)",
         }}
       >
-        our favorite moments
+        her cherished moments
       </span>
-      <span className="sr-only">our favorite moments</span>
+      <span className="sr-only">her cherished moments</span>
     </h2>
   )
 }
 
 const galleryItems = [
-  { image: "/mobile-background/couples (10).webp", text: " " },
-  { image: "/mobile-background/couples (11).webp", text: " " },
-  { image: "/mobile-background/couples (12).webp", text: " " },
-  { image: "/mobile-background/couples (13).webp", text: " " },
-  { image: "/mobile-background/couples (14).webp", text: " " },
-  { image: "/mobile-background/couples (15).webp", text: " " },
-  { image: "/mobile-background/couples (16).webp", text: " " },
-  { image: "/mobile-background/couples (17).webp", text: " " },
-  { image: "/mobile-background/couples (18).webp", text: " " },
-  { image: "/mobile-background/couples (19).webp", text: " " },
-  { image: "/mobile-background/couples (20).webp", text: " " },
+  { image: "/mobile-background/debut (19).webp", text: " " },
+  { image: "/mobile-background/debut (11).webp", text: " " },
+  { image: "/mobile-background/debut (12).webp", text: " " },
+  { image: "/mobile-background/debut (13).webp", text: " " },
+  { image: "/mobile-background/debut (14).webp", text: " " },
+  { image: "/mobile-background/debut (15).webp", text: " " },
+  { image: "/mobile-background/debut (16).webp", text: " " },
+  { image: "/mobile-background/debut (17).webp", text: " " },
+  { image: "/mobile-background/debut (18).webp", text: " " },
+  { image: "/mobile-background/debut (10).webp", text: " " },
 
 ]
 
 export function Gallery() {
   const siteConfig = useSiteConfig()
-  const brideName = siteConfig.couple.brideNickname || siteConfig.couple.bride
-  const groomName = siteConfig.couple.groomNickname || siteConfig.couple.groom
+  const debutantName = siteConfig.couple.debutName
+  const debutantNickname = siteConfig.couple.debutNickname || debutantName
 
   const [selectedImage, setSelectedImage] = useState<(typeof galleryItems)[0] | null>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -210,31 +209,31 @@ export function Gallery() {
       <div className="pointer-events-none absolute left-0 top-0 z-10">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/decoration/deco/left-top-corner.png"
+          src="/decoration/top-left.png"
           alt=""
           className={CORNER_DECO_CLASS}
         />
       </div>
       <div className="pointer-events-none absolute right-0 top-0 z-10">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/decoration/deco/right-top-corner.png"
+        {/* <img
+          src="/decoration/top-right.png"
           alt=""
           className={CORNER_DECO_CLASS}
-        />
+        /> */}
       </div>
       <div className="pointer-events-none absolute bottom-0 left-0 z-10">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/decoration/deco/left-bottom-corner.png"
-          alt=""
+        {/* <img
+            src="/decoration/bottom-left.png"
+            alt=""
           className={CORNER_DECO_CLASS}
-        />
+        /> */}
       </div>
       <div className="pointer-events-none absolute bottom-0 right-0 z-10">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/decoration/deco/right-bottom-corner.png"
+          src="/decoration/bottom-right.png"
           alt=""
           className={CORNER_DECO_CLASS}
         />
@@ -242,7 +241,7 @@ export function Gallery() {
 
       {/* Header */}
       <div className="relative z-20 mx-auto mb-6 max-w-5xl px-6 text-center @container/gallery sm:mb-8 sm:px-10 md:mb-10 md:px-12">
-        <GalleryCoupleLabel groom={groomName} bride={brideName} />
+        <GalleryDebutantLabel nickname={debutantNickname} />
         <div className="mt-6 mb-4 sm:mt-8 sm:mb-5 md:mt-10 md:mb-6">
           <GalleryTitle />
         </div>
@@ -250,8 +249,8 @@ export function Gallery() {
           className={`font-goudy-italic mx-auto max-w-2xl px-2 ${sectionType.textRelaxed}`}
           style={{ color: "var(--color-welcome-text)" }}
         >
-          From our first chapter to this beautiful season of commitment — every moment has been a
-          testament to love, faith, and grace.
+          From childhood smiles to this milestone debut — each memory reflects the grace, joy, and
+          beauty that have shaped her journey to eighteen.
         </p>
 
         <div className="flex items-center justify-center gap-2 pt-3 sm:pt-4">

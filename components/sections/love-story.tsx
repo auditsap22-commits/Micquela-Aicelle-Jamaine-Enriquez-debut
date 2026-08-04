@@ -87,7 +87,7 @@ export function LoveStory() {
         <div className="pointer-events-none  absolute right-0 top-0 z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/decoration/deco/right-top-corner.png"
+            src="/decoration/top-right.png"
             alt=""
             className={CORNER_DECO_CLASS}
           />
@@ -95,7 +95,7 @@ export function LoveStory() {
         <div className="pointer-events-none absolute left-0 top-0 z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/decoration/deco/left-top-corner.png"
+            src="/decoration/top-left.png"
             alt=""
             className={CORNER_DECO_CLASS}
           />
@@ -121,12 +121,12 @@ export function LoveStory() {
   theme="light"
   layout="image-left"
   isFirst={true}
-  title="Two Strangers, One Unexpected Journey"
-  imageSrc="/mobile-background/couples (1).webp"
+  title="Eighteen Years in the Making"
+  imageSrc="/mobile-background/debut (1).webp"
   text={
     <>
       <p className="mb-4">
-      In 2018, what started as two strangers meeting turned into a beautiful journey neither of them expected.
+      Eighteen years ago, a little girl arrived and changed everything for the people who love her most.
       </p>
     </>
   }
@@ -135,12 +135,12 @@ export function LoveStory() {
 <StorySection
   theme="dark"
   layout="image-right"
-  imageSrc="/mobile-background/couples (2).webp"
-  // title="Endless Teasing, Growing Friendship"
+  imageSrc="/mobile-background/debut (2).webp"
+  // title="A Childhood Full of Wonder"
   text={
     <>
       <p className="mb-4">
-      From playful conversations and Gilbert's endless teasing of Kameel, a friendship slowly grew into something deeper.
+      From scraped knees to school days, every little moment was a step toward the young woman she is today.
       </p>
     </>
   }
@@ -149,12 +149,12 @@ export function LoveStory() {
 <StorySection
   theme="light"
   layout="image-left"
-  imageSrc="/mobile-background/couples (3).webp"
-  // title="A Love That Grew Stronger"
+  imageSrc="/mobile-background/debut (3).webp"
+  // title="Family, Her First Home"
   text={
     <>
       <p>
-      Behind the jokes and little arguments was a love that continued to grow stronger every day.
+      Behind every milestone was a family cheering her on, offering love, patience, and endless support.
       </p>
     </>
   }
@@ -163,12 +163,12 @@ export function LoveStory() {
 <StorySection
   theme="dark"
   layout="image-right"
-  imageSrc="/mobile-background/couples (4).webp"
-  // title="The Season of Distance"
+  imageSrc="/mobile-background/debut (4).webp"
+  // title="Friends Who Became Family"
   text={
     <>
       <p>
-      Then in 2024, came the season of distance. As they began their long-distance relationship, they learned that love is not measured by the miles between them, but by the choice to keep choosing each other.
+      Along the way, friendships were made that turned into a second family — the ones who laughed with her, grew with her, and stayed.
       </p>
     </>
   }
@@ -177,12 +177,12 @@ export function LoveStory() {
 <StorySection
   theme="light"
   layout="image-left"
-  imageSrc="/mobile-background/couples (5).webp"
-  // title="Calls, Prayers, and Patience"
+  imageSrc="/mobile-background/debut (5).webp"
+  // title="Lessons Learned, Dreams Formed"
   text={
     <>
       <p>
-      Through countless calls, prayers, patience, and waiting, they proved that love can overcome any distance.
+      Through every high and low, she learned what she values, who she is, and who she's becoming.
       </p>
     </>
   }
@@ -191,12 +191,12 @@ export function LoveStory() {
 <StorySection
   theme="dark"
   layout="image-right"
-  imageSrc="/mobile-background/couples (6).webp"
-  // title="The Question, in Taiwan"
+  imageSrc="/mobile-background/debut (6).webp"
+  // title="The Girl She Was"
   text={
     <>
       <p className="mb-4">
-      In 2025, in Taiwan, Gilbert asked Kameel the most important question of their lives.
+      She carries with her every version of who she used to be — the dreamer, the student, the friend, the daughter.
       </p>
     </>
   }
@@ -205,12 +205,12 @@ export function LoveStory() {
 <StorySection
   theme="light"
   layout="image-left"
-  imageSrc="/mobile-background/couples (7).webp"
-  // title="A Heart Full of Love, and a Yes"
+  imageSrc="/mobile-background/debut (7).webp"
+  // title="The Woman She Is Becoming"
   text={
     <>
       <p className="mb-4">
-      And with a heart full of love, Kameel said yes.
+      And now, she steps into a new chapter — more confident, more grateful, and more herself than ever before.
       </p>
     </>
   }
@@ -219,12 +219,12 @@ export function LoveStory() {
 <StorySection
   theme="dark"
   layout="image-right"
-  imageSrc="/mobile-background/couples (8).webp"
-  // title="Surrounded by Those Who Matter Most"
+  imageSrc="/mobile-background/debut (8).webp"
+  // title="A Celebration of Gratitude"
   text={
     <>
       <p className="mb-4">
-      Now in 2026, surrounded by the people who mean the most to them, they begin their forever.
+      This milestone belongs not just to her, but to everyone who has been part of her story so far.
       </p>
     </>
   }
@@ -233,12 +233,12 @@ export function LoveStory() {
 <StorySection
   theme="light"
   layout="image-left"
-  imageSrc="/mobile-background/couples (9).webp"
-  // title="From Strangers to Best Friends"
+  imageSrc="/mobile-background/debut (9).webp"
+  // title="To Everyone Who Shaped Her Story"
   text={
     <>
       <p className="mb-4">
-      From strangers, to best friends, to forever partners.
+      To family, friends, and everyone who has loved and guided her — thank you for being part of this journey.
       </p>
     </>
   }
@@ -247,12 +247,12 @@ export function LoveStory() {
 <StorySection
   theme="dark"
   layout="image-right"
-  imageSrc="/mobile-background/couples (10).webp"
-  // title="Their Greatest Adventure Begins"
+  imageSrc="/mobile-background/debut (10).webp"
+  // title="A New Chapter Begins"
   text={
     <>
       <p className="mb-4">
-      Their greatest adventure begins — a lifetime of love, chosen again and again, no matter the distance.
+      Eighteen years of memories lead to this moment — a celebration of who she was, who she is, and who she's still becoming.
       </p>
     </>
   }
@@ -262,15 +262,15 @@ export function LoveStory() {
   theme="light"
   layout="image-left"
   isLast={true}
-  imageSrc="/mobile-background/couples (11).webp"
-  // title="Habangbuhay"
+  imageSrc="/mobile-background/debut (11).webp"
+  // title="Join the Celebration"
   text={
     <>
       <p className="mb-4">
-      From two strangers meeting in 2018, through years of teasing, laughter, distance, and prayer, to a yes in Taiwan — Gilbert and Kameel are ready to say "I do."
+      Micquela Aicelle Jamaine G. Enriquez turns eighteen, and she would love nothing more than to celebrate with the people who matter most.
       </p>
       <p>
-      Join us as we begin forever.
+      Join us on August 15, 2026, 6:00 PM – 10:00 PM, at Boss and Docs Villa 2 and 3, Laguna Hills, as we welcome her into a new chapter.
       </p>
     </>
   }
@@ -282,7 +282,7 @@ export function LoveStory() {
         <div className="pointer-events-none absolute bottom-0 left-0 z-20">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/decoration/deco/left-bottom-corner.png"
+            src="/decoration/bottom-left.png"
             alt=""
             className={CORNER_DECO_CLASS}
           />
@@ -290,7 +290,7 @@ export function LoveStory() {
         <div className="pointer-events-none absolute bottom-0 right-0 z-20">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/decoration/deco/right-bottom-corner.png"
+            src="/decoration/bottom-right.png"
             alt=""
             className={CORNER_DECO_CLASS}
           />

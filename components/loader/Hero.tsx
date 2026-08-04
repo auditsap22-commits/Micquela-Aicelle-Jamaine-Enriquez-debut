@@ -21,15 +21,16 @@ interface HeroProps {
 }
 
 const POLAROID_PHOTOS = [
-  { src: '/envelope/box (4).jpg', side: 'left' as const },
-  { src: '/envelope/box (5).jpg', side: 'center' as const },
-  { src: '/envelope/couples (13).jpg', side: 'right' as const },
+  { src: '/envelope/debut (4).jpg', side: 'left' as const },
+  { src: '/envelope/debut (2).jpg', side: 'center' as const },
+  { src: '/envelope/debut (1).jpg', side: 'right' as const },
 ];
 
-const COUPLE_NAME_IMAGE = '/decoration/new-couple-name.png';
+const COUPLE_NAME_IMAGE = '/decoration/debutname.png';
+const SAVE_THE_DATE_IMAGE = '/decoration/SavetheDate.png';
 
 const CORNER_DECO_CLASS =
-  'block h-auto w-auto max-w-[200px] sm:max-w-[245px] md:max-w-[280px] opacity-75';
+  'block h-auto w-auto max-w-[150px] sm:max-w-[140px] md:max-w-[180px] opacity-75';
 
 function letterNamesMaskStyle(src: string): CSSProperties {
   return {
@@ -71,6 +72,7 @@ function getFocusLiftPhase(phase: EnvelopePhase): 'idle' | 'opening' | 'photos' 
 
 const photoEmergenceEase: Transition = { duration: 3.2, ease: [0.08, 1, 0.2, 1] };
 const letterEmergenceEase: Transition = { duration: 2.85, ease: [0.08, 1, 0.2, 1] };
+const saveTheDateFadeEase: Transition = { duration: 0.5, ease: [0.22, 1, 0.36, 1] };
 const flapEase: Transition = { duration: 1.1, ease: [0.65, 0, 0.35, 1] };
 const envelopeEase: Transition = { duration: 0.85, ease: [0.22, 1, 0.36, 1] };
 const inviteExitEase: Transition = { duration: 1.75, ease: [0.22, 1, 0.36, 1] };
@@ -94,7 +96,9 @@ export const Hero: React.FC<HeroProps> = ({
   const [liftedPhoto, setLiftedPhoto] = useState<PhotoSide | null>(null);
   const [isExiting, setIsExiting] = useState(false);
 
-  const coupleNames = `${siteConfig.couple.groomNickname} & ${siteConfig.couple.brideNickname}`;
+  const debutantName = siteConfig.couple.debutName;
+  const debutantNickname = siteConfig.couple.debutNickname;
+  const debutantLabel = debutantName || debutantNickname;
 
   const letterDateNumeric = useMemo(() => {
     const parsed = parseWeddingDate(siteConfig.ceremony.date ?? siteConfig.wedding.date);
@@ -483,27 +487,19 @@ export const Hero: React.FC<HeroProps> = ({
 
       <div className="env-invite-corner env-invite-corner--tl pointer-events-none" aria-hidden="true">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/decoration/deco/left-top-corner.png" alt="" className={CORNER_DECO_CLASS} />
+        <img src="/decoration/top-left.png" alt="" className={CORNER_DECO_CLASS} />
       </div>
       <div className="env-invite-corner env-invite-corner--tr pointer-events-none" aria-hidden="true">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/decoration/deco/right-top-corner.png" alt="" className={CORNER_DECO_CLASS} />
+        <img src="/decoration/top-right.png" alt="" className={CORNER_DECO_CLASS} />
       </div>
       <div className="env-invite-corner env-invite-corner--bl pointer-events-none" aria-hidden="true">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/decoration/deco/left-bottom-corner.png" alt="" className={CORNER_DECO_CLASS} />
+        <img src="/decoration/bottom-left.png" alt="" className={CORNER_DECO_CLASS} />
       </div>
       <div className="env-invite-corner env-invite-corner--br pointer-events-none" aria-hidden="true">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/decoration/deco/right-bottom-corner.png" alt="" className={CORNER_DECO_CLASS} />
-      </div>
-
-      <div className="env-invite-ghost-date pointer-events-none select-none" aria-hidden="true">
-        <span className="env-invite-ghost-date-part">{weddingDateGhost.month}</span>
-        <span className="env-invite-ghost-date-sep" aria-hidden="true" />
-        <span className="env-invite-ghost-date-part">{weddingDateGhost.day}</span>
-        <span className="env-invite-ghost-date-sep" aria-hidden="true" />
-        <span className="env-invite-ghost-date-part">{weddingDateGhost.year}</span>
+        <img src="/decoration/bottom-right.png" alt="" className={CORNER_DECO_CLASS} />
       </div>
 
       {isExiting && !reduceMotion && (
@@ -577,6 +573,37 @@ export const Hero: React.FC<HeroProps> = ({
                 : { duration: 0.01 }
             }
           >
+          <motion.div
+            className="env-invite-save-the-date-block"
+            initial={false}
+            animate={
+              phase === 'idle'
+                ? { opacity: 1, y: 0, filter: 'blur(0px)' }
+                : { opacity: 0, y: -8, filter: 'blur(3px)' }
+            }
+            transition={reduceMotion ? { duration: 0.01 } : saveTheDateFadeEase}
+            aria-hidden={phase !== 'idle'}
+          >
+            <div className="env-invite-save-the-date">
+              <Image
+                src={SAVE_THE_DATE_IMAGE}
+                alt=""
+                fill
+                className="object-contain env-invite-save-the-date-img"
+                sizes="(max-width: 400px) 78vw, 320px"
+                priority
+              />
+            </div>
+
+            <div className="env-invite-save-the-date-ghost select-none" aria-hidden="true">
+              <span className="env-invite-save-the-date-ghost-part">{weddingDateGhost.month}</span>
+              <span className="env-invite-save-the-date-ghost-sep" aria-hidden="true" />
+              <span className="env-invite-save-the-date-ghost-part">{weddingDateGhost.day}</span>
+              <span className="env-invite-save-the-date-ghost-sep" aria-hidden="true" />
+              <span className="env-invite-save-the-date-ghost-part">{weddingDateGhost.year}</span>
+            </div>
+          </motion.div>
+
           <div className="env-invite-ground-shadow" aria-hidden="true" />
           <div className="env-invite-ground-contact" aria-hidden="true" />
 
@@ -635,7 +662,7 @@ export const Hero: React.FC<HeroProps> = ({
                         className="env-invite-letter-names"
                         style={letterNamesMaskStyle(COUPLE_NAME_IMAGE)}
                         role="img"
-                        aria-label={coupleNames}
+                        aria-label={debutantLabel}
                       />
                     </div>
                   </motion.div>
@@ -644,7 +671,7 @@ export const Hero: React.FC<HeroProps> = ({
                     <PolaroidPhoto
                       side="left"
                       src={POLAROID_PHOTOS[0].src}
-                      alt={coupleNames}
+                      alt={debutantLabel}
                       variants={photoLeftVariants}
                       photoState={photoState}
                       liftedPhoto={liftedPhoto}
@@ -657,7 +684,7 @@ export const Hero: React.FC<HeroProps> = ({
                     <PolaroidPhoto
                       side="center"
                       src={POLAROID_PHOTOS[1].src}
-                      alt={coupleNames}
+                      alt={debutantLabel}
                       variants={photoCenterVariants}
                       photoState={photoState}
                       liftedPhoto={liftedPhoto}
@@ -670,7 +697,7 @@ export const Hero: React.FC<HeroProps> = ({
                     <PolaroidPhoto
                       side="right"
                       src={POLAROID_PHOTOS[2].src}
-                      alt={coupleNames}
+                      alt={debutantLabel}
                       variants={photoRightVariants}
                       photoState={photoState}
                       liftedPhoto={liftedPhoto}
@@ -823,10 +850,10 @@ export const Hero: React.FC<HeroProps> = ({
         }
       >
         <motion.h2 variants={revealCopyItemVariants}>
-          We can't wait to celebrate with you!
+          We can&apos;t wait to celebrate with you!
         </motion.h2>
-        <motion.span className="script" variants={revealCopyItemVariants}>
-          With love, {coupleNames}
+        <motion.span className="env-invite-reveal-name" variants={revealCopyItemVariants}>
+          {debutantName}
         </motion.span>
       </motion.div>
 

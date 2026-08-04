@@ -111,6 +111,7 @@ interface Guest {
 
 export function GuestList() {
   const siteConfig = useSiteConfig()
+  const debutantNickname = siteConfig.couple.debutNickname || siteConfig.couple.debutName
   const [guests, setGuests] = useState<Guest[]>([])
   const [filteredGuests, setFilteredGuests] = useState<Guest[]>([])
   const [searchQuery, setSearchQuery] = useState("")
@@ -466,6 +467,22 @@ export function GuestList() {
           <span className="h-px w-6 sm:w-10" style={{ background: "linear-gradient(to left, transparent, rgba(255,255,255,0.55), transparent)" }} />
         </div>
 
+        {/* Debutant label */}
+        <p
+          className={`${cinzel.className} ${sectionType.label} mb-3 font-semibold uppercase tracking-[0.34em] min-[400px]:tracking-[0.38em] sm:mb-4 sm:tracking-[0.44em]`}
+          style={{ color: OUTSIDE_TEXT_MUTED }}
+        >
+          {debutantNickname}
+          <span
+            className={`${aboveTheBeyond.className} mx-1.5 inline-block normal-case tracking-normal sm:mx-2`}
+            style={{ fontSize: "1.35em", color: OUTSIDE_TEXT, verticalAlign: "middle" }}
+            aria-hidden
+          >
+            turns
+          </span>
+          eighteen
+        </p>
+
         {/* Title block */}
         <div
           className="welcome-title-lockup relative mx-auto mt-2 w-full max-w-full text-center sm:mt-3 md:mt-4"
@@ -498,8 +515,8 @@ export function GuestList() {
         {/* Subtitle block */}
         <div className="mx-auto mt-5 max-w-xl space-y-2 px-2 sm:mt-6 sm:space-y-3">
           <p className={`font-goudy-italic ${sectionType.textRelaxed}`} style={{ color: OUTSIDE_TEXT_MUTED }}>
-            To help us plan a beautiful and intimate celebration, we kindly ask that you confirm your
-            attendance. Please search for your name below to confirm your presence at our special day.
+            To help us plan a beautiful celebration, we kindly ask that you confirm your
+            attendance. Please search for your name below to confirm your presence at {debutantNickname}&apos;s debut.
           </p>
           <p className={`font-goudy-italic ${sectionType.textRelaxed}`} style={{ color: OUTSIDE_TEXT_MUTED }}>
             If we do not receive your response by the deadline, we will assume you are unable to attend.
@@ -617,7 +634,7 @@ export function GuestList() {
                         <div className="flex-1">
                           <h4 className="font-semibold text-xs sm:text-sm text-motif-deep mb-1">Not finding your name?</h4>
                           <p className={`${sectionType.label} text-motif-deep leading-relaxed`}>
-                            We'd love to have you with us! Send a request to join the celebration.
+                            We&apos;d love to have you join us! Send a request to be part of {debutantNickname}&apos;s debut celebration.
                           </p>
                         </div>
                       </div>
@@ -702,7 +719,7 @@ export function GuestList() {
                     color: palette.accent,
                   }}
                 >
-                  {selectedGuest?.Name || "to our celebration"}
+                  {selectedGuest?.Name || "to her debut"}
                 </span>
               </h3>
 
@@ -711,7 +728,7 @@ export function GuestList() {
                 style={{ color: palette.body }}
               >
                 Hello <span style={{ color: palette.heading }}>{selectedGuest?.Name}</span>, you are
-                invited to our wedding!
+                invited to {debutantNickname}&apos;s debut!
               </p>
               <p
                 className={`font-goudy-italic mx-auto mt-2 ${sectionType.text}`}
@@ -745,7 +762,7 @@ export function GuestList() {
                       className={`font-goudy-italic mb-4 px-2 ${sectionType.text}`}
                       style={{ color: palette.body }}
                     >
-                      We&apos;ve received your RSVP and look forward to celebrating with you!
+                      We&apos;ve received your RSVP and look forward to celebrating with you at her debut!
                     </p>
                     <div
                       className="space-y-2.5 rounded-lg border p-3 sm:space-y-3 sm:p-4"
@@ -983,7 +1000,7 @@ export function GuestList() {
                         name="Message"
                         value={formData.Message}
                         onChange={handleFormChange}
-                        placeholder="Share a song you'd love to hear on our special day"
+                        placeholder={`Share a song you'd love to hear at ${debutantNickname}'s debut`}
                         className={modalInputClass}
                         style={modalInputStyle}
                       />
@@ -1110,7 +1127,7 @@ export function GuestList() {
 
                   {formData.RSVP === "Yes" && (
                     <p className="font-goudy-italic text-sm leading-snug" style={{ color: palette.body }}>
-                      We&apos;re thrilled you&apos;ll be joining us — your spot is saved!
+                      We&apos;re thrilled you&apos;ll be joining us for her debut — your spot is saved!
                     </p>
                   )}
                   {formData.RSVP === "No" && (
@@ -1131,8 +1148,8 @@ export function GuestList() {
                   </div>
 
                   <p className="font-goudy-italic mb-4 text-sm leading-relaxed" style={{ color: palette.body }}>
-                    Before you go, leave a message for the couple — your words will be a cherished memory
-                    they can always look back on.
+                    Before you go, leave a message for {debutantNickname} — your words will be a cherished memory
+                    she can always look back on.
                   </p>
 
                   <a
@@ -1236,7 +1253,7 @@ export function GuestList() {
                       color: palette.accent,
                     }}
                   >
-                    celebrate with us
+                    celebrate with her
                   </span>
                 </h3>
 
@@ -1247,10 +1264,10 @@ export function GuestList() {
                   {requestFormData.Name ? (
                     <>
                       Hi <span style={{ color: palette.heading }}>{requestFormData.Name}</span> — want to
-                      celebrate with us? Send a request!
+                      celebrate {debutantNickname}&apos;s debut with us? Send a request!
                     </>
                   ) : (
-                    <>Want to celebrate with us? Send a request!</>
+                    <>Want to celebrate {debutantNickname}&apos;s debut with us? Send a request!</>
                   )}
                 </p>
               </div>

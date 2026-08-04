@@ -67,42 +67,21 @@ const socialLinkStyle = {
   boxShadow: "0 4px 12px color-mix(in srgb, var(--color-motif-deep) 10%, transparent)",
 } as const
 
-const FOOTER_QUOTES = [
-  `"I have found the one whom my soul loves." – Song of Solomon 3:4`,
-  "Welcome to our wedding website! We've found a love that's a true blessing, and we give thanks to God for writing the beautiful story of our journey together.",
-  "Thank you for your love, prayers, and support. We can't wait to celebrate this joyful day together!",
-] as const
+function getFooterQuotes(debutantNickname: string) {
+  return [
+    `"She is clothed with strength and dignity; she can laugh at the days to come." – Proverbs 31:25`,
+    `Welcome to ${debutantNickname}'s debut invitation! With grateful hearts, her family invites you to celebrate this special coming-of-age milestone.`,
+    `Thank you for your love, prayers, and support. We can't wait to celebrate this unforgettable night with you!`,
+  ] as const
+}
 
-const LONGEST_FOOTER_QUOTE = FOOTER_QUOTES.reduce((longest, quote) =>
-  quote.length > longest.length ? quote : longest
-)
-
-const toTitleCase = (str: string) =>
-  str
-    .toLowerCase()
-    .split(" ")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ")
-
-function FooterCoupleNames({ groom, bride }: { groom: string; bride: string }) {
+function FooterDebutantName({ name }: { name: string }) {
   return (
     <h2
-      className={`${cinzel.className} mx-auto whitespace-nowrap text-center ${sectionType.subheader} font-semibold tracking-[0.12em] sm:tracking-[0.16em] md:tracking-[0.18em]`}
+      className={`${cinzel.className} mx-auto text-center ${sectionType.subheader} font-semibold tracking-[0.12em] sm:tracking-[0.16em] md:tracking-[0.18em]`}
       style={{ color: "var(--color-welcome-navy)" }}
     >
-      {groom}
-      <span
-        className={`${aboveTheBeyond.className} mx-2 inline-block normal-case tracking-normal sm:mx-2.5`}
-        style={{
-          fontSize: "1.35em",
-          color: "var(--color-welcome-green)",
-          verticalAlign: "middle",
-        }}
-        aria-hidden
-      >
-        &
-      </span>
-      {bride}
+      {name}
     </h2>
   )
 }
@@ -155,15 +134,14 @@ export function Footer() {
   const year = new Date().getFullYear()
   const ceremonyDate = siteConfig.ceremony.date
   const ceremonyTime = siteConfig.ceremony.time
-  const receptionTime = siteConfig.reception.time
-  const ceremonyVenue = siteConfig.wedding.venue
-  const receptionVenue = siteConfig.reception.location
-  const ceremonyAddress = siteConfig.wedding.venue
-  const receptionAddress = siteConfig.reception.venue
+  const debutantNickname = siteConfig.couple.debutNickname || siteConfig.couple.debutName
+  const debutantName = siteConfig.couple.debutName
 
-  const groomName = siteConfig.couple.groomNickname || siteConfig.couple.groom
-  const brideName = siteConfig.couple.brideNickname || siteConfig.couple.bride
-  const coupleDisplayName = `${groomName} & ${brideName}`
+  const footerQuotes = useMemo(() => getFooterQuotes(debutantNickname), [debutantNickname])
+  const longestFooterQuote = useMemo(
+    () => footerQuotes.reduce((longest, quote) => (quote.length > longest.length ? quote : longest), ""),
+    [footerQuotes]
+  )
 
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0)
   const [displayedText, setDisplayedText] = useState("")
@@ -184,11 +162,11 @@ export function Footer() {
         return () => clearTimeout(deleteTimeout)
       }
       setIsDeleting(false)
-      setCurrentQuoteIndex((prev) => (prev + 1) % FOOTER_QUOTES.length)
+      setCurrentQuoteIndex((prev) => (prev + 1) % footerQuotes.length)
       return
     }
 
-    const currentQuote = FOOTER_QUOTES[currentQuoteIndex]
+    const currentQuote = footerQuotes[currentQuoteIndex]
     if (displayedText.length < currentQuote.length) {
       const typeTimeout = setTimeout(() => {
         setDisplayedText(currentQuote.slice(0, displayedText.length + 1))
@@ -198,7 +176,7 @@ export function Footer() {
 
     setIsPaused(true)
     setIsDeleting(true)
-  }, [displayedText, isDeleting, isPaused, currentQuoteIndex])
+  }, [displayedText, isDeleting, isPaused, currentQuoteIndex, footerQuotes])
 
   const fadeInUp = {
     initial: { opacity: 0, y: 40 },
@@ -231,7 +209,7 @@ export function Footer() {
         <div className="pointer-events-none absolute left-0 top-0 z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/decoration/deco/left-top-corner.png"
+            src="/decoration/top-left.png"
             alt=""
             className={CORNER_DECO_CLASS}
           />
@@ -239,7 +217,7 @@ export function Footer() {
         <div className="pointer-events-none absolute right-0 top-0 z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/decoration/deco/right-top-corner.png"
+            src="/decoration/top-right.png"
             alt=""
             className={CORNER_DECO_CLASS}
           />
@@ -247,7 +225,7 @@ export function Footer() {
         <div className="pointer-events-none absolute bottom-0 left-0 z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/decoration/deco/left-bottom-corner.png"
+            src="/decoration/bottom-left.png"
             alt=""
             className={CORNER_DECO_CLASS}
           />
@@ -255,13 +233,13 @@ export function Footer() {
         <div className="pointer-events-none absolute bottom-0 right-0 z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/decoration/deco/right-bottom-corner.png"
+            src="/decoration/bottom-right.png"
             alt=""
             className={CORNER_DECO_CLASS}
           />
         </div>
 
-        {/* Monogram + couple header */}
+        {/* Monogram + debutant header */}
         <div className="relative z-10 flex flex-col items-center mb-6 sm:mb-8 md:mb-10 px-6 sm:px-10">
           <motion.div
             initial={{ opacity: 0, y: -16 }}
@@ -272,7 +250,7 @@ export function Footer() {
             <div className="relative w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72">
               <Image
                 src={siteConfig.couple.monogram}
-                alt={`${coupleDisplayName} monogram`}
+                alt={`${debutantName} monogram`}
                 fill
                 className="object-contain"
                 priority={false}
@@ -282,13 +260,13 @@ export function Footer() {
           </motion.div>
 
           <div className="mt-4 max-w-md text-center sm:mt-5 md:mt-6">
-            {/* <FooterCoupleNames groom={groomName} bride={brideName} /> */}
-            {/* <p
+            <FooterDebutantName name={debutantName} />
+            <p
               className={`font-goudy-italic mt-2 sm:mt-3 ${sectionType.text}`}
               style={{ color: "var(--color-welcome-text)" }}
             >
-              {ceremonyDate}
-            </p> */}
+              {debutantNickname}&apos;s 18th Birthday Debut · {ceremonyDate}
+            </p>
           </div>
 
           <div className="flex items-center justify-center pt-3 sm:pt-4">
@@ -303,18 +281,17 @@ export function Footer() {
             initial="initial"
             animate="animate"
           >
-            {/* Couple info + quote */}
+            {/* Debutant info + quote */}
             <motion.div className="lg:col-span-2 min-w-0" variants={fadeInUp}>
               <div className="mb-5 sm:mb-6">
                 <h3
                   className={`${cinzel.className} ${ct.title} font-semibold leading-tight mb-4`}
                   style={{ color: palette.heading }}
                 >
-                  {coupleDisplayName}
+                  {debutantName}
                 </h3>
                 <div className="space-y-3 sm:space-y-4">
-                  <DetailRow label="Wedding Date" value={ceremonyDate} />
-                  {/* <DetailRow label="Venue" value={toTitleCase(ceremonyVenue)} /> */}
+                  <DetailRow label="Debut Date" value={ceremonyDate} />
                 </div>
               </div>
 
@@ -323,11 +300,11 @@ export function Footer() {
                   className={`${cinzel.className} ${ct.label} uppercase tracking-[0.14em] font-semibold mb-3`}
                   style={{ color: palette.label }}
                 >
-                  A Note From Us
+                  A Note for You
                 </p>
                 <blockquote className={`relative font-goudy-italic ${ct.bodyLg}`}>
                   <span className="invisible block select-none" aria-hidden="true">
-                    &ldquo;{LONGEST_FOOTER_QUOTE}&rdquo;
+                    &ldquo;{longestFooterQuote}&rdquo;
                   </span>
                   <span
                     className="absolute inset-0"
@@ -343,7 +320,7 @@ export function Footer() {
                   </span>
                 </blockquote>
                 <div className="flex items-center gap-1.5 mt-3 sm:mt-4">
-                  {FOOTER_QUOTES.map((_, i) => (
+                  {footerQuotes.map((_, i) => (
                     <div
                       key={i}
                       className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-opacity"
@@ -380,15 +357,13 @@ export function Footer() {
                   className={`${cinzel.className} ${ct.cardTitle} font-semibold mb-3`}
                   style={{ color: palette.heading }}
                 >
-                  Ceremony &Reception
+                  Debut Celebration
                 </h4>
                 <div className="space-y-3">
                   <DetailRow label="Venue" value={siteConfig.ceremony.location} />
-                  {receptionAddress && receptionAddress !== receptionVenue && (
-                    <DetailRow label="Address" value={siteConfig.ceremony.venue} />
-                  )}
-                  <DetailRow label="Assembly Time" value={siteConfig.ceremony.guestsTime} />
-                  <DetailRow label="Wedding Starts:" value={receptionTime} />
+                  <DetailRow label="Address" value={siteConfig.ceremony.venue} />
+                  <DetailRow label="Arrival Time" value={siteConfig.ceremony.guestsTime} />
+                  <DetailRow label="Debut Starts" value={ceremonyTime} />
                 </div>
               </FooterCard>
 
@@ -416,7 +391,7 @@ export function Footer() {
                     className="h-6 w-1.5 flex-shrink-0 rounded-full sm:h-7"
                     style={{ backgroundColor: "var(--color-welcome-green)" }}
                   />
-                  Follow Us
+                  Follow {debutantNickname}
                 </h4>
                 <div className="flex items-center gap-2 sm:gap-2.5 flex-wrap">
                   {(
@@ -476,13 +451,13 @@ export function Footer() {
             <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6">
               <div className="text-center md:text-left min-w-0">
                 <p className={`font-goudy-italic ${ct.body}`} style={{ color: palette.body }}>
-                  © {year} {coupleDisplayName} — crafted with love, prayers, and gratitude.
+                  © {year} {debutantName} — crafted with love, prayers, and gratitude.
                 </p>
                 <p
                   className={`font-goudy-italic ${ct.body} mt-1 opacity-90`}
                   style={{ color: palette.body }}
                 >
-                  This celebration site was designed to share our story and joy with you.
+                  This celebration site was designed to share {debutantNickname}&apos;s debut with you.
                 </p>
               </div>
               <div className="min-w-0 space-y-1 text-center md:text-right">

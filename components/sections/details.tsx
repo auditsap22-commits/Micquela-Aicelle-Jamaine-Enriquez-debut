@@ -114,9 +114,9 @@ function DetailsTitle() {
           color: "var(--color-motif-accent)",
         }}
       >
-        our special day
+        for her debut
       </span>
-      <span className="sr-only">our special day</span>
+      <span className="sr-only">for her debut</span>
     </h2>
   )
 }
@@ -381,18 +381,57 @@ function ColorPalette({ colors }: { colors: readonly string[] }) {
   )
 }
 
-function CoupleImagesCarousel({
-  coupleImages,
+function DebutantLabel({ nickname }: { nickname: string }) {
+  const lineStyle = {
+    background:
+      "linear-gradient(to right, transparent, color-mix(in srgb, var(--color-welcome-navy) 35%, transparent))",
+  }
+
+  return (
+    <div className="flex items-center justify-center gap-2.5 sm:gap-3.5">
+      <span className="h-px w-5 sm:w-7 md:w-9" style={lineStyle} aria-hidden />
+      <p
+        className={`${cinzel.className} ${ct.label} shrink-0 py-0.5 font-semibold uppercase leading-normal tracking-[0.34em] min-[400px]:tracking-[0.38em] sm:tracking-[0.44em]`}
+        style={{ color: "var(--color-welcome-navy)" }}
+      >
+        {nickname}
+        <span
+          className={`${aboveTheBeyond.className} mx-1.5 inline-block normal-case tracking-normal sm:mx-2`}
+          style={{
+            fontSize: "1.35em",
+            color: "var(--color-welcome-green)",
+            verticalAlign: "middle",
+          }}
+          aria-hidden
+        >
+          turns
+        </span>
+        eighteen
+      </p>
+      <span
+        className="h-px w-5 sm:w-7 md:w-9"
+        style={{
+          background:
+            "linear-gradient(to left, transparent, color-mix(in srgb, var(--color-welcome-navy) 35%, transparent))",
+        }}
+        aria-hidden
+      />
+    </div>
+  )
+}
+
+function DebutImagesCarousel({
+  debutImages,
   currentImageIndex,
   rotationOffset,
 }: {
-  coupleImages: string[]
+  debutImages: string[]
   currentImageIndex: number
   rotationOffset: number
 }) {
   return (
     <div className="mb-4 flex justify-center gap-2 sm:mb-5 sm:gap-2.5">
-      {coupleImages.map((image, index) => {
+      {debutImages.map((image, index) => {
         const isActive = index === currentImageIndex
         const baseRotation = index === 0 ? -5 : index === 1 ? 5 : index === 2 ? -3 : 3
         const currentRotation = isActive
@@ -413,7 +452,7 @@ function CoupleImagesCarousel({
           >
             <Image
               src={image}
-              alt={`Wedding couple ${index + 1}`}
+              alt={`Debut celebration ${index + 1}`}
               fill
               className={imgClass}
               sizes="(max-width: 640px) 56px, 64px"
@@ -717,7 +756,7 @@ function EventVenueCard({
                   className={`${cinzel.className} text-sm sm:text-base md:text-lg lg:text-xl font-semibold tracking-[0.1em] uppercase`}
                   style={{ color: detailText.heading }}
                 >
-                  Wedding Starts: {time}
+                  Debut Starts: {time}
                 </p>
               </div>
             ) : (
@@ -826,15 +865,16 @@ function EventVenueCard({
 
 // Colors sourced from globals.css @theme inline — edit there to update everywhere
 
-const COUPLE_IMAGES = [
-  "/envelope/box (1).jpg",
-  "/envelope/box (5).jpg",
-  "/envelope/box (6).jpg",
-  "/envelope/box (4).jpg",
+const DEBUT_IMAGES = [
+  "/envelope/debut (1).jpg",
+  "/envelope/debut (2).jpg",
+  "/envelope/debut (3).jpg",
+  "/envelope/debut (4).jpg",
 ]
 
 export function Details() {
   const siteConfig = useSiteConfig()
+  const debutantNickname = siteConfig.couple.debutNickname || siteConfig.couple.debutName
   const [copiedItems, setCopiedItems] = useState<Set<string>>(new Set())
   const [currentCeremonyImageIndex, setCurrentCeremonyImageIndex] = useState(0)
   const [currentReceptionImageIndex, setCurrentReceptionImageIndex] = useState(0)
@@ -861,10 +901,10 @@ export function Details() {
     return () => clearInterval(timer)
   }, [receptionImages.length])
 
-  // Gentle reminders couple photos — subtle carousel + wobble animation
+  // Gentle reminders debut photos — subtle carousel + wobble animation
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % COUPLE_IMAGES.length)
+      setCurrentImageIndex((prev) => (prev + 1) % DEBUT_IMAGES.length)
       setRotationOffset((prev) => (prev + 10) % 360)
     }, 2600)
 
@@ -928,31 +968,31 @@ export function Details() {
         <div className="pointer-events-none absolute left-0 top-0 z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/decoration/deco/left-top-corner.png"
+            src="/decoration/top-left.png"
             alt=""
             className={CORNER_DECO_CLASS}
           />
         </div>
         <div className="pointer-events-none absolute right-0 top-0 z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/decoration/deco/right-top-corner.png"
+          {/* <img
+            src="/decoration/top-right.png"
             alt=""
             className={CORNER_DECO_CLASS}
-          />
+          /> */}
         </div>
         <div className="pointer-events-none absolute bottom-0 left-0 z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/decoration/deco/left-bottom-corner.png"
+          {/* <img
+            src="/decoration/bottom-left.png"
             alt=""
             className={CORNER_DECO_CLASS}
-          />
+          /> */}
         </div>
         <div className="pointer-events-none absolute bottom-0 right-0 z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/decoration/deco/right-bottom-corner.png"
+            src="/decoration/bottom-right.png"
             alt=""
             className={CORNER_DECO_CLASS}
           />
@@ -960,12 +1000,7 @@ export function Details() {
 
         {/* Header */}
         <div className="relative z-20 mb-6 px-6 text-center sm:mb-8 sm:px-10 md:mb-10 md:px-12">
-          <p
-            className={`${cinzel.className} mb-2 text-[0.525rem] font-semibold uppercase tracking-[0.34em] min-[400px]:text-[0.55rem] min-[400px]:tracking-[0.38em] sm:text-[0.575rem] sm:tracking-[0.44em]`}
-            style={{ color: "var(--color-welcome-green)" }}
-          >
-            Our Celebration
-          </p>
+          <DebutantLabel nickname={debutantNickname} />
           <div className="my-4 sm:my-5 md:my-6">
             <DetailsTitle />
           </div>
@@ -973,7 +1008,7 @@ export function Details() {
             className="font-goudy-italic mx-auto max-w-2xl px-2 text-[0.75rem] leading-[1.62] sm:text-[0.8125rem] sm:leading-[1.65] md:text-[0.84375rem]"
             style={{ color: "var(--color-welcome-text)" }}
           >
-            Everything you need to know about our special day.
+            Everything you need to know for {debutantNickname}&apos;s debut celebration.
           </p>
 
           <SectionIconDivider
@@ -990,7 +1025,7 @@ export function Details() {
       {/* Venue and Event Information */}
       <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 md:px-8 mb-8 sm:mb-10 md:mb-12 space-y-6 sm:space-y-10 md:space-y-14">
         <EventVenueCard
-          badge="Ceremony & Reception"
+          badge="Debut Celebration"
           images={ceremonyImages}
           activeImageIndex={currentCeremonyImageIndex}
           locationName={ceremonyVenueName}
@@ -1000,9 +1035,9 @@ export function Details() {
           dateString={siteConfig.ceremony.date}
           time={siteConfig.ceremony.time}
           arrivalTime={siteConfig.ceremony.guestsTime}
-          venueSectionLabel="Ceremony & Reception"
+          venueSectionLabel="Debut Venue"
           mapsLink={ceremonyMapsLink}
-          copyId="ceremony & reception"
+          copyId="debut celebration"
           fullVenue={ceremonyVenue}
           copiedItems={copiedItems}
           onCopy={copyToClipboard}
@@ -1148,8 +1183,8 @@ export function Details() {
             style={cardStyle}
           >
             <div className="relative z-10 px-4 py-5 text-center sm:px-6 sm:py-6">
-              <CoupleImagesCarousel
-                coupleImages={COUPLE_IMAGES}
+              <DebutImagesCarousel
+                debutImages={DEBUT_IMAGES}
                 currentImageIndex={currentImageIndex}
                 rotationOffset={rotationOffset}
               />
@@ -1164,23 +1199,23 @@ export function Details() {
                 className={`font-goudy-italic ${ct.body} mx-auto mt-2 max-w-lg leading-relaxed`}
                 style={{ color: detailText.body }}
               >
-                A few thoughtful notes to help everyone enjoy our celebration.
+                A few thoughtful notes to help everyone enjoy {debutantNickname}&apos;s debut celebration.
               </p>
 
               <div className="mx-auto mt-4 max-w-2xl space-y-3 sm:mt-5 sm:space-y-4">
                 <ReminderCard title="Adults-Only Celebration" variant="accent">
                   <p>
-                    We kindly request that our wedding be an adults-only occasion. We hope this allows
-                    everyone to relax and fully enjoy the celebration with us.
+                    We kindly request that {debutantNickname}&apos;s debut be an adults-only occasion. We hope this allows
+                    everyone to relax and fully enjoy the celebration with her.
                   </p>
                 </ReminderCard>
 
-                <ReminderCard title="Unplugged Ceremony">
+                <ReminderCard title="Stay Present">
                   <p>
-                    We&apos;re having a mostly unplugged ceremony. Guests may take photos, but we kindly
+                    We&apos;re encouraging everyone to stay present during the program. Guests may take photos, but we kindly
                     ask that it be kept minimal. Please avoid blocking or crowding our official
                     photographers so they can capture the special moments. We&apos;d love for everyone
-                    to stay present and share the moment with us. Don&apos;t worry—professional photos
+                    to stay present and share the moment with {debutantNickname}. Don&apos;t worry—professional photos
                     will be shared with you after the event. Thank you for your understanding.
                   </p>
                 </ReminderCard>
@@ -1188,7 +1223,7 @@ export function Details() {
                 <ReminderCard title="Strictly Formal" variant="accent">
                   <div className="space-y-2.5">
                     <p>
-                      Kindly follow our suggested attire and color palette above to match our wedding
+                      Kindly follow our suggested attire and color palette above to match her debut
                       theme.
                     </p>
                     <ColorPalette colors={attireGuide.sponsors.ladies.colors} />
@@ -1198,7 +1233,7 @@ export function Details() {
 
                 <ReminderCard title="Arrival">
                 <p>
-  To ensure everything runs smoothly, please arrive at {siteConfig.ceremony.guestsTime}. This will give you enough time to find your seat, settle in comfortably, and fully enjoy the beautiful ceremony before it begins at {siteConfig.ceremony.time}. We truly appreciate your punctuality and look forward to celebrating this special moment with you.
+  To ensure everything runs smoothly, please arrive at {siteConfig.ceremony.guestsTime}. This will give you enough time to find your seat, settle in comfortably, and fully enjoy the program before it begins at {siteConfig.ceremony.time}. We truly appreciate your punctuality and look forward to celebrating this special milestone with {debutantNickname}.
 </p>
                 </ReminderCard>
               </div>
@@ -1256,7 +1291,7 @@ export function Details() {
                   <>
                     <Heart className="w-4 h-4" fill="var(--color-motif-cream)" style={{ color: "var(--color-motif-cream)" }} />
                     <span className="text-xs sm:text-sm font-bold text-motif-cream">
-                      Ceremony Venue
+                      Debut Venue
                     </span>
                   </>
                 ) : (

@@ -5,6 +5,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { useState, useEffect } from "react"
 import { Cinzel } from "next/font/google"
 import { sectionType } from "@/lib/section-typography"
+import { useSiteConfig } from "@/hooks/use-site-config"
 
 const cinzel = Cinzel({
   subsets: ["latin"],
@@ -44,6 +45,9 @@ interface MessageWallDisplayProps {
 }
 
 export default function MessageWallDisplay({ messages, loading }: MessageWallDisplayProps) {
+  const siteConfig = useSiteConfig()
+  const debutantNickname = siteConfig.couple.debutNickname || siteConfig.couple.debutName
+
   const [visibleMessages, setVisibleMessages] = useState<Message[]>([])
   const [isAnimating, setIsAnimating] = useState(false)
 
@@ -95,7 +99,7 @@ export default function MessageWallDisplay({ messages, loading }: MessageWallDis
           className={`font-goudy-italic mx-auto mb-5 max-w-md sm:mb-6 ${sectionType.textRelaxed}`}
           style={{ color: OUTSIDE_TEXT_MUTED }}
         >
-          Be the first to leave a note for the happy couple.
+          Be the first to leave a note for {debutantNickname}.
         </p>
         <div className="flex justify-center">
           <span

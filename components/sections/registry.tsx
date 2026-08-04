@@ -57,6 +57,25 @@ function OutsideDivider() {
   )
 }
 
+function OutsideDebutantLabel({ nickname }: { nickname: string }) {
+  return (
+    <p
+      className={`${cinzel.className} ${sectionType.label} mb-3 font-semibold uppercase tracking-[0.34em] min-[400px]:tracking-[0.38em] sm:mb-4 sm:tracking-[0.44em]`}
+      style={{ color: OUTSIDE_TEXT_MUTED, textShadow: OUTSIDE_TITLE_SHADOW }}
+    >
+      {nickname}
+      <span
+        className={`${aboveTheBeyond.className} mx-1.5 inline-block normal-case tracking-normal sm:mx-2`}
+        style={{ fontSize: "1.35em", color: OUTSIDE_TEXT, verticalAlign: "middle" }}
+        aria-hidden
+      >
+        turns
+      </span>
+      eighteen
+    </p>
+  )
+}
+
 function RegistryTitle() {
   return (
     <h2
@@ -87,19 +106,20 @@ function RegistryTitle() {
           textShadow: OUTSIDE_TITLE_SHADOW,
         }}
       >
-        With gratitude
+        for her debut
       </span>
-      <span className="sr-only">With gratitude</span>
+      <span className="sr-only">for her debut</span>
     </h2>
   )
 }
 
 export function Registry() {
   const siteConfig = useSiteConfig()
+  const debutantNickname = siteConfig.couple.debutNickname || siteConfig.couple.debutName
+  const debutantName = siteConfig.couple.debutName
   const registryItems = Object.values(siteConfig.giftRegistry ?? {})
   const [activeQr, setActiveQr] = useState(registryItems[0]?.id ?? "")
   const activeItem = registryItems.find((item) => item.id === activeQr) ?? registryItems[0]
-  const { brideNickname, groomNickname } = siteConfig.couple
 
   return (
     <section
@@ -111,6 +131,7 @@ export function Registry() {
           <div className="mx-auto mb-5 sm:mb-6 md:mb-7">
             <OutsideDivider />
           </div>
+          <OutsideDebutantLabel nickname={debutantNickname} />
           <div className="mx-auto mt-2 sm:mt-3 md:mt-4">
             <RegistryTitle />
           </div>
@@ -118,7 +139,7 @@ export function Registry() {
             className={`font-goudy-italic mx-auto mt-4 max-w-2xl whitespace-pre-line px-2 sm:mt-5 md:mt-6 ${ct.bodyLg}`}
             style={{ color: OUTSIDE_TEXT_MUTED, textShadow: READABLE_SHADOW }}
           >
-            {`As love is what this day is all about,\nyour presence is already the greatest gift we could ever ask for.\nHowever, if you'd like to give, a monetary gift toward our future would be most appreciated.`}
+            {`As we celebrate ${debutantNickname}'s milestone debut,\nyour presence is already the greatest gift we could ask for.\nHowever, if you wish to give, a monetary gift would be warmly appreciated.`}
           </p>
           <div className="flex items-center justify-center pt-3 sm:pt-4">
             <span className="h-px w-16 sm:w-24 md:w-32 bg-white/50" />
@@ -202,15 +223,15 @@ export function Registry() {
             className={`font-goudy-italic ${ct.body}`}
             style={{ color: OUTSIDE_TEXT_MUTED, textShadow: READABLE_SHADOW }}
           >
-            Thank you from the bottom of our hearts.
+            Thank you for celebrating with {debutantNickname}.
           </p>
           <p
             className={`font-goudy-italic ${ct.body} italic`}
             style={{ color: OUTSIDE_TEXT_MUTED, textShadow: READABLE_SHADOW }}
           >
-            With love,
+            With love and gratitude,
             <br />
-            {groomNickname} and {brideNickname}
+            {debutantName}
           </p>
         </div>
       </div>

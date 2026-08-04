@@ -9,6 +9,8 @@ export const siteConfig = {
     brideNickname: "Kameel", //Ltryl
     groom: "Gilbert Kiling Pinongcos II", //Ltryl B. Benitez
     groomNickname: "Gilbert",
+    debutName: "Micquela Aicelle Jamaine G Enriquez",
+    debutNickname: "Jamaine",
     monogram:"/monogram/monogram.png" ,//Ltryl
     backgroundMusic:"/background_music/Mike Mains & The Branches - I Love You Always Forever (Lyric Video).mp3"
   },
@@ -168,9 +170,9 @@ Now, as they prepare to say yes before God and the people they love most, Cather
     subtitle: "Songs that have been part of our journey together",
     playlistName: "June and Jonas Wedding",
     embedUrl:
-    //https://open.spotify.com/embed/playlist/7ArRR3Wuvez1Yjbqge4pyF?utm_source=generator&si=364420158fc548a3
-      "https://open.spotify.com/embed/playlist/7ArRR3Wuvez1Yjbqge4pyF?utm_source=generator&theme=0&si=364420158fc548a3",
-    spotifyUrl: "https://open.spotify.com/playlist/7ArRR3Wuvez1Yjbqge4pyF",
+    //https://open.spotify.com/embed/playlist/3TD4ZdIHQeckGmY8R3kxMD?utm_source=generator&si=96b94c4072084c7f
+      "https://open.spotify.com/embed/playlist/3TD4ZdIHQeckGmY8R3kxMD?utm_source=generator&theme=0&si=96b94c4072084c7f",
+    spotifyUrl: "https://open.spotify.com/playlist/3TD4ZdIHQeckGmY8R3kxMD",
   },
   snapShare: {
     googleDriveLink:

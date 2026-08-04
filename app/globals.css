@@ -138,50 +138,73 @@
   --font-serif: "Great Vibes", "Great Vibes Fallback";
   
   /* ─── Motif palette — edit here, affects every component ─── */
-/* ==========================================
+/* ──────────────────────────────────────────
    MOTIF COLORS
-   Theme: Botanical Cream + Olive + Dusty Rose + Orchid + Gold
-========================================== */
+   Theme: Luxury Boho • Champagne • Terracotta
+────────────────────────────────────────── */
 
 /* Background */
---color-motif-cream:   #F9F4E8; /* Parchment cream */
+--color-motif-cream:   #F7F1E7; /* Warm parchment */
 
 /* Primary Highlight */
---color-motif-yellow:  #C5A059; /* Champagne gold */
+--color-motif-yellow:  #C89A56; /* Antique champagne gold */
 
 /* Secondary */
---color-motif-soft:    #FDFBF5; /* Soft ivory sections */
---color-motif-accent:  #C67283; /* Dusty rose */
+--color-motif-soft:    #FCF8F2; /* Soft ivory */
+--color-motif-accent:  #B98582; /* Dusty mauve */
 
 /* Primary Brand */
---color-motif-deep:    #7D7D46; /* Olive green */
---color-motif-medium:  #8B5DA3; /* Orchid purple */
+--color-motif-deep:    #8C6542; /* Caramel brown */
+--color-motif-medium:  #D78843; /* Burnt terracotta */
 
 /* Neutral */
---color-motif-silver:  #F5F1E6; /* Warm alternate backgrounds */
+--color-motif-silver:  #EFE6D8; /* Warm beige */
 
 /* ==========================================
    WELCOME SECTION
 ========================================== */
 
---color-welcome-bg:        color-mix(in srgb, var(--color-motif-cream) 45%, white);
---color-welcome-bg-soft:   color-mix(in srgb, var(--color-motif-cream) 25%, white);
+--color-welcome-bg: color-mix(
+    in srgb,
+    var(--color-motif-cream) 55%,
+    white
+);
+
+--color-welcome-bg-soft: color-mix(
+    in srgb,
+    var(--color-motif-cream) 25%,
+    white
+);
 
 /* Paragraphs */
---color-welcome-text:      #4A453E;
---color-welcome-text-soft: #7A756C;
+--color-welcome-text: #4D4034;
+--color-welcome-text-soft: #84766A;
 
 /* Small Headings */
---color-welcome-heading:   #7D7D46;
+--color-welcome-heading: #8C6542;
 
 /* Script Font */
---color-welcome-script:    #C67283;
+--color-welcome-script: #B98582;
 
 /* Main Hero Heading */
---color-welcome-navy:      #988C38;
+--color-welcome-navy: #A9783E;
 
 /* Buttons / Decorative Lines / Icons */
---color-welcome-green:     #E76A32;
+--color-welcome-green: #D78843;
+
+/* ==========================================
+   HERO / ENVELOPE LOADER
+   Theme: Boho Chic • Warm Cream • Gold Tan
+========================================== */
+
+--color-hero-bg: #FAF7F2;
+--color-hero-bg-wash: #E5D5C0;
+--color-hero-envelope: #C2956B;
+--color-hero-text: #6B533E;
+--color-hero-text-soft: #84766A;
+--color-hero-heading: #8B6D4A;
+--color-hero-serif: #A67C52;
+--color-hero-seal: #C89A56;
   /* ─────────────────────────────────────────────────────────── */
   --font-imperial-script: "Imperial Script", cursive;
   --font-beautiful-malera: "Beautiful Malera", cursive;

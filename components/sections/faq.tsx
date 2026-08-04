@@ -80,10 +80,49 @@ function OrnamentalDivider() {
   )
 }
 
+function DebutantLabel({ nickname }: { nickname: string }) {
+  const lineStyle = {
+    background:
+      "linear-gradient(to right, transparent, color-mix(in srgb, var(--color-welcome-navy) 35%, transparent))",
+  }
+
+  return (
+    <div className="flex items-center justify-center gap-2.5 sm:gap-3.5">
+      <span className="h-px w-5 sm:w-7 md:w-9" style={lineStyle} aria-hidden />
+      <p
+        className={`${cinzel.className} ${sectionType.label} shrink-0 py-0.5 font-semibold uppercase leading-normal tracking-[0.34em] min-[400px]:tracking-[0.38em] sm:tracking-[0.44em]`}
+        style={{ color: "var(--color-welcome-navy)" }}
+      >
+        {nickname}
+        <span
+          className={`${aboveTheBeyond.className} mx-1.5 inline-block normal-case tracking-normal sm:mx-2`}
+          style={{
+            fontSize: "1.35em",
+            color: "var(--color-welcome-green)",
+            verticalAlign: "middle",
+          }}
+          aria-hidden
+        >
+          turns
+        </span>
+        eighteen
+      </p>
+      <span
+        className="h-px w-5 sm:w-7 md:w-9"
+        style={{
+          background:
+            "linear-gradient(to left, transparent, color-mix(in srgb, var(--color-welcome-navy) 35%, transparent))",
+        }}
+        aria-hidden
+      />
+    </div>
+  )
+}
+
 function FaqTitle() {
   return (
     <h2
-      className="welcome-title-lockup relative mx-auto w-full max-w-full text-center mt-8 sm:mt-10 md:mt-12"
+      className="welcome-title-lockup relative mx-auto w-full max-w-full text-center mt-4 sm:mt-5 md:mt-6"
       style={
         {
           "--title-size": layeredSectionTitleSize.main,
@@ -108,36 +147,37 @@ function FaqTitle() {
           color: "var(--color-welcome-green)",
         }}
       >
-        Everything you need to know
+        for her debut
       </span>
-      <span className="sr-only">Everything you need to know</span>
+      <span className="sr-only">for her debut</span>
     </h2>
   )
 }
 
 function getFaqItems(siteConfig: SiteConfig): FAQItem[] {
-  const guestArrival = siteConfig.ceremony.guestsTime ?? "30–45 minutes before the ceremony"
+  const debutantNickname = siteConfig.couple.debutNickname || siteConfig.couple.debutName
+  const guestArrival = siteConfig.ceremony.guestsTime ?? "30–45 minutes before the program"
   const dressTheme = siteConfig.dressCode.theme
 
   return [
     {
-      question: "When is the wedding?",
-      answer: `Our wedding will be held on ${siteConfig.ceremony.date} (${siteConfig.ceremony.day}).`,
+      question: "When is the debut?",
+      answer: `${debutantNickname}'s debut celebration will be held on ${siteConfig.ceremony.date} (${siteConfig.ceremony.day}).`,
     },
     {
-      question: "What time should I arrive for the ceremony?",
-      answer: `Our ceremony will begin promptly at ${siteConfig.ceremony.time}. We kindly ask guests to arrive by ${guestArrival} to allow enough time for parking, walking to the ceremony area, and finding your seats so we can begin on time.`,
+      question: "What time should I arrive?",
+      answer: `The program will begin promptly at ${siteConfig.ceremony.time}. We kindly ask guests to arrive by ${guestArrival} to allow enough time for parking, finding your seat, and settling in comfortably before the celebration begins.`,
     },
     {
-      question: "Where will the ceremony take place?",
+      question: "Where will the debut celebration take place?",
       answer: (
         <>
           <p className="mb-4">
-            Our ceremony will be held at {siteConfig.ceremony.location}, located at{" "}
+            The debut will be held at {siteConfig.ceremony.location}, located at{" "}
             {siteConfig.ceremony.venue}.
           </p>
           <p>
-            Guest arrival is at {guestArrival}, and the ceremony will begin at{" "}
+            Guest arrival is at {guestArrival}, and the program will begin at{" "}
             {siteConfig.ceremony.time}.
           </p>
         </>
@@ -169,35 +209,33 @@ function getFaqItems(siteConfig: SiteConfig): FAQItem[] {
       ),
     },
     {
-      question: 'Do we really need to RSVP? We already said "Yes" to the couple.',
+      question: 'Do we really need to RSVP if we already said "Yes" in person?',
       answer:
-        "Yes, please. We will be needing your formal RSVP to consolidate guest details and finalize the headcount for catering and seating purposes.",
+        "Yes, please. We need your formal RSVP to consolidate guest details and finalize the headcount for catering and seating.",
     },
     {
-      question: "Can I sit anywhere at the reception?",
+      question: "Can I choose my own seat at the celebration?",
       answer:
-        "Please don't. It took us a lot of effort and discussion to finish the seating arrangement, which is planned for everyone's convenience and preference.",
+        "Please don't. Our seating arrangement was carefully planned for everyone's comfort and convenience.",
     },
     {
-      question: 'Can I bring a "Plus One" to the event?',
+      question: 'Can I bring a "plus one" to the event?',
       answer:
-        "As much as we would love to accommodate all our friends and family, we have a limited number of guests. Please understand that this event is strictly by invitation only.",
+        "As much as we would love to welcome everyone, we have a limited guest list. This celebration is strictly by invitation only.",
     },
     {
       question: "Can I bring my child to the event?",
-      answer:
-        'As much as we each adore your little ones, we cannot include children at our ceremony and reception, other than those that are part of the entourage, due to constraints on our venue\'s capacity. We are looking forward to celebrating a Parents\' "Night Out" with you!',
+      answer: `We kindly request that ${debutantNickname}'s debut be an adults-only occasion. We hope this allows everyone to relax and fully enjoy the celebration. Children who are part of the entourage are warmly included.`,
     },
     {
       question:
-        'I said "No" to the RSVP but I had a change of plans—I can attend now! What should I do?',
+        'I said "No" to the RSVP but had a change of plans—I can attend now. What should I do?',
       answer:
         "Please check with us first as we have a strict guest list. If seats become available, we will let you know as soon as possible. Please do not attend unannounced, as we may not have any available seats for you.",
     },
     {
-      question: "What if I RSVP'd but cannot attend?",
-      answer:
-        "We would love to have you at our wedding, but we understand that there are circumstances beyond our control. However, please let us know as soon as possible so we can reallocate your seat/s.",
+      question: "What if I already RSVP'd but can no longer attend?",
+      answer: `We would love to have you at ${debutantNickname}'s debut, but we understand that circumstances change. Please let us know as soon as possible so we can reallocate your seat.`,
     },
     {
       question: "Is there parking available?",
@@ -206,22 +244,21 @@ function getFaqItems(siteConfig: SiteConfig): FAQItem[] {
     },
     {
       question: "What is the dress code?",
-      answer: `${dressTheme}. ${siteConfig.dressCode.note} You can find outfit inspiration and palette details in the Event Details section above.`,
+      answer: `${dressTheme}. Please dress according to the attire guidelines and color palette in the Event Details section. Strictly no casual clothes, shoes, or white-colored attire.`,
     },
     {
-      question: "Unplugged Ceremony",
+      question: "Are guests allowed to take photos during the program?",
       answer:
-        "EYES UP, PHONES DOWN, HEARTS OPEN.\n\nThe greatest gift you can give us during our ceremony is your presence. We respectfully request that guests refrain from taking photos or videos during the ceremony so our official photographers can capture every moment without distraction. We promise to share the beautiful photos with you afterward!\n\nOur professional photographers will be capturing every beautiful memory, and we promise to share the photos with everyone afterwards.",
+        "We encourage everyone to stay present during the program. You may take photos, but please keep it minimal and avoid blocking or crowding our official photographers. Professional photos will be shared after the event.",
     },
     {
-      question: "Can I take photos or videos during the reception?",
+      question: "Can I take photos during the celebration?",
       answer:
-        "Yes! While our I DO's will be unplugged, our reception will not be. As a couple who loves photos and memories, we would love for you to capture the fun moments throughout the evening. We prepared this celebration wholeheartedly and we want everyone to enjoy it fully.",
+        "Yes! After the formal program, feel free to capture the fun moments throughout the evening. We prepared this celebration wholeheartedly and want everyone to enjoy it fully.",
     },
     {
       question: "When is the appropriate time to leave?",
-      answer:
-        "It took us some time to plan for a heartfelt wedding that everyone would hopefully enjoy. We humbly request that you celebrate with us until the program ends. Let's laugh, take pictures, sing, and have fun!",
+      answer: `We humbly request that you celebrate with ${debutantNickname} until the program ends. Let's laugh, take pictures, sing, and enjoy this special milestone together!`,
     },
     {
       question: "What if I have dietary restrictions or allergies?",
@@ -229,8 +266,8 @@ function getFaqItems(siteConfig: SiteConfig): FAQItem[] {
         "Please let us know about any dietary restrictions or allergies when you RSVP. We want to ensure everyone can enjoy the celebration comfortably.",
     },
     {
-      question: "How can I help the couple have a great time during their wedding?",
-      answer: `• Pray with us for favorable weather and the continuous blessings of our Lord as we enter this new chapter of our lives as husband and wife.\n\n• RSVP as soon as your schedule is cleared.\n\n• Dress appropriately and follow our ${dressTheme} dress code.\n\n• Be on time.\n\n• Follow the seating arrangement in the reception.\n\n• Stay until the end of the program.\n\n• Join the activities and enjoy!`,
+      question: `How can I help make ${debutantNickname}'s debut memorable?`,
+      answer: `• Pray for favorable weather and blessings as she celebrates this milestone.\n\n• RSVP as soon as your schedule is cleared.\n\n• Dress appropriately and follow our ${dressTheme} dress code.\n\n• Be on time.\n\n• Follow the seating arrangement.\n\n• Stay until the end of the program.\n\n• Join the activities and enjoy!`,
     },
   ]
 }
@@ -259,6 +296,7 @@ function FaqAnswer({ answer }: { answer: string | ReactNode }) {
 
 export function FAQ() {
   const siteConfig = useSiteConfig()
+  const debutantNickname = siteConfig.couple.debutNickname || siteConfig.couple.debutName
   const faqItems = useMemo(() => getFaqItems(siteConfig), [siteConfig])
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
@@ -276,34 +314,34 @@ export function FAQ() {
       <div className="pointer-events-none absolute left-0 top-0 z-10">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/decoration/deco/left-top-corner.png"
+          src="/decoration/top-left.png"
           alt=""
           className={CORNER_DECO_CLASS}
         />
       </div>
       <div className="pointer-events-none absolute right-0 top-0 z-10">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/decoration/deco/right-top-corner.png"
+        {/* <img
+          src="/decoration/top-right.png"
           alt=""
           className={CORNER_DECO_CLASS}
-        />
+        /> */}
       </div>
       <div className="pointer-events-none absolute bottom-0 left-0 z-10">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/decoration/deco/left-bottom-corner.png"
+          src="/decoration/bottom-left.png"
           alt=""
           className={CORNER_DECO_CLASS}
         />
       </div>
       <div className="pointer-events-none absolute bottom-0 right-0 z-10">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/decoration/deco/right-bottom-corner.png"
+        {/* <img
+          src="/decoration/bottom-right.png"
           alt=""
           className={CORNER_DECO_CLASS}
-        />
+        /> */}
       </div>
 
       {/* Header */}
@@ -311,14 +349,16 @@ export function FAQ() {
         <div className="mx-auto mb-5 sm:mb-6 md:mb-7">
           <OrnamentalDivider />
         </div>
-        <div className="mx-auto">
+        <DebutantLabel nickname={debutantNickname} />
+        <div className="mx-auto mt-6 sm:mt-8 md:mt-10">
           <FaqTitle />
         </div>
         <p
           className={`font-goudy-italic mx-auto mt-4 max-w-2xl px-2 sm:mt-5 md:mt-6 ${ct.bodyLg}`}
           style={{ color: palette.body }}
         >
-          Helpful notes so you can simply arrive, celebrate, and enjoy this new chapter with us.
+          Helpful notes so you can simply arrive, celebrate, and enjoy {debutantNickname}&apos;s
+          special milestone.
         </p>
         <div className="flex items-center justify-center pt-3 sm:pt-4">
           <span className="h-px w-16 sm:w-24 md:w-32" style={dividerLineStyle} />

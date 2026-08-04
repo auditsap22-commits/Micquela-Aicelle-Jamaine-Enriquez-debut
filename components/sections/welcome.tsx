@@ -45,7 +45,7 @@ function OrnamentalDivider({ compact = false }: { compact?: boolean }) {
   )
 }
 
-function CoupleLabel({ groom, bride }: { groom: string; bride: string }) {
+function DebutantLabel({ nickname }: { nickname: string }) {
   const lineStyle = {
     background:
       "linear-gradient(to right, transparent, color-mix(in srgb, var(--color-welcome-navy) 35%, transparent))",
@@ -58,7 +58,7 @@ function CoupleLabel({ groom, bride }: { groom: string; bride: string }) {
         className={`${cinzel.className} ${sectionType.label} shrink-0 py-0.5 font-semibold uppercase leading-normal tracking-[0.34em] min-[400px]:tracking-[0.38em] sm:tracking-[0.44em]`}
         style={{ color: "var(--color-welcome-navy)" }}
       >
-        {groom}
+        {nickname}
         <span
           className={`${aboveTheBeyond.className} mx-1.5 inline-block normal-case tracking-normal sm:mx-2`}
           style={{
@@ -68,9 +68,9 @@ function CoupleLabel({ groom, bride }: { groom: string; bride: string }) {
           }}
           aria-hidden
         >
-          &
+          turns
         </span>
-        {bride}
+        eighteen
       </p>
       <span
         className="h-px w-5 sm:w-7 md:w-9"
@@ -117,18 +117,18 @@ function LayeredWelcomeTitle() {
             "0 1px 0 color-mix(in srgb, var(--color-welcome-bg) 95%, white), 0 0 10px color-mix(in srgb, var(--color-welcome-bg) 65%, white)",
         }}
       >
-        to our love story
+        to her debut
       </span>
 
-      <span className="sr-only"> to our love story</span>
+      <span className="sr-only"> to her debut</span>
     </h2>
   )
 }
 
 export function Welcome() {
   const siteConfig = useSiteConfig()
-  const brideName = siteConfig.couple.brideNickname || siteConfig.couple.bride
-  const groomName = siteConfig.couple.groomNickname || siteConfig.couple.groom
+  const debutantName = siteConfig.couple.debutName
+  const debutantNickname = siteConfig.couple.debutNickname || debutantName
 
   return (
     <section
@@ -162,7 +162,7 @@ export function Welcome() {
 
           {/* Header */}
           <header className="relative overflow-visible space-y-3 px-1 pt-4 pb-6 sm:space-y-3.5 sm:px-2 sm:pt-5 sm:pb-7 md:space-y-4 md:pt-6 md:pb-8">
-            <CoupleLabel groom={groomName} bride={brideName} />
+            <DebutantLabel nickname={debutantNickname} />
             <LayeredWelcomeTitle />
             <div className="pt-2 sm:pt-2.5">
               <OrnamentalDivider compact />
@@ -184,14 +184,14 @@ export function Welcome() {
                   className={`font-goudy-italic ${sectionType.textSnug}`}
                   style={{ color: "var(--color-welcome-text)" }}
                 >
-                  &ldquo;When the time is right, I , the Lord will make it happen.&rdquo;
+                  &ldquo;She is clothed with strength and dignity; she can laugh at the days to come.&rdquo;
                 </p>
                 <figcaption className="mt-2 sm:mt-2.5">
                   <cite
                     className={`${cinzel.className} ${sectionType.label} not-italic uppercase tracking-[0.2em] sm:tracking-[0.24em]`}
                     style={{ color: "var(--color-welcome-heading)" }}
                   >
-                    Isaiah 60:22
+                    Proverbs 31:25
                   </cite>
                 </figcaption>
               </blockquote>
@@ -203,18 +203,18 @@ export function Welcome() {
               style={{ color: "var(--color-welcome-text)" }}
             >
               <p>
-                Dear family and friends, we are overjoyed to begin this new chapter together and
-                grateful to God for every step that led us here. What began as a simple story has
-                grown into a love we cherish deeply — and we cannot imagine celebrating without you.
+                Dear family and friends, we are delighted to invite you to a milestone she has
+                long dreamed of — her 18th birthday debut. With grateful hearts, her family joins
+                us in celebrating this special coming-of-age.
               </p>
               <p>
-                This invitation holds everything you may need for our wedding day: the schedule,
-                venue details, and a few gentle reminders along the way. Whether near or far, your
-                presence, prayers, and warm wishes will mean more to us than words can say.
+                This invitation holds everything you may need for the evening: the schedule, venue
+                details, and a few gentle reminders along the way. Whether near or far, your
+                presence and warm wishes will make this celebration truly meaningful.
               </p>
               <p>
-                Thank you for being part of our journey. We look forward to sharing this beautiful
-                day with the people who have shaped our lives and our hearts.
+                Thank you for being part of her journey. We look forward to sharing this
+                unforgettable night with the people who have loved and supported her along the way.
               </p>
             </div>
 
@@ -235,7 +235,7 @@ export function Welcome() {
                     className={`${cinzel.className} ${sectionType.label} shrink-0 font-semibold uppercase tracking-[0.18em] sm:tracking-[0.22em]`}
                     style={{ color: "var(--color-welcome-heading)" }}
                   >
-                    Share in our joy
+                    Share the celebration
                   </p>
                   <span className="hidden text-motif-deep/30 sm:inline" aria-hidden>
                     ·
@@ -259,13 +259,13 @@ export function Welcome() {
                       "0 1px 0 color-mix(in srgb, var(--color-welcome-bg) 90%, white)",
                   }}
                 >
-                  With all our love,
+                  With love and gratitude,
                 </p>
                 <p
                   className={`${cinzel.className} ${sectionType.subheader} mb-3 font-semibold tracking-[0.12em] sm:mb-4 sm:tracking-[0.16em] md:mb-5 md:tracking-[0.18em]`}
                   style={{ color: "var(--color-welcome-navy)" }}
                 >
-                  {groomName} &amp; {brideName}
+                  {debutantName}
                 </p>
               </footer>
             </div>

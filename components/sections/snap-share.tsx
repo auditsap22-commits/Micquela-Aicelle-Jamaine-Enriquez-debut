@@ -100,6 +100,25 @@ function InsideDivider() {
   )
 }
 
+function OutsideDebutantLabel({ nickname }: { nickname: string }) {
+  return (
+    <p
+      className={`${cinzel.className} ${sectionType.label} mb-3 font-semibold uppercase tracking-[0.34em] min-[400px]:tracking-[0.38em] sm:mb-4 sm:tracking-[0.44em]`}
+      style={{ color: OUTSIDE_TEXT_MUTED, textShadow: OUTSIDE_TITLE_SHADOW }}
+    >
+      {nickname}
+      <span
+        className={`${aboveTheBeyond.className} mx-1.5 inline-block normal-case tracking-normal sm:mx-2`}
+        style={{ fontSize: "1.35em", color: OUTSIDE_TEXT, verticalAlign: "middle" }}
+        aria-hidden
+      >
+        turns
+      </span>
+      eighteen
+    </p>
+  )
+}
+
 function SnapShareTitle() {
   return (
     <h2
@@ -130,9 +149,9 @@ function SnapShareTitle() {
           textShadow: OUTSIDE_TITLE_SHADOW,
         }}
       >
-        Share your memories
+        of her debut
       </span>
-      <span className="sr-only">Share your memories</span>
+      <span className="sr-only">of her debut</span>
     </h2>
   )
 }
@@ -213,16 +232,15 @@ export function SnapShare() {
   const [copiedDriveLink, setCopiedDriveLink] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
 
-  const { groomNickname, brideNickname } = siteConfig.couple
-  const coupleDisplayName = `${groomNickname} & ${brideNickname}`
+  const debutantNickname = siteConfig.couple.debutNickname || siteConfig.couple.debutName
+  const sanitizedDebutantName = debutantNickname.replace(/\s+/g, "")
   const websiteUrl = typeof window !== "undefined" ? window.location.href : "https://example.com"
   const uploadLink = siteConfig.snapShare.googleDriveLink
   const hashtags = siteConfig.snapShare.hashtag
   const allHashtagsText = hashtags.join(" ")
-  const sanitizedGroomName = groomNickname.replace(/\s+/g, "")
-  const sanitizedBrideName = brideNickname.replace(/\s+/g, "")
+  const uploadInstructions = `Please scan this QR code and upload the photos and videos you captured during ${debutantNickname}'s debut celebration. We can't wait to see your snaps!`
 
-  const shareText = `Celebrate ${coupleDisplayName}'s wedding! Explore the details and share your special memories: ${websiteUrl} ${allHashtagsText}`
+  const shareText = `Celebrate ${debutantNickname}'s debut! Explore the details and share your special memories: ${websiteUrl} ${allHashtagsText}`
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 640)
@@ -250,7 +268,7 @@ export function SnapShare() {
     const canvas = document.getElementById("snapshare-qr") as HTMLCanvasElement | null
     if (!canvas) return
     const link = document.createElement("a")
-    link.download = `${sanitizedGroomName.toLowerCase()}-${sanitizedBrideName.toLowerCase()}-wedding-qr.png`
+    link.download = `${sanitizedDebutantName.toLowerCase()}-debut-qr.png`
     link.href = canvas.toDataURL("image/png")
     link.click()
   }
@@ -305,6 +323,7 @@ export function SnapShare() {
           <div className="mx-auto mb-5 sm:mb-6 md:mb-7">
             <OutsideDivider />
           </div>
+          <OutsideDebutantLabel nickname={debutantNickname} />
           <div className="mx-auto mt-2 sm:mt-3 md:mt-4">
             <SnapShareTitle />
           </div>
@@ -312,8 +331,8 @@ export function SnapShare() {
             className={`font-goudy-italic mx-auto mt-4 max-w-2xl px-2 sm:mt-5 md:mt-6 ${ct.bodyLg}`}
             style={{ color: OUTSIDE_TEXT_MUTED, textShadow: READABLE_SHADOW }}
           >
-            Help us remember the little moments of {coupleDisplayName}&apos;s day — every smile,
-            embrace, and candid laugh. Your photos and clips complete our love story.
+            Help us remember the little moments of {debutantNickname}&apos;s debut — every smile,
+            embrace, and candid laugh. Your photos and clips help tell her story.
           </p>
           <div className="flex items-center justify-center pt-3 sm:pt-4">
             <span className="h-px w-16 sm:w-24 md:w-32 bg-white/50" />
@@ -326,13 +345,13 @@ export function SnapShare() {
               className={`${cinzel.className} ${ct.cardTitle} text-center font-semibold uppercase tracking-[0.08em]`}
               style={{ color: palette.heading }}
             >
-              Our Favorite Moments
+              Debut Memories
             </h4>
             <div className="grid w-full min-w-0 grid-cols-2 gap-2 sm:gap-3">
               <div className="relative aspect-square overflow-hidden rounded-xl border border-motif-deep/15 shadow-sm">
                 <Image
-                  src="/envelope/box (1).jpg"
-                  alt="Wedding moment 1"
+                  src="/envelope/debut (1).jpg"
+                  alt="Debut moment 1"
                   fill
                   className="object-cover"
                   style={{ imageOrientation: "from-image" }}
@@ -340,8 +359,8 @@ export function SnapShare() {
               </div>
               <div className="relative aspect-square overflow-hidden rounded-xl border border-motif-deep/15 shadow-sm">
                 <Image
-                  src="/envelope/box (6).jpg"
-                  alt="Wedding moment 2"
+                  src="/envelope/debut (2).jpg"
+                  alt="Debut moment 2"
                   fill
                   className="object-cover"
                   style={{ imageOrientation: "from-image" }}
@@ -349,8 +368,8 @@ export function SnapShare() {
               </div>
               <div className="relative col-span-2 aspect-[3/2] overflow-hidden rounded-xl border border-motif-deep/15 shadow-sm">
                 <Image
-                  src="/desktop-background/couples (14).webp"
-                  alt="Wedding moment 3"
+                  src="/desktop-background/debut (13).webp"
+                  alt="Debut moment 3"
                   fill
                   className="object-cover"
                 />
@@ -360,7 +379,7 @@ export function SnapShare() {
               className={`font-goudy-italic ${ct.body} text-center`}
               style={{ color: palette.body }}
             >
-              Share your snapshots to be featured in our keepsake gallery.
+              Share your snapshots to be featured in her keepsake gallery.
             </p>
           </ContentCard>
 
@@ -370,14 +389,14 @@ export function SnapShare() {
                 className={`${cinzel.className} ${ct.cardTitle} text-center font-semibold uppercase tracking-[0.08em]`}
                 style={{ color: palette.heading }}
               >
-                Share Our Wedding Website
+                Share Her Debut Invitation
               </h4>
               <p
                 className={`font-goudy-italic ${ct.body} text-center`}
                 style={{ color: palette.body }}
               >
-                Spread the word about {coupleDisplayName}&apos;s celebration. Share this QR code so
-                friends and family can join us.
+                Spread the word about {debutantNickname}&apos;s debut. Share this QR code so friends
+                and family can join the celebration.
               </p>
               <div className="mx-auto flex w-full max-w-[240px] flex-col items-center rounded-xl border border-motif-deep/15 bg-white p-3 shadow-sm sm:p-4">
                 <div className="flex w-full max-w-full justify-center overflow-visible">
@@ -410,7 +429,7 @@ export function SnapShare() {
                 className={`${cinzel.className} ${ct.body} text-center font-semibold uppercase tracking-[0.1em]`}
                 style={{ color: palette.heading }}
               >
-                Wedding Hashtags
+                Debut Hashtags
               </h5>
               <div className="w-full min-w-0 space-y-2">
                 {hashtags.map((hashtag, index) => (
@@ -478,7 +497,7 @@ export function SnapShare() {
                 className={`font-goudy-italic ${ct.body} text-center`}
                 style={{ color: palette.body }}
               >
-                Help spread the word about {coupleDisplayName}&apos;s wedding across your favorite
+                Help spread the word about {debutantNickname}&apos;s debut across your favorite
                 platforms.
               </p>
               <div className="grid w-full min-w-0 grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-3">
@@ -520,7 +539,7 @@ export function SnapShare() {
                   className={`font-goudy-italic ${ct.body} break-words text-center`}
                   style={{ color: palette.body }}
                 >
-                  {siteConfig.snapShare.instructions}
+                  {uploadInstructions}
                 </p>
                 <div className="mx-auto flex w-full max-w-[240px] flex-col items-center rounded-xl border border-motif-deep/15 bg-white p-3 shadow-sm sm:p-4">
                   <div className="flex w-full max-w-full justify-center overflow-visible">
@@ -591,8 +610,8 @@ export function SnapShare() {
             className={`font-goudy-italic ${ct.bodyLg}`}
             style={{ color: OUTSIDE_TEXT_MUTED, textShadow: READABLE_SHADOW }}
           >
-            Thank you for helping make {coupleDisplayName}&apos;s wedding celebration memorable.
-            Your photos and messages create beautiful memories we will treasure for a lifetime.
+            Thank you for helping make {debutantNickname}&apos;s debut celebration memorable.
+            Your photos and messages create beautiful memories she will treasure for a lifetime.
           </p>
           <p
             className={`${cinzel.className} ${ct.label} uppercase tracking-[0.18em] sm:tracking-[0.2em]`}

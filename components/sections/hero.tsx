@@ -9,19 +9,19 @@ import { parseWeddingDate } from "@/lib/wedding-date"
 import Image from "next/image"
 
 const desktopBackgroundSrcs: readonly string[] = [
-  '/desktop-background/couples (1).webp',
-  '/desktop-background/couples (2).webp',
-  '/desktop-background/couples (3).webp',
-  '/desktop-background/couples (4).webp',
-  '/desktop-background/couples (5).webp',
+  '/desktop-background/debut (1).webp',
+  '/desktop-background/debut (2).webp',
+  '/desktop-background/debut (3).webp',
+  '/desktop-background/debut (4).webp',
+  '/desktop-background/debut (5).webp',
 ]
 
 const mobileBackgroundSrcs: readonly string[] = [
-'/mobile-background/couples (1).webp',
-'/mobile-background/couples (2).webp',
-'/mobile-background/couples (3).webp',
-'/mobile-background/couples (4).webp',
-'/mobile-background/couples (5).webp',
+'/mobile-background/debut (1).webp',
+'/mobile-background/debut (2).webp',
+'/mobile-background/debut (3).webp',
+'/mobile-background/debut (4).webp',
+'/mobile-background/debut (5).webp',
 ]
 
 const SHOW_BUTTERFLIES = false
@@ -29,10 +29,12 @@ const SHOW_BUTTERFLIES = false
 const HERO_TEXT = "var(--color-motif-cream)"
 const HERO_TEXT_MUTED = "rgba(255, 246, 233, 0.9)"
 const HERO_TITLE_SHADOW = "0 2px 10px rgba(0, 0, 0, 0.65)"
-const COUPLE_NAME_IMAGE = "/decoration/new-couple-name.png"
-const COUPLE_NAME_ASPECT = 828 / 629
-const COUPLE_NAME_HERO_FILTER =
-  "brightness(0) saturate(100%) invert(97%) sepia(6%) saturate(350%) hue-rotate(230deg) drop-shadow(0 2px 28px rgba(0,0,0,0.75))"
+const COUPLE_NAME_IMAGE = "/decoration/debutname.png"
+const HOME_TEXT_IMAGE = "/decoration/homeText.png"
+const COUPLE_NAME_ASPECT = 725 / 344
+const HOME_TEXT_ASPECT = 612 / 408
+const HERO_DECO_WHITE_FILTER =
+  "brightness(0) saturate(100%) invert(100%) drop-shadow(0 2px 22px rgba(0,0,0,0.72))"
 
 const cinzel = Cinzel({
   subsets: ["latin"],
@@ -176,8 +178,9 @@ export function Hero() {
     }
   }, [imagesLoaded])
 
-  const groomName = siteConfig.couple.groomNickname || siteConfig.couple.groom
-  const brideName = siteConfig.couple.brideNickname || siteConfig.couple.bride
+  const debutantName = siteConfig.couple.debutName
+  const debutantNickname = siteConfig.couple.debutNickname
+  const debutantLabel = debutantName || debutantNickname
 
   const parsedDate = useMemo(
     () => parseWeddingDate(siteConfig.ceremony.date ?? siteConfig.wedding.date),
@@ -546,37 +549,44 @@ export function Hero() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <div className="w-full space-y-1.5 sm:space-y-2 -mt-1 sm:-mt-2">
+          <div className="w-full -mt-1 sm:-mt-2">
             <HeroDivider />
 
-            {/* Tagline */}
-            <p
-              className="font-goudy-italic text-sm sm:text-base md:text-lg lg:text-xl leading-snug sm:leading-relaxed text-center max-w-lg mx-auto"
-              style={{ color: HERO_TEXT_MUTED, textShadow: HERO_TITLE_SHADOW }}
-            >
-              Together with our families, we joyfully invite you to witness our union.
-            </p>
-          </div>
+            <div className="mx-auto flex w-full max-w-[min(92vw,24rem)] flex-col items-center sm:max-w-md md:max-w-lg lg:max-w-xl">
+              <div
+                className="relative w-full"
+                style={{ aspectRatio: HOME_TEXT_ASPECT }}
+              >
+                <Image
+                  src={HOME_TEXT_IMAGE}
+                  alt="A Debut Celebration. Together with her family, we warmly invite you to celebrate her 18th birthday."
+                  fill
+                  className="object-contain object-center"
+                  sizes="(max-width: 640px) 92vw, (max-width: 1024px) 448px, 512px"
+                  priority
+                  style={{ filter: HERO_DECO_WHITE_FILTER }}
+                />
+              </div>
 
-
-          {/* Couple Names — script PNG tinted to motif cream */}
-          <div
-            className="relative w-full max-w-[min(90vw,22rem)] sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto"
-            style={{ aspectRatio: COUPLE_NAME_ASPECT }}
-          >
-            <Image
-              src={COUPLE_NAME_IMAGE}
-              alt={`${brideName} and ${groomName}`}
-              fill
-              className="object-contain object-center"
-              sizes="(max-width: 640px) 90vw, (max-width: 1024px) 512px, 672px"
-              priority
-              style={{ filter: COUPLE_NAME_HERO_FILTER }}
-            />
+              <div
+                className="relative mt-2 mb-1 w-full sm:mt-2.5 sm:mb-1.5 md:mt-3 md:mb-2"
+                style={{ aspectRatio: COUPLE_NAME_ASPECT }}
+              >
+                <Image
+                  src={COUPLE_NAME_IMAGE}
+                  alt={debutantLabel}
+                  fill
+                  className="object-contain object-center scale-[1.06]"
+                  sizes="(max-width: 640px) 90vw, (max-width: 1024px) 512px, 672px"
+                  priority
+                  style={{ filter: HERO_DECO_WHITE_FILTER }}
+                />
+              </div>
+            </div>
           </div>
 
           {/* Date & Time block */}
-          <div className="w-full max-w-2xl mx-auto">
+          <div className="w-full max-w-2xl mx-auto mt-0.5 sm:mt-1">
             <div
               className="flex flex-col items-center gap-1.5 sm:gap-2.5 md:gap-3"
               style={{ color: HERO_TEXT_MUTED, textShadow: "0 4px 16px rgba(0,0,0,0.6)" }}
@@ -658,7 +668,7 @@ export function Hero() {
               className="font-goudy-italic text-sm sm:text-base md:text-lg leading-relaxed text-center px-2"
               style={{ color: HERO_TEXT_MUTED, textShadow: HERO_TITLE_SHADOW }}
             >
-              Your presence, prayers, and love will mean the world to us.
+              Your presence and warm wishes will make this debut truly unforgettable.
             </p>
 
             <div className="w-full flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch">

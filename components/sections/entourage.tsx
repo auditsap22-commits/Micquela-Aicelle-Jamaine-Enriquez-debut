@@ -59,7 +59,7 @@ const nameStyle: React.CSSProperties = {
   lineHeight: 1.3,
 }
 
-function EntourageCoupleLabel({ groom, bride }: { groom: string; bride: string }) {
+function DebutantLabel({ nickname }: { nickname: string }) {
   const lineStyle = {
     background:
       "linear-gradient(to right, transparent, color-mix(in srgb, var(--color-welcome-navy) 35%, transparent))",
@@ -72,7 +72,7 @@ function EntourageCoupleLabel({ groom, bride }: { groom: string; bride: string }
         className={`${cinzel.className} ${sectionType.label} shrink-0 py-0.5 font-semibold uppercase leading-normal tracking-[0.34em] min-[400px]:tracking-[0.38em] sm:tracking-[0.44em]`}
         style={{ color: "var(--color-welcome-navy)" }}
       >
-        With {groom}
+        {nickname}
         <span
           className={`${aboveTheBeyond.className} mx-1.5 inline-block normal-case tracking-normal sm:mx-2`}
           style={{
@@ -82,9 +82,9 @@ function EntourageCoupleLabel({ groom, bride }: { groom: string; bride: string }
           }}
           aria-hidden
         >
-          &
+          turns
         </span>
-        {bride}
+        eighteen
       </p>
       <span
         className="h-px w-5 sm:w-7 md:w-9"
@@ -116,7 +116,7 @@ function EntourageTitle() {
           color: "var(--color-welcome-navy)",
         }}
       >
-        Wedding Entourage
+        Debut Entourage
       </span>
       <span
         aria-hidden
@@ -126,9 +126,9 @@ function EntourageTitle() {
           color: "var(--color-welcome-green)",
         }}
       >
-        standing with us
+        standing with her
       </span>
-      <span className="sr-only">standing with us</span>
+      <span className="sr-only">standing with her</span>
     </h2>
   )
 }
@@ -210,6 +210,7 @@ function mapStaticSponsors(): PrincipalSponsor[] {
 
 const ROLE_CATEGORY_ORDER = [
   "OFFICIATING MINISTER",
+  "The Debutante",
   "The Couple",
   "Parents of the Groom",
   "Parents of the Bride",
@@ -263,6 +264,8 @@ function normalizeRoleCategory(category: string): string {
 
 export function Entourage() {
   const siteConfig = useSiteConfig()
+  const debutantNickname = siteConfig.couple.debutNickname || siteConfig.couple.debutName
+  const debutantName = siteConfig.couple.debutName
   const [entourage, setEntourage] = useState<EntourageMember[]>([])
   const [sponsors, setSponsors] = useState<PrincipalSponsor[]>([])
   const [isLoading, setIsLoading] = useState(true)
@@ -492,31 +495,31 @@ export function Entourage() {
         <div className="pointer-events-none absolute left-0 top-0 z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/decoration/deco/left-top-corner.png"
+            src="/decoration/top-left.png"
             alt=""
             className={CORNER_DECO_CLASS}
           />
         </div>
         <div className="pointer-events-none absolute right-0 top-0 z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          {/* <img
             src="/decoration/deco/right-top-corner.png"
             alt=""
             className={CORNER_DECO_CLASS}
-          />
+          /> */}
         </div>
         <div className="pointer-events-none absolute bottom-0 left-0 z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          {/* <img
             src="/decoration/deco/left-bottom-corner.png"
             alt=""
             className={CORNER_DECO_CLASS}
-          />
+          /> */}
         </div>
         <div className="pointer-events-none absolute bottom-0 right-0 z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/decoration/deco/right-bottom-corner.png"
+            src="/decoration/bottom-right.png"
             alt=""
             className={CORNER_DECO_CLASS}
           />
@@ -524,10 +527,7 @@ export function Entourage() {
 
       {/* Section Header */}
       <div className={`relative z-20 mx-auto mb-6 max-w-5xl px-6 text-center @container/entourage sm:mb-8 sm:px-10 md:mb-10 md:px-12 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"}`}>
-        <EntourageCoupleLabel
-          groom={siteConfig.couple.groomNickname || siteConfig.couple.groom}
-          bride={siteConfig.couple.brideNickname || siteConfig.couple.bride}
-        />
+        <DebutantLabel nickname={debutantNickname} />
 
         <div className="mt-6 mb-4 sm:mt-8 sm:mb-5 md:mt-10 md:mb-6">
           <EntourageTitle />
@@ -537,7 +537,7 @@ export function Entourage() {
           className={`font-goudy-italic mx-auto max-w-xl px-2 ${sectionType.textRelaxed}`}
           style={{ color: "var(--color-welcome-text)" }}
         >
-          Honoring those who stand with us on our special day
+          Honoring those who stand with {debutantNickname} on this special milestone
         </p>
 
         <div className="flex items-center justify-center pt-3 sm:pt-4">
@@ -630,11 +630,23 @@ export function Entourage() {
                 // Render OFFICIATING MINISTER directly above Principal Sponsors (in Parents block)
                 if (category === "OFFICIATING MINISTER" && hasParents) return null
 
-                // Special handling for The Couple - display Bride and Groom side by side
-                if (category === "The Couple") {
-                   const groom = members.find(m => m.roleTitle?.toLowerCase().includes('groom'))
-                  const bride = members.find(m => m.roleTitle?.toLowerCase().includes('bride'))
-                  
+                // Special handling for The Debutante — display centered
+                if (category === "The Debutante" || category === "The Couple") {
+                  const hasDebutanteCategory = (grouped["The Debutante"]?.length ?? 0) > 0
+                  if (category === "The Couple" && hasDebutanteCategory) return null
+
+                  const debutanteMembers =
+                    grouped["The Debutante"]?.length ? grouped["The Debutante"] : members
+                  const debutante =
+                    debutanteMembers.find((m) => m.roleTitle?.toLowerCase().includes("debutante")) ??
+                    debutanteMembers.find((m) => m.roleTitle?.toLowerCase().includes("bride")) ??
+                    debutanteMembers[0] ?? {
+                      name: debutantName,
+                      roleCategory: category,
+                      roleTitle: "Debutante",
+                      email: "",
+                    }
+
                   return (
                     <div key={category}>
                       {categoryIndex > 0 && (
@@ -642,12 +654,9 @@ export function Entourage() {
                           <div className="w-full max-w-md h-px" style={dividerLineStyle} />
                         </div>
                       )}
-                      <TwoColumnLayout singleTitle="The Couple" centerContent={true}>
-                        <div className="px-0.5 sm:px-1 md:px-1.5 min-w-0 overflow-hidden">
-                          {groom && <NameItem member={groom} align="right" />}
-                        </div>
-                        <div className="px-0.5 sm:px-1 md:px-1.5 min-w-0 overflow-hidden">
-                          {bride && <NameItem member={bride} align="left" />}
+                      <TwoColumnLayout singleTitle="The Debutante" centerContent={true}>
+                        <div className="col-span-2 flex justify-center min-w-0 overflow-hidden px-0.5 sm:px-1">
+                          <NameItem member={debutante} align="center" showRole={false} />
                         </div>
                       </TwoColumnLayout>
                     </div>
@@ -682,7 +691,7 @@ export function Entourage() {
                             <div className="w-full max-w-md h-px" style={dividerLineStyle} />
                           </div>
                         )}
-                        <TwoColumnLayout leftTitle="Groom’s Parents" rightTitle="Bride’s Parents">
+                        <TwoColumnLayout leftTitle="Father" rightTitle="Mother">
                           {(() => {
                             const leftArr = sortParents(parentsGroom)
                             const rightArr = sortParents(parentsBride)
@@ -1036,7 +1045,7 @@ export function Entourage() {
                               <div className="w-full max-w-md h-px" style={dividerLineStyle} />
                             </div>
                           )}
-                          <TwoColumnLayout leftTitle="Groomsmen" rightTitle="Bridesmaids">
+                          <TwoColumnLayout leftTitle="Gentlemen" rightTitle="Ladies">
                             {(() => {
                               const maxLen = Math.max(bridesmaids.length, groomsmen.length)
                               const rows = []

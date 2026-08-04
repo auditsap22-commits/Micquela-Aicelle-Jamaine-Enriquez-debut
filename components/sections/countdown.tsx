@@ -99,9 +99,9 @@ function CountdownTitle() {
           textShadow: OUTSIDE_TITLE_SHADOW,
         }}
       >
-        To our forever
+        To her debut
       </span>
-      <span className="sr-only">To our forever</span>
+      <span className="sr-only">To her debut</span>
     </h2>
   )
 }
@@ -164,7 +164,9 @@ export function Countdown() {
   const ceremonyMonth = parsedDate.month
   const ceremonyDayNumber = parsedDate.day
   const ceremonyYear = parsedDate.year
-  const { brideNickname, groomNickname } = siteConfig.couple
+  const debutantName = siteConfig.couple.debutName
+  const debutantNickname = siteConfig.couple.debutNickname || debutantName
+  const debutantLabel = `${debutantNickname}'s 18th Birthday Debut`
   const ceremonyDay = siteConfig.ceremony.day || parsedDate.dayOfWeek
   const ceremonyDayShort = ceremonyDay.slice(0, 3).toUpperCase()
   // Parse the date: December 20, 2025 at 10:30 AM PH Time (GMT+0800)
@@ -293,7 +295,7 @@ export function Countdown() {
           <div className="relative w-72 h-72 sm:w-96 sm:h-96 md:w-[28rem] md:h-[28rem] lg:w-[36rem] lg:h-[36rem] xl:w-[40rem] xl:h-[40rem] opacity-90">
             <CloudinaryImage
               src={siteConfig.couple.monogram}
-              alt={`${groomNickname} & ${brideNickname} Monogram`}
+              alt={`${debutantLabel} Monogram`}
               fill
               className="object-contain"
               style={{
