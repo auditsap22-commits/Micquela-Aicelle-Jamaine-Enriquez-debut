@@ -42,7 +42,7 @@ export const siteConfig = {
   },
   details: {
     rsvp: {
-      deadline: "August 30, 2026",
+      deadline: "August 10, 2026",
       coordinator: "Gilbert / Kameel",
       phone: "+63 967 697 8754",
     },
@@ -55,16 +55,16 @@ export const siteConfig = {
   giftRegistry: {
     QR_1:{
     id: "BDO",
-    src: "/QR/BDO.jpg",
+    src: "/QR/BDO.png",
     label: "BDO",
     accountNumber: "**** **** 2933",
     },
-    QR_2:{
-    id: "MariBank",
-    src: "/QR/MariBank.png",
-    label: "MariBank",
-    accountNumber: "****7672",
-    }
+    // QR_2:{
+    // id: "MariBank",
+    // src: "/QR/MariBank.png",
+    // label: "MariBank",
+    // accountNumber: "****7672",
+    // }
     // ,
     // QR_3:{
     // id: "Gcash",
