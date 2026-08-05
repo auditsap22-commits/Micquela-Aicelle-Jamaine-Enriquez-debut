@@ -12,19 +12,19 @@ export const siteConfig = {
     debutName: "Micquela Aicelle Jamaine G Enriquez",
     debutNickname: "Jamaine",
     monogram:"/monogram/monogram.png" ,//Ltryl
-    backgroundMusic:"/background_music/Mike Mains & The Branches - I Love You Always Forever (Lyric Video).mp3"
+    backgroundMusic:"/background_music/Lana Del Rey - Young And Beautiful (Lyrics).mp3"
   },
   googleAPI:{
-    messageForm: "https://docs.google.com/forms/d/e/1FAIpQLSfnzqIGp1BR_ILvjTa4XLmzB9J7KdZ_WuX7s2rmEqNUJdm7KA/formResponse",   //done
-    message: "https://script.google.com/macros/s/AKfycbwK186d2jD_4NlHjQVg3o3o0A2dIuKnxRzJ1UMztoTKChpn2-OyHaT4PDWrbjRXVvdu3Q/exec",  //done
-    guestList: "https://script.google.com/macros/s/AKfycbykVUHnIeQkwhCa9mUoJ0-A9EdDC-2UyQPZw4tvD5kJy76RpHmDHzq2pksLJEUjW9fwMw/exec",  //done
-    guestRequest: "https://script.google.com/macros/s/AKfycbx406fkIvqLkbh3CwuhamZAarn_hR8RHXXBNLWvgtFoN58drr8whTUbtNWt9-GQh3T0ig/exec",   //done
-    entourage: "https://script.google.com/macros/s/AKfycbxJvLVUXm6BU86TflWK3V3hzzQAvZmBjMxGJ3pitGqJVoOrr8_-gKGly7Gn9oaKF_BwWQ/exec",  //done
-    sponsors: "https://script.google.com/macros/s/AKfycbxEVdRjUr_oGThiamflZXQ-rK6Hmq71zVMcESUJ--383Kb-yqHp1vaTY71tVZM-Yo2TPQ/exec",  //done 
+    messageForm: "https://docs.google.com/forms/d/e/1FAIpQLSf9-Tfxquv4A15l0rcHwduHzc4zKj5fpJzFJ01YDBbRCLlWLQ/formResponse",   //done
+    message: "https://script.google.com/macros/s/AKfycbwvRKPZWRu1vuRyfuosJ24NaUpIz6gzBbUFxIur_FCXVfpcHUTtfbuqLIq0xsj3B2UWlg/exec",  //done
+    guestList: "https://script.google.com/macros/s/AKfycbypkI2pBZFiCyIi0hiky3JwF9Gf3PJecXdeGlGYKVsHZniadtJLOXVKLt7g4v95jccICw/exec",  //done
+    guestRequest: "https://script.google.com/macros/s/AKfycbx5PM5ZJD4W9Sy0rmLsHUpGf-HZ4eSzslrAvY8B-_GiYMQTpAY14PajgrMSRvTKpGjsag/exec",   //done
+    entourage: "https://script.google.com/macros/s/AKfycbwAAE1lmvCzN9x6g7mRfFZh1d2o9qN393vQ93tqWgQpvnuncPVWemySDo8yvWV0MSJESg/exec",  //done
+    sponsors: "https://script.google.com/macros/s/AKfycbxP15hYnj_4nERO1tZCps2DXwRxwqexlvvEPG-qvtAKNyOiLTXzZwSN_dppEoWLrjVQSg/exec",  //done 
     proposalResponses: "https://script.google.com/macros/s/AKfycbwIUDKMoMIHVwbmr6KbgmBtlGRpMGj1Z9maeHSEwsFaXNi0dAH8WYhqbtiAfg_p5D4lgw/exec", // uses entourage script with action: proposal
-    weddingDetails: "https://script.google.com/macros/s/AKfycbz-wYIIdMsGf38BGfRRLlxbg8mfuRQgyQES7BUvEgnYfMVUSkxVaDxr0EdFuoBj2XhH9w/exec",   //done
+    weddingDetails: "https://script.google.com/macros/s/AKfycbwJ-Mw_47gU5tfNuZuUusTWOt0p0qtmueSzHIzK7Uesn1nzRDAD3jiktgmXHzR5scVIbA/exec",   //done
 ////google share 
-    googleShare: "https://docs.google.com/spreadsheets/d/1qFMmYURdS98lp_Ngwg43l1P3K7ce4AwrQDn1f3_KpJk/edit?usp=sharing", 
+    googleShare: "https://docs.google.com/spreadsheets/d/16awlmPK2HxOs7Zj3W0v5Z61YOShXH4pDEHcLYE7XsWU/edit?usp=sharing", 
   },
   wedding: {
     date: "October 11, 2026",
@@ -54,10 +54,10 @@ export const siteConfig = {
   },
   giftRegistry: {
     QR_1:{
-    id: "BPI",
-    src: "/QR/BPI.png",
-    label: "BPI",
-    accountNumber: "KAMS : ***********569",
+    id: "BDO",
+    src: "/QR/BDO.jpg",
+    label: "BDO",
+    accountNumber: "**** **** 2933",
     },
     QR_2:{
     id: "MariBank",
@@ -176,9 +176,9 @@ Now, as they prepare to say yes before God and the people they love most, Cather
   },
   snapShare: {
     googleDriveLink:
-      "https://drive.google.com/drive/folders/1DjjumaJ3e26-9NHtLkT8dADEXibc2Rsd?usp=sharing",
+      "https://drive.google.com/drive/folders/1NEhUnXdKQhunC7NuqHsnpt2e1m1zGwGF?usp=sharing",
     albumQR: "/QR/AlbumQR.png",
-    hashtag: ["#KAMEELfoundherforeBERT"],
+    hashtag: ["#Jamainedebut"],
     instructions: "Please scan this QR Code and upload the photos and videos you have taken during our wedding reception. We are delighted to see your snaps too!",
   },
   accommodation: {

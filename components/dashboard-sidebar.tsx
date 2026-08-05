@@ -5,13 +5,19 @@ import {
   MessageSquare,
   Crown,
   LayoutDashboard,
-  RefreshCw,
   ExternalLink,
   UserPlus,
   Heart,
+  RefreshCw,
 } from "lucide-react"
+import { Cinzel } from "next/font/google"
 import { cn } from "@/lib/utils"
 import { useSiteConfig } from "@/hooks/use-site-config"
+
+const cinzel = Cinzel({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+})
 
 interface DashboardSidebarProps {
   activeTab: "dashboard" | "guests" | "requests" | "messages" | "entourage" | "proposals"
@@ -27,6 +33,7 @@ export function DashboardSidebar({
   messageCount,
 }: DashboardSidebarProps) {
   const siteConfig = useSiteConfig()
+  const debutantNickname = siteConfig.couple.debutNickname || siteConfig.couple.debutName
   const navItems = [
     {
       id: "dashboard" as const,
@@ -67,16 +74,36 @@ export function DashboardSidebar({
   ]
 
   return (
-    <div className="w-64 bg-white border-r border-[#E5E7EB] h-screen sticky top-0 flex flex-col">
+    <div
+      className="w-64 h-screen sticky top-0 flex flex-col border-r"
+      style={{
+        backgroundColor: "color-mix(in srgb, var(--color-motif-soft) 94%, white)",
+        borderColor: "color-mix(in srgb, var(--color-motif-deep) 12%, transparent)",
+      }}
+    >
       {/* Logo/Header */}
-      <div className="p-6 border-b border-[#E5E7EB]">
-        <div className="flex items-center gap-2 mb-2">
-          <div className="w-8 h-8 bg-[#A67C52] rounded-lg flex items-center justify-center">
-            <span className="text-white font-serif text-lg">♥</span>
-          </div>
-          <span className="font-serif text-lg font-bold text-[#6B4423]">Wedding Invitation</span>
-        </div>
-        <p className="text-xs text-[#6B7280] uppercase tracking-wide">Dashboard Panel</p>
+      <div
+        className="p-6 border-b"
+        style={{ borderColor: "color-mix(in srgb, var(--color-motif-deep) 12%, transparent)" }}
+      >
+        <p
+          className="beautiful-malera text-2xl leading-none mb-1"
+          style={{ color: "var(--color-welcome-script)" }}
+        >
+          {debutantNickname}
+        </p>
+        <span
+          className={`${cinzel.className} text-sm font-semibold tracking-[0.1em]`}
+          style={{ color: "var(--color-welcome-navy)" }}
+        >
+          Debut Invitation
+        </span>
+        <p
+          className={`${cinzel.className} text-[10px] uppercase tracking-[0.16em] mt-2`}
+          style={{ color: "var(--color-welcome-text-soft)" }}
+        >
+          Dashboard Panel
+        </p>
       </div>
 
       {/* Navigation Items */}
@@ -92,11 +119,21 @@ export function DashboardSidebar({
               className={cn(
                 "w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 group relative",
                 isActive
-                  ? "bg-[#FFF8F0] text-[#6B4423] shadow-sm"
-                  : "text-[#6B7280] hover:bg-[#F9FAFB] hover:text-[#6B4423]"
+                  ? "shadow-sm text-motif-deep"
+                  : "hover:text-motif-deep"
               )}
+              style={
+                isActive
+                  ? { backgroundColor: "color-mix(in srgb, var(--color-motif-yellow) 14%, white)" }
+                  : { color: "var(--color-welcome-text-soft)" }
+              }
             >
-              <Icon className={cn("h-5 w-5 transition-colors", isActive ? "text-[#A67C52]" : "text-[#9CA3AF] group-hover:text-[#A67C52]")} />
+              <Icon
+                className={cn(
+                  "h-5 w-5 transition-colors",
+                  isActive ? "text-motif-medium" : "text-motif-accent group-hover:text-motif-medium"
+                )}
+              />
               <span className="flex-1 text-left">{item.label}</span>
               {item.badge !== null && item.badge > 0 && (
                 <span className={cn(

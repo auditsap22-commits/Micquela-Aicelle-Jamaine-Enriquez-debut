@@ -146,33 +146,32 @@ const ct = {
 
 const attireGuide = {
   sponsors: {
-    image: "/Details/entourage.png",
-imageAspect: "500/400",
-
-ladies: {
-  colors: [
-    "#9A52A6", // Orchid Purple
-    "#DF6B90", // Warm Rose Pink
-    "#F8C353", // Marigold Yellow
-    "#E76A32", // Tangerine Orange
-    "#ABC3DB", // Soft Sky Blue
-    "#988C38", // Olive Gold
-  ] as const,
-
-  description:
-    "Elegant floor-length formal gowns in a vibrant True Spring palette. Dresses may vary in style while maintaining a sophisticated and coordinated formal look.",
-},
-
-gentlemen: {
-  colors: [
-    "#F6F1E7", // Cream Barong
-    "#000000", // Black Trousers
-    "#1E1E1E", // Black Formal Shoes
-  ] as const,
-
-  description:
-    "Traditional long-sleeved Cream Barong Tagalog paired with tailored black trousers and polished black formal shoes for a timeless and elegant Filipino formal ensemble.",
-},
+    image: "/Details/dresscode.png",
+    imageAspect: "500/400",
+  
+    ladies: {
+      colors: [
+        "#F3E8D7", // Champagne Cream
+        "#D8BF98", // Sand Beige
+        "#B98582", // Dusty Mauve
+        "#D78843", // Burnt Terracotta
+        "#C89A56", // Antique Gold
+        "#8C6542", // Caramel Brown
+      ] as const,
+  
+      description:
+      "Comfortable semi-formal attire in Champagne, Sand, Dusty Mauve, Terracotta, Antique Gold, or Caramel. Please avoid denim and baggy clothing.",    },
+  
+    gentlemen: {
+      colors: [
+        "#F7F1E7", // Parchment Cream Polo
+        "#C6A27A", // Khaki / Camel Trousers
+        "#8C6542", // Brown Leather Shoes
+      ] as const,
+  
+      description:
+      "Cream or beige polo/shirt with tailored shorts or trousers in neutral tones, paired with sandals or shoes. Please avoid denim and baggy clothing.",
+    },
   },
   entourage: {
     image: "/Details/guest (2).png",
@@ -226,7 +225,7 @@ gentlemen: {
     },
   },
   guests2: {
-    image: "/Details/guest (5).png",
+    image: "/Details/dresscode.png",
     imageAspect: "677/369",
     ladies: {
       colors: ["#C3878C", "#ECB4BC", "#EBA7B3", "#E8B3A7"] as const,
@@ -241,42 +240,42 @@ gentlemen: {
 
 const dressCodePalette = [
   {
-    name: "PURPLE ORCHID",
-    pantone: "18-3531 TCX",
-    hex: "#9B4CB5",
-    rgb: "(155, 76, 181)",
+    name: "CHAMPAGNE CREAM",
+    pantone: "12-0703 TCX",
+    hex: "#F3E8D7",
+    rgb: "(243, 232, 215)",
   },
   {
-    name: "GOLDEN CYPRESS",
-    pantone: "18-0537 TCX",
-    hex: "#8A8D3B",
-    rgb: "(138, 141, 59)",
+    name: "SAND BEIGE",
+    pantone: "14-1118 TCX",
+    hex: "#D8BF98",
+    rgb: "(216, 191, 152)",
   },
   {
-    name: "SANGRIA SUNSET",
-    pantone: "17-2233 TCX",
-    hex: "#E06C9A",
-    rgb: "(224, 108, 154)",
+    name: "DUSTY MAUVE",
+    pantone: "16-1617 TCX",
+    hex: "#B98582",
+    rgb: "(185, 133, 130)",
   },
   {
-    name: "LEMON DROP",
-    pantone: "13-0757 TCX",
-    hex: "#F2C94C",
-    rgb: "(242, 201, 76)",
+    name: "ANTIQUE GOLD",
+    pantone: "16-0940 TCX",
+    hex: "#C89A56",
+    rgb: "(200, 154, 86)",
   },
   {
-    name: "GOLDEN POPPY",
-    pantone: "16-1462 TCX",
-    hex: "#E9703A",
-    rgb: "(233, 112, 58)",
+    name: "BURNT TERRACOTTA",
+    pantone: "17-1347 TCX",
+    hex: "#D78843",
+    rgb: "(215, 136, 67)",
   },
   {
-    name: "NANTUCKET BREEZE",
-    pantone: "14-4005 TCX",
-    hex: "#A9C6DF",
-    rgb: "(169, 198, 223)",
+    name: "CARAMEL BROWN",
+    pantone: "18-1148 TCX",
+    hex: "#8C6542",
+    rgb: "(140, 101, 66)",
   },
-] as const
+] as const;
 
 function DressCodePaletteSwatch({
   name,
@@ -315,32 +314,34 @@ function DressCodePaletteDisplay() {
       }}
     >
       <div className="mx-auto max-w-3xl text-center">
-        <h5
-          className={`${cinzel.className} text-sm font-semibold uppercase tracking-[0.14em] sm:text-base md:text-lg lg:text-xl`}
-        >
-          Dress Code Palette
-        </h5>
-        <p
-          className={`${aboveTheBeyond.className} mt-1 text-lg leading-none sm:mt-1.5 sm:text-xl md:text-2xl`}
-          style={{ color: "var(--color-motif-accent)" }}
-        >
-          Long Gown
-        </p>
+      <h5
+  className={`${cinzel.className} text-sm font-semibold uppercase tracking-[0.14em] sm:text-base md:text-lg lg:text-xl`}
+>
+  Dress Code
+</h5>
 
-        <div className="mx-auto mt-3 flex max-w-xs items-center justify-center gap-2 sm:mt-4 sm:max-w-sm md:max-w-md">
-          <span className="h-px flex-1 bg-[#3D3429]/30" />
-          <Heart className="h-2.5 w-2.5 shrink-0 fill-[#3D3429]/40 text-[#3D3429]/40 sm:h-3 sm:w-3" aria-hidden />
-          <span className="h-px flex-1 bg-[#3D3429]/30" />
-        </div>
+<p
+  className={`${aboveTheBeyond.className} mt-1 text-lg leading-none sm:mt-1.5 sm:text-xl md:text-2xl`}
+  style={{ color: "var(--color-motif-accent)" }}
+>
+  Semi-Formal Attire
+</p>
 
-        <p
-          className={`${cinzel.className} mt-3 text-[10px] font-bold uppercase tracking-[0.12em] sm:mt-4 sm:text-xs md:text-sm`}
-        >
-          Color Guide
-        </p>
-        <p className="font-goudy-italic mt-1.5 text-[10px] italic leading-relaxed sm:mt-2 sm:text-xs md:text-sm">
-          Please refer to the exact colors below for dress code.
-        </p>
+<div className="mx-auto mt-3 flex max-w-xs items-center justify-center gap-2 sm:mt-4 sm:max-w-sm md:max-w-md">
+  <span className="h-px flex-1 bg-[#3D3429]/30" />
+  <Heart className="h-2.5 w-2.5 shrink-0 fill-[#3D3429]/40 text-[#3D3429]/40 sm:h-3 sm:w-3" aria-hidden />
+  <span className="h-px flex-1 bg-[#3D3429]/30" />
+</div>
+
+<p
+  className={`${cinzel.className} mt-3 text-[10px] font-bold uppercase tracking-[0.12em] sm:mt-4 sm:text-xs md:text-sm`}
+>
+  Recommended Colors
+</p>
+
+<p className="font-goudy-italic mt-1.5 text-[10px] italic leading-relaxed sm:mt-2 sm:text-xs md:text-sm">
+  Kindly wear any shade from the palette below to complement our celebration.
+</p>
       </div>
 
       <div

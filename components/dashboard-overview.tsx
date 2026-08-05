@@ -1,7 +1,14 @@
 "use client"
 
-import { Users, Table, Mail, UserPlus, Plane, CheckCircle, XCircle, Crown, UserCheck } from "lucide-react"
+import { Users, Table, Mail, UserPlus, Sparkles, CheckCircle, XCircle, Crown, UserCheck } from "lucide-react"
+import { Cinzel } from "next/font/google"
 import { cn } from "@/lib/utils"
+import { useSiteConfig } from "@/hooks/use-site-config"
+
+const cinzel = Cinzel({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+})
 
 interface DashboardOverviewProps {
   stats: {
@@ -14,7 +21,7 @@ interface DashboardOverviewProps {
     entourage?: number
     principalSponsors?: number
   }
-  weddingBrief?: {
+  debutBrief?: {
     title: string
     content: string
   }
@@ -30,7 +37,13 @@ interface StatCardProps {
 
 function StatCard({ icon, value, label, iconBgColor, iconColor }: StatCardProps) {
   return (
-    <div className="bg-white rounded-xl p-6 shadow-sm border border-[#E5E7EB] hover:shadow-md transition-shadow duration-200">
+    <div
+      className="rounded-xl p-6 shadow-sm border hover:shadow-md transition-shadow duration-200"
+      style={{
+        backgroundColor: "color-mix(in srgb, white 90%, var(--color-motif-soft))",
+        borderColor: "color-mix(in srgb, var(--color-motif-deep) 12%, transparent)",
+      }}
+    >
       <div className="flex items-start gap-4">
         <div
           className={cn(
@@ -41,100 +54,124 @@ function StatCard({ icon, value, label, iconBgColor, iconColor }: StatCardProps)
           <div className={iconColor}>{icon}</div>
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-sm text-[#6B7280] font-medium mb-1">{label}</p>
-          <p className="text-3xl font-bold text-[#111827]">{value}</p>
+          <p
+            className={`${cinzel.className} text-xs font-semibold uppercase tracking-[0.12em] mb-1`}
+            style={{ color: "var(--color-welcome-text-soft)" }}
+          >
+            {label}
+          </p>
+          <p
+            className={`${cinzel.className} text-3xl font-bold`}
+            style={{ color: "var(--color-welcome-navy)" }}
+          >
+            {value}
+          </p>
         </div>
       </div>
     </div>
   )
 }
 
-export function DashboardOverview({ stats, weddingBrief }: DashboardOverviewProps) {
+export function DashboardOverview({ stats, debutBrief }: DashboardOverviewProps) {
+  const siteConfig = useSiteConfig()
+  const debutantNickname = siteConfig.couple.debutNickname || siteConfig.couple.debutName
+
   const defaultBrief = {
-    title: "Gemini's Wedding Brief",
-    content: `Here are a few options for a joyful status update: **Option 1: Sweet and simple** "The countdown is officially on! 🔔 We already have ${stats.confirmedPax} of our favorite people confirmed, and we can't wait to hear from the rest of you. We are so excited to see our final group of ${stats.guestGroups} come together for the big day! ❤️ **Option 2: High energy** "RSVPs are rolling in and our hearts are full! ❤️ ${stats.confirmedPax} 'Yes' responses down, ${stats.pendingRSVP} more to hear from! We can't wait to reach our magic number of ${stats.guestGroups} and celebrate the best day ever with you all! 🎉 ✨ **Option 3: Short and punchy** "${stats.confirmedPax} confirmed, ${stats.pendingRSVP} to go! 📝 Watching the guest list grow is getting us so excited for our celebration of ${stats.guestGroups}. Let the wedding countdown begin! 🔔 ✨ **Option 4: Focus on the "Yes"*** "It's getting real! ⭕ We've got ${stats.confirmedPax} 'Yes' votes in the bag and ${stats.pendingRSVP} more pending. We can't wait to see who fills our final ${stats.guestGroups} spots—see you at the altar! 💕 🔔 ""`
+    title: `${debutantNickname}'s Debut at a Glance`,
+    content: `${stats.confirmedPax} guests confirmed so far, with ${stats.pendingRSVP} invitations still awaiting a response. You have ${stats.guestGroups} guest groups on the list${stats.joinRequests > 0 ? ` and ${stats.joinRequests} pending join request${stats.joinRequests === 1 ? "" : "s"} to review` : ""}. As the debut draws near, every RSVP brings ${debutantNickname}'s celebration one step closer to being complete.`,
   }
 
-  const brief = weddingBrief || defaultBrief
+  const brief = debutBrief || defaultBrief
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-[#111827] mb-2">Wedding Overview</h1>
+        <h1
+          className={`${cinzel.className} text-3xl font-semibold tracking-[0.08em] mb-2`}
+          style={{ color: "var(--color-welcome-heading)" }}
+        >
+          Debut Overview
+        </h1>
+        <p className="font-goudy-italic text-sm" style={{ color: "var(--color-welcome-text-soft)" }}>
+          A quick snapshot of {debutantNickname}&apos;s guest list and RSVP progress.
+        </p>
       </div>
 
-      {/* Stats Cards Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard
           icon={<Users className="h-6 w-6" />}
           value={stats.guestGroups}
           label="Guest Groups"
-          iconBgColor="bg-[#D4B5A0]/20"
-          iconColor="text-[#8B6F47]"
+          iconBgColor="bg-motif-yellow/20"
+          iconColor="text-motif-deep"
         />
         <StatCard
           icon={<Table className="h-6 w-6" />}
           value={stats.confirmedPax}
           label="Total Guests (Pax)"
-          iconBgColor="bg-[#86EFAC]/20"
-          iconColor="text-[#16A34A]"
+          iconBgColor="bg-green-100/80"
+          iconColor="text-green-700"
         />
         <StatCard
           icon={<CheckCircle className="h-6 w-6" />}
           value={stats.attending || 0}
           label="Attending"
-          iconBgColor="bg-[#86EFAC]/20"
-          iconColor="text-[#16A34A]"
+          iconBgColor="bg-green-100/80"
+          iconColor="text-green-700"
         />
         <StatCard
           icon={<XCircle className="h-6 w-6" />}
           value={stats.notAttending || 0}
           label="Not Attending"
-          iconBgColor="bg-[#FCA5A5]/20"
-          iconColor="text-[#DC2626]"
+          iconBgColor="bg-red-100/80"
+          iconColor="text-red-600"
         />
         <StatCard
           icon={<Mail className="h-6 w-6" />}
           value={stats.pendingRSVP}
           label="Pending RSVP"
-          iconBgColor="bg-[#FED7AA]/20"
-          iconColor="text-[#EA580C]"
+          iconBgColor="bg-motif-medium/15"
+          iconColor="text-motif-medium"
         />
         <StatCard
           icon={<UserPlus className="h-6 w-6" />}
           value={stats.joinRequests}
           label="Join Requests"
-          iconBgColor="bg-[#DDD6FE]/20"
-          iconColor="text-[#7C3AED]"
+          iconBgColor="bg-motif-accent/20"
+          iconColor="text-motif-accent"
         />
         <StatCard
           icon={<Crown className="h-6 w-6" />}
           value={stats.entourage || 0}
           label="Entourage"
-          iconBgColor="bg-[#FDE68A]/20"
-          iconColor="text-[#F59E0B]"
+          iconBgColor="bg-motif-yellow/20"
+          iconColor="text-motif-yellow"
         />
         <StatCard
           icon={<UserCheck className="h-6 w-6" />}
           value={stats.principalSponsors || 0}
           label="Principal Sponsors"
-          iconBgColor="bg-[#C7D2FE]/20"
-          iconColor="text-[#6366F1]"
+          iconBgColor="bg-primary/20"
+          iconColor="text-motif-deep"
         />
       </div>
 
-      {/* Wedding Brief Card */}
-      <div className="bg-gradient-to-br from-[#8B6F47] to-[#6B5335] rounded-2xl p-8 shadow-lg">
+      <div
+        className="rounded-2xl p-8 shadow-lg"
+        style={{
+          background: "linear-gradient(135deg, var(--color-motif-deep), var(--color-motif-medium))",
+        }}
+      >
         <div className="flex items-center gap-3 mb-4">
-          <Plane className="h-6 w-6 text-white" />
-          <h2 className="text-2xl font-serif font-bold text-white">{brief.title}</h2>
+          <Sparkles className="h-6 w-6 text-white" />
+          <h2 className={`${cinzel.className} text-2xl font-semibold tracking-[0.08em] text-white`}>
+            {brief.title}
+          </h2>
         </div>
-        <div className="text-white/90 leading-relaxed whitespace-pre-wrap">
+        <div className="font-goudy-italic text-white/90 leading-relaxed whitespace-pre-wrap">
           {brief.content}
         </div>
       </div>
     </div>
   )
 }
-

@@ -1,6 +1,7 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
+import { createPortal } from "react-dom"
 import Link from "next/link"
 import Image from "next/image"
 import localFont from "next/font/local"
@@ -135,6 +136,18 @@ export function Gallery() {
   const [pinchStartScale, setPinchStartScale] = useState(1)
   const [lastTap, setLastTap] = useState(0)
   const [panStart, setPanStart] = useState<{ x: number; y: number; panX: number; panY: number } | null>(null)
+  const [mounted, setMounted] = useState(false)
+  const carouselTapRef = useRef<{ x: number; y: number; moved: boolean } | null>(null)
+  const suppressClickRef = useRef(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const openGalleryImage = useCallback((index: number) => {
+    setSelectedImage(galleryItems[index])
+    setCurrentIndex(index)
+  }, [])
 
   useEffect(() => {
     // Simulate loading for better UX
@@ -195,6 +208,171 @@ export function Gallery() {
     setPan({ x: 0, y: 0 })
     setPanStart(null)
   }
+
+  const closeLightbox = () => {
+    setSelectedImage(null)
+    resetZoom()
+  }
+
+  const lightboxModal = selectedImage ? (
+    <div
+      className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4"
+      onClick={closeLightbox}
+    >
+      <div
+        className="relative max-w-6xl w-full h-full sm:h-auto flex flex-col items-center justify-center"
+        onTouchStart={(e) => {
+          if (e.touches.length === 1) {
+            const now = Date.now()
+            if (now - lastTap < 300) {
+              setZoomScale((s) => (s > 1 ? 1 : 2))
+              setPan({ x: 0, y: 0 })
+            }
+            setLastTap(now)
+            const t = e.touches[0]
+            setTouchStartX(t.clientX)
+            setTouchDeltaX(0)
+            if (zoomScale > 1) {
+              setPanStart({ x: t.clientX, y: t.clientY, panX: pan.x, panY: pan.y })
+            }
+          }
+          if (e.touches.length === 2) {
+            const dx = e.touches[0].clientX - e.touches[1].clientX
+            const dy = e.touches[0].clientY - e.touches[1].clientY
+            const dist = Math.hypot(dx, dy)
+            setPinchStartDist(dist)
+            setPinchStartScale(zoomScale)
+          }
+        }}
+        onTouchMove={(e) => {
+          if (e.touches.length === 2 && pinchStartDist) {
+            const dx = e.touches[0].clientX - e.touches[1].clientX
+            const dy = e.touches[0].clientY - e.touches[1].clientY
+            const dist = Math.hypot(dx, dy)
+            const scale = clamp((dist / pinchStartDist) * pinchStartScale, 1, 3)
+            setZoomScale(scale)
+          } else if (e.touches.length === 1) {
+            const t = e.touches[0]
+            if (zoomScale > 1 && panStart) {
+              const dx = t.clientX - panStart.x
+              const dy = t.clientY - panStart.y
+              setPan({ x: panStart.panX + dx, y: panStart.panY + dy })
+            } else if (touchStartX !== null) {
+              setTouchDeltaX(t.clientX - touchStartX)
+            }
+          }
+        }}
+        onTouchEnd={() => {
+          setPinchStartDist(null)
+          setPanStart(null)
+          if (zoomScale === 1 && Math.abs(touchDeltaX) > 50) {
+            navigateImage(touchDeltaX > 0 ? "prev" : "next")
+          }
+          setTouchStartX(null)
+          setTouchDeltaX(0)
+        }}
+      >
+        {/* Top bar with counter and close */}
+        <div className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between p-4 sm:p-6">
+          <div
+            className="rounded-full border px-4 py-2 backdrop-blur-md"
+            style={{
+              backgroundColor: "rgba(0,0,0,0.4)",
+              borderColor: "color-mix(in srgb, var(--color-welcome-green) 50%, transparent)",
+            }}
+          >
+            <span
+              className="text-sm font-medium sm:text-base"
+              style={{ color: "var(--color-welcome-bg)" }}
+            >
+              {currentIndex + 1} / {galleryItems.length}
+            </span>
+          </div>
+
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation()
+              closeLightbox()
+            }}
+            className="bg-black/40 hover:bg-black/60 backdrop-blur-md rounded-full p-2 sm:p-3 transition-all duration-200 border border-white/20 hover:border-white/40"
+            aria-label="Close lightbox"
+          >
+            <X size={20} className="sm:w-6 sm:h-6 text-white" />
+          </button>
+        </div>
+
+        {galleryItems.length > 1 && (
+          <>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation()
+                navigateImage("prev")
+                resetZoom()
+              }}
+              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/60 backdrop-blur-md rounded-full p-3 sm:p-4 transition-all duration-200 border border-white/20 hover:border-white/40"
+              aria-label="Previous image"
+            >
+              <ChevronLeft size={24} className="sm:w-7 sm:h-7 text-white" />
+            </button>
+
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation()
+                navigateImage("next")
+                resetZoom()
+              }}
+              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/60 backdrop-blur-md rounded-full p-3 sm:p-4 transition-all duration-200 border border-white/20 hover:border-white/40"
+              aria-label="Next image"
+            >
+              <ChevronRight size={24} className="sm:w-7 sm:h-7 text-white" />
+            </button>
+          </>
+        )}
+
+        <div className="relative w-full h-full flex items-center justify-center pt-16 sm:pt-20 pb-4 sm:pb-6 overflow-hidden">
+          <div className="relative inline-block max-w-full max-h-full" onClick={(e) => e.stopPropagation()}>
+            <Image
+              src={selectedImage.image || "/placeholder.svg"}
+              alt={selectedImage.text || "Gallery image"}
+              width={1200}
+              height={1600}
+              sizes="100vw"
+              priority
+              style={{
+                transform: `translate3d(${pan.x}px, ${pan.y}px, 0) scale(${zoomScale})`,
+                transition: pinchStartDist ? "none" : "transform 200ms ease-out",
+              }}
+              className="max-w-full max-h-[75vh] w-auto h-auto sm:max-h-[85vh] object-contain rounded-lg shadow-2xl will-change-transform"
+            />
+
+            {zoomScale > 1 && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  resetZoom()
+                }}
+                className="absolute bottom-2 right-2 bg-black/60 hover:bg-black/80 backdrop-blur-md text-white rounded-full px-3 py-1.5 text-xs font-medium border border-white/20 transition-all duration-200"
+              >
+                Reset Zoom
+              </button>
+            )}
+          </div>
+        </div>
+
+        {galleryItems.length > 1 && (
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 sm:hidden z-20">
+            <p className="text-xs text-white/60 bg-black/40 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/10">
+              Swipe to navigate
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  ) : null
 
   return (
     <div
@@ -300,15 +478,38 @@ export function Gallery() {
                   <button
                     key={item.image + index}
                     type="button"
-                    className="group relative snap-center shrink-0 w-[82%] overflow-hidden rounded-lg transition-all duration-300"
+                    className="group relative snap-center shrink-0 w-[82%] cursor-pointer overflow-hidden rounded-lg transition-all duration-300"
                     onClick={() => {
-                      setSelectedImage(item)
-                      setCurrentIndex(index)
+                      if (suppressClickRef.current) {
+                        suppressClickRef.current = false
+                        return
+                      }
+                      openGalleryImage(index)
+                    }}
+                    onTouchStart={(e) => {
+                      const touch = e.touches[0]
+                      carouselTapRef.current = { x: touch.clientX, y: touch.clientY, moved: false }
+                    }}
+                    onTouchMove={(e) => {
+                      const tap = carouselTapRef.current
+                      if (!tap) return
+                      const touch = e.touches[0]
+                      if (Math.hypot(touch.clientX - tap.x, touch.clientY - tap.y) > 8) {
+                        tap.moved = true
+                      }
+                    }}
+                    onTouchEnd={() => {
+                      const tap = carouselTapRef.current
+                      if (tap && !tap.moved) {
+                        suppressClickRef.current = true
+                        openGalleryImage(index)
+                      }
+                      carouselTapRef.current = null
                     }}
                     aria-label={`Open image ${index + 1}`}
                   >
                     <div
-                      className="absolute -inset-0.5 rounded-lg opacity-0 blur-sm transition-opacity duration-300 group-active:opacity-100"
+                      className="pointer-events-none absolute -inset-0.5 rounded-lg opacity-0 blur-sm transition-opacity duration-300 group-active:opacity-100"
                       style={{
                         background:
                           "color-mix(in srgb, var(--color-welcome-green) 25%, transparent)",
@@ -321,13 +522,14 @@ export function Gallery() {
                         alt={item.text || `Gallery image ${index + 1}`}
                         fill
                         sizes="82vw"
-                        className="object-cover transition-transform duration-500 group-active:scale-[1.02]"
+                        draggable={false}
+                        className="pointer-events-none object-cover transition-transform duration-500 group-active:scale-[1.02]"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-active:opacity-100 transition-opacity duration-300" />
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-active:opacity-100 transition-opacity duration-300" />
                     </div>
 
                     <div
-                      className="absolute top-2 right-2 rounded-full px-2 py-1 backdrop-blur-sm"
+                      className="pointer-events-none absolute top-2 right-2 rounded-full px-2 py-1 backdrop-blur-sm"
                       style={{
                         backgroundColor:
                           "color-mix(in srgb, var(--color-welcome-navy) 65%, transparent)",
@@ -358,15 +560,12 @@ export function Gallery() {
                 <button
                   key={item.image + index}
                   type="button"
-                  className="group relative w-full overflow-hidden rounded-xl transition-all duration-300"
-                  onClick={() => {
-                    setSelectedImage(item)
-                    setCurrentIndex(index)
-                  }}
+                  className="group relative w-full cursor-pointer overflow-hidden rounded-xl transition-all duration-300"
+                  onClick={() => openGalleryImage(index)}
                   aria-label={`Open image ${index + 1}`}
                 >
                   <div
-                    className="absolute -inset-0.5 rounded-xl opacity-0 blur-sm transition-opacity duration-300 group-hover:opacity-100"
+                    className="pointer-events-none absolute -inset-0.5 rounded-xl opacity-0 blur-sm transition-opacity duration-300 group-hover:opacity-100"
                     style={{
                       background:
                         "color-mix(in srgb, var(--color-welcome-green) 22%, transparent)",
@@ -379,13 +578,14 @@ export function Gallery() {
                       alt={item.text || `Gallery image ${index + 1}`}
                       fill
                       sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      draggable={false}
+                      className="pointer-events-none object-cover transition-transform duration-500 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
 
                   <div
-                    className="absolute top-2 right-2 rounded-full px-2 py-1 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100"
+                    className="pointer-events-none absolute top-2 right-2 rounded-full px-2 py-1 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100"
                     style={{
                       backgroundColor:
                         "color-mix(in srgb, var(--color-welcome-navy) 65%, transparent)",
@@ -430,176 +630,7 @@ export function Gallery() {
         )}
       </div>
 
-      {/* Lightbox Modal */}
-      {selectedImage && (
-        <div
-          className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4"
-          onClick={() => {
-            setSelectedImage(null)
-            resetZoom()
-          }}
-        >
-            <div
-              className="relative max-w-6xl w-full h-full sm:h-auto flex flex-col items-center justify-center"
-              onTouchStart={(e) => {
-                if (e.touches.length === 1) {
-                  const now = Date.now()
-                  if (now - lastTap < 300) {
-                    setZoomScale((s) => (s > 1 ? 1 : 2))
-                    setPan({ x: 0, y: 0 })
-                  }
-                  setLastTap(now)
-                  const t = e.touches[0]
-                  setTouchStartX(t.clientX)
-                  setTouchDeltaX(0)
-                  if (zoomScale > 1) {
-                    setPanStart({ x: t.clientX, y: t.clientY, panX: pan.x, panY: pan.y })
-                  }
-                }
-                if (e.touches.length === 2) {
-                  const dx = e.touches[0].clientX - e.touches[1].clientX
-                  const dy = e.touches[0].clientY - e.touches[1].clientY
-                  const dist = Math.hypot(dx, dy)
-                  setPinchStartDist(dist)
-                  setPinchStartScale(zoomScale)
-                }
-              }}
-              onTouchMove={(e) => {
-                if (e.touches.length === 2 && pinchStartDist) {
-                  const dx = e.touches[0].clientX - e.touches[1].clientX
-                  const dy = e.touches[0].clientY - e.touches[1].clientY
-                  const dist = Math.hypot(dx, dy)
-                  const scale = clamp((dist / pinchStartDist) * pinchStartScale, 1, 3)
-                  setZoomScale(scale)
-                } else if (e.touches.length === 1) {
-                  const t = e.touches[0]
-                  if (zoomScale > 1 && panStart) {
-                    const dx = t.clientX - panStart.x
-                    const dy = t.clientY - panStart.y
-                    setPan({ x: panStart.panX + dx, y: panStart.panY + dy })
-                  } else if (touchStartX !== null) {
-                    setTouchDeltaX(t.clientX - touchStartX)
-                  }
-                }
-              }}
-              onTouchEnd={() => {
-                setPinchStartDist(null)
-                setPanStart(null)
-                if (zoomScale === 1 && Math.abs(touchDeltaX) > 50) {
-                  navigateImage(touchDeltaX > 0 ? 'prev' : 'next')
-                }
-                setTouchStartX(null)
-                setTouchDeltaX(0)
-              }}
-            >
-            {/* Top bar with counter and close */}
-            <div className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between p-4 sm:p-6">
-              {/* Image counter */}
-              <div
-                className="rounded-full border px-4 py-2 backdrop-blur-md"
-                style={{
-                  backgroundColor: "rgba(0,0,0,0.4)",
-                  borderColor:
-                    "color-mix(in srgb, var(--color-welcome-green) 50%, transparent)",
-                }}
-              >
-                <span
-                  className="text-sm font-medium sm:text-base"
-                  style={{ color: "var(--color-welcome-bg)" }}
-                >
-                  {currentIndex + 1} / {galleryItems.length}
-                </span>
-              </div>
-              
-              {/* Close button */}
-              <button
-                onClick={(e) => {
-                  e.stopPropagation()
-                  setSelectedImage(null)
-                  resetZoom()
-                }}
-                className="bg-black/40 hover:bg-black/60 backdrop-blur-md rounded-full p-2 sm:p-3 transition-all duration-200 border border-white/20 hover:border-white/40"
-                aria-label="Close lightbox"
-              >
-                <X size={20} className="sm:w-6 sm:h-6 text-white" />
-              </button>
-            </div>
-
-            {/* Navigation buttons */}
-            {galleryItems.length > 1 && (
-              <>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    navigateImage('prev')
-                    resetZoom()
-                  }}
-                  className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/60 backdrop-blur-md rounded-full p-3 sm:p-4 transition-all duration-200 border border-white/20 hover:border-white/40"
-                  aria-label="Previous image"
-                >
-                  <ChevronLeft size={24} className="sm:w-7 sm:h-7 text-white" />
-                </button>
-
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    navigateImage('next')
-                    resetZoom()
-                  }}
-                  className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/60 backdrop-blur-md rounded-full p-3 sm:p-4 transition-all duration-200 border border-white/20 hover:border-white/40"
-                  aria-label="Next image"
-                >
-                  <ChevronRight size={24} className="sm:w-7 sm:h-7 text-white" />
-                </button>
-              </>
-            )}
-
-            {/* Image container */}
-            <div className="relative w-full h-full flex items-center justify-center pt-16 sm:pt-20 pb-4 sm:pb-6 overflow-hidden">
-              <div
-                className="relative inline-block max-w-full max-h-full"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <Image
-                  src={selectedImage.image || "/placeholder.svg"}
-                  alt={selectedImage.text || "Gallery image"}
-                  width={1200}
-                  height={1600}
-                  sizes="100vw"
-                  priority
-                  style={{
-                    transform: `translate3d(${pan.x}px, ${pan.y}px, 0) scale(${zoomScale})`,
-                    transition: pinchStartDist ? "none" : "transform 200ms ease-out",
-                  }}
-                  className="max-w-full max-h-[75vh] w-auto h-auto sm:max-h-[85vh] object-contain rounded-lg shadow-2xl will-change-transform"
-                />
-                
-                {/* Zoom reset button */}
-                {zoomScale > 1 && (
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      resetZoom()
-                    }}
-                    className="absolute bottom-2 right-2 bg-black/60 hover:bg-black/80 backdrop-blur-md text-white rounded-full px-3 py-1.5 text-xs font-medium border border-white/20 transition-all duration-200"
-                  >
-                    Reset Zoom
-                  </button>
-                )}
-              </div>
-            </div>
-
-            {/* Bottom hint for mobile */}
-            {galleryItems.length > 1 && (
-              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 sm:hidden z-20">
-                <p className="text-xs text-white/60 bg-black/40 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/10">
-                  Swipe to navigate
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
+      {mounted && lightboxModal ? createPortal(lightboxModal, document.body) : null}
       </Section>
     </div>
   )

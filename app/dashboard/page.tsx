@@ -1,6 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Image from "next/image"
+import { Cinzel } from "next/font/google"
 import { Button } from "@/components/ui/button"
 import {
   Lock,
@@ -19,6 +21,11 @@ import { GuestMessages } from "@/components/guest-messages"
 import { type Message } from "@/app/api/messages/route"
 import { EntourageSponsors } from "@/components/entourage-sponsors"
 import { ProposalDashboard } from "@/components/proposal-dashboard"
+
+const cinzel = Cinzel({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+})
 
 interface GuestRequest {
   Name: string
@@ -43,6 +50,9 @@ interface PrincipalSponsor {
 
 export default function DashboardPage() {
   const siteConfig = useSiteConfig()
+  const debutantName = siteConfig.couple.debutName
+  const debutantNickname = siteConfig.couple.debutNickname || debutantName
+  const debutDate = siteConfig.ceremony.date
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [password, setPassword] = useState("")
   const [error, setError] = useState<string | null>(null)
@@ -429,36 +439,100 @@ export default function DashboardPage() {
   // Login Screen
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[#FFF8F0] to-[#F5F5F0] flex items-center justify-center p-4">
+      <div
+        className="min-h-screen flex items-center justify-center p-4"
+        style={{
+          background:
+            "linear-gradient(160deg, var(--color-motif-cream) 0%, var(--color-motif-soft) 45%, color-mix(in srgb, var(--color-motif-silver) 60%, white) 100%)",
+        }}
+      >
         <div className="w-full max-w-md">
-          <div className="bg-white rounded-2xl p-8 shadow-xl border border-[#E5E7EB]">
+          <div
+            className="rounded-2xl p-8 shadow-xl border backdrop-blur-sm"
+            style={{
+              backgroundColor: "color-mix(in srgb, var(--color-motif-soft) 88%, white)",
+              borderColor: "color-mix(in srgb, var(--color-motif-deep) 14%, transparent)",
+            }}
+          >
             <div className="text-center mb-8">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#8B6F47] to-[#6B5335] rounded-2xl mb-4 shadow-lg">
-                <Lock className="h-8 w-8 text-white" />
-              </div>
-              <div className="mb-2">
-                <span className="font-serif text-sm text-[#A67C52]">♥</span>
-                <span className="font-serif text-2xl font-bold text-[#6B4423] mx-2">Wedding Invitation</span>
-                <span className="font-serif text-sm text-[#A67C52]">♥</span>
-              </div>
-              <h1 className="text-2xl font-bold text-[#111827] mb-2">
-                Admin Dashboard
+              {siteConfig.couple.monogram && (
+                <div className="relative mx-auto mb-5 h-28 w-28 sm:h-32 sm:w-32">
+                  <Image
+                    src={siteConfig.couple.monogram}
+                    alt={`${debutantName} monogram`}
+                    fill
+                    className="object-contain"
+                    sizes="128px"
+                  />
+                </div>
+              )}
+
+              <p
+                className="beautiful-malera text-4xl sm:text-5xl leading-none"
+                style={{ color: "var(--color-welcome-script)" }}
+              >
+                {debutantNickname}
+              </p>
+              <h1
+                className={`${cinzel.className} mt-2 text-lg sm:text-xl font-semibold tracking-[0.12em]`}
+                style={{ color: "var(--color-welcome-navy)" }}
+              >
+                {debutantName}
               </h1>
-              <p className="text-[#6B7280] text-sm">
-                Enter password to access the wedding management panel
+              <p
+                className="font-goudy-italic mt-2 text-sm sm:text-base"
+                style={{ color: "var(--color-welcome-text-soft)" }}
+              >
+                {debutantNickname}&apos;s 18th Birthday Debut · {debutDate}
+              </p>
+
+              <div className="mt-4 flex items-center justify-center">
+                <span
+                  className="h-px w-16 sm:w-24"
+                  style={{
+                    background:
+                      "linear-gradient(to right, transparent, color-mix(in srgb, var(--color-motif-deep) 38%, transparent), transparent)",
+                  }}
+                />
+              </div>
+
+              <div
+                className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mt-6 mb-4 shadow-md"
+                style={{ background: "linear-gradient(135deg, var(--color-motif-deep), var(--color-motif-medium))" }}
+              >
+                <Lock className="h-7 w-7 text-white" />
+              </div>
+              <h2
+                className={`${cinzel.className} text-xl font-semibold tracking-[0.1em] mb-2`}
+                style={{ color: "var(--color-welcome-heading)" }}
+              >
+                Debut Admin Dashboard
+              </h2>
+              <p
+                className="font-goudy-italic text-sm"
+                style={{ color: "var(--color-welcome-text-soft)" }}
+              >
+                Enter the password to manage {debutantNickname}&apos;s debut invitation.
               </p>
             </div>
 
             <form onSubmit={handleLogin} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-[#374151] mb-2">
+                <label
+                  className={`${cinzel.className} block text-xs font-semibold uppercase tracking-[0.14em] mb-2`}
+                  style={{ color: "var(--color-welcome-heading)" }}
+                >
                   Password
                 </label>
                 <input
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-3 border border-[#E5E7EB] rounded-lg focus:ring-2 focus:ring-[#A67C52] focus:border-transparent outline-none transition-all"
+                  className="w-full px-4 py-3 rounded-lg outline-none transition-all border bg-white/80 focus:ring-2"
+                  style={{
+                    borderColor: "color-mix(in srgb, var(--color-motif-deep) 18%, transparent)",
+                    color: "var(--color-welcome-text)",
+                  }}
                   placeholder="Enter password"
                   autoFocus
                 />
@@ -473,9 +547,12 @@ export default function DashboardPage() {
 
               <Button
                 type="submit"
-                className="w-full bg-gradient-to-r from-[#8B6F47] to-[#6B5335] hover:from-[#6B5335] hover:to-[#8B6F47] text-white py-6 rounded-lg font-medium transition-all shadow-md hover:shadow-lg"
+                className={`${cinzel.className} w-full py-6 rounded-lg font-semibold tracking-[0.08em] transition-all shadow-md hover:shadow-lg text-white border-0`}
+                style={{
+                  background: "linear-gradient(135deg, var(--color-motif-deep), var(--color-motif-medium))",
+                }}
               >
-                Access Dashboard
+                Enter Dashboard
               </Button>
             </form>
           </div>
@@ -486,7 +563,10 @@ export default function DashboardPage() {
 
   // Main Dashboard Layout
   return (
-    <div className="flex min-h-screen bg-[#F9FAFB]">
+    <div
+      className="flex min-h-screen"
+      style={{ backgroundColor: "var(--color-motif-cream)" }}
+    >
       {/* Sidebar */}
       <DashboardSidebar
         activeTab={activeTab}
@@ -498,13 +578,33 @@ export default function DashboardPage() {
       {/* Main Content */}
       <div className="flex-1 overflow-auto">
         {/* Top Bar */}
-        <div className="bg-white border-b border-[#E5E7EB] sticky top-0 z-10">
+        <div
+          className="sticky top-0 z-10 border-b backdrop-blur-md"
+          style={{
+            backgroundColor: "color-mix(in srgb, var(--color-motif-soft) 94%, white)",
+            borderColor: "color-mix(in srgb, var(--color-motif-deep) 12%, transparent)",
+          }}
+        >
           <div className="px-8 py-4 flex items-center justify-between">
             <div>
-              <h2 className="text-sm text-[#6B7280] font-medium">Welcome back,</h2>
-              <h1 className="text-xl font-bold text-[#111827]">
-                {siteConfig.couple.groomNickname} & {siteConfig.couple.brideNickname}
-              </h1>
+              <p
+                className={`${cinzel.className} text-xs font-semibold uppercase tracking-[0.14em]`}
+                style={{ color: "var(--color-welcome-heading)" }}
+              >
+                Welcome back
+              </p>
+              <p
+                className="beautiful-malera text-3xl leading-none mt-1"
+                style={{ color: "var(--color-welcome-script)" }}
+              >
+                {debutantNickname}
+              </p>
+              <p
+                className="font-goudy-italic text-sm mt-1"
+                style={{ color: "var(--color-welcome-text-soft)" }}
+              >
+                {debutantNickname}&apos;s 18th Birthday Debut · {debutDate}
+              </p>
             </div>
             <div className="flex items-center gap-3">
               <Button
@@ -512,7 +612,8 @@ export default function DashboardPage() {
                 disabled={isLoading}
                 size="sm"
                 variant="outline"
-                className="border-[#E5E7EB] text-[#6B7280] hover:text-[#6B4423] hover:border-[#A67C52]"
+                className="border-motif-silver hover:border-motif-deep hover:text-motif-deep"
+                style={{ color: "var(--color-welcome-text-soft)" }}
               >
                 <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
                 Refresh Data
@@ -521,7 +622,8 @@ export default function DashboardPage() {
                 onClick={handleLogout}
                 size="sm"
                 variant="outline"
-                className="border-[#E5E7EB] text-[#6B7280] hover:text-red-600 hover:border-red-300"
+                className="border-motif-silver hover:text-red-600 hover:border-red-300"
+                style={{ color: "var(--color-welcome-text-soft)" }}
               >
                 <LogOut className="h-4 w-4 mr-2" />
                 Logout
@@ -571,8 +673,19 @@ export default function DashboardPage() {
 
           {activeTab === "guests" && (
             <div>
-              <h2 className="text-2xl font-bold text-[#111827] mb-6">Guest Management</h2>
-              <div className="bg-white rounded-xl shadow-sm border border-[#E5E7EB] p-6">
+              <h2
+                className={`${cinzel.className} text-2xl font-semibold tracking-[0.08em] mb-6`}
+                style={{ color: "var(--color-welcome-heading)" }}
+              >
+                Debut Guest List
+              </h2>
+              <div
+                className="rounded-xl shadow-sm border p-6"
+                style={{
+                  backgroundColor: "color-mix(in srgb, white 88%, var(--color-motif-soft))",
+                  borderColor: "color-mix(in srgb, var(--color-motif-deep) 14%, transparent)",
+                }}
+              >
                 <ImprovedGuestList
                   guests={filteredGuests}
                   onAddGuest={handleAddGuest}
