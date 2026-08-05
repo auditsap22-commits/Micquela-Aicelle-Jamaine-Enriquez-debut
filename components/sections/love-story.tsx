@@ -60,7 +60,7 @@ function LoveStoryTitle() {
           color: "var(--color-welcome-navy)",
         }}
       >
-       Our Love Story
+      Through the Years
       </span>
       <span
         aria-hidden
@@ -70,9 +70,9 @@ function LoveStoryTitle() {
           color: "var(--color-welcome-green)",
         }}
       >
-        Our Journey to Forever
+        From Childhood to Eighteen
       </span>
-      <span className="sr-only">Our Journey to Forever</span>
+      <span className="sr-only">From Childhood to Eighteen</span>
     </h1>
   )
 }
