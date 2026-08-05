@@ -9,8 +9,8 @@ import { ClientLayout } from "@/components/client-layout"
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://micquela-aicelle-jamaine-enriquez-d.vercel.app/"
 const canonicalUrl = siteUrl.replace(/\/$/, "")
-  const desktopHero = "/Details/LinkPreview.png"
-const mobileHero = "/Details/LinkPreview.png"
+  const desktopHero = "/Details/linkPreviewnewww.png"
+const mobileHero = "/Details/linkPreviewnewww.png"
 const eventImageUrl = `${canonicalUrl}${desktopHero}`
 
 // Hardcoded Cloudinary URL — image is already uploaded and always accessible via CDN.
