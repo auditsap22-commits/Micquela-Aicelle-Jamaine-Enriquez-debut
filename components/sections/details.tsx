@@ -324,7 +324,7 @@ function DressCodePaletteDisplay() {
   className={`${aboveTheBeyond.className} mt-1 text-lg leading-none sm:mt-1.5 sm:text-xl md:text-2xl`}
   style={{ color: "var(--color-motif-accent)" }}
 >
-  Semi-Formal Attire
+  Boho Chic
 </p>
 
 <div className="mx-auto mt-3 flex max-w-xs items-center justify-center gap-2 sm:mt-4 sm:max-w-sm md:max-w-md">
