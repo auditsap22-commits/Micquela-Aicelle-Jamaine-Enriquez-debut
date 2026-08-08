@@ -12,7 +12,7 @@ export const siteConfig = {
     debutName: "Micquela Aicelle Jamaine G Enriquez",
     debutNickname: "Jamaine",
     monogram:"/monogram/monogram.png" ,//Ltryl
-    backgroundMusic:"/background_music/Lana Del Rey - Young And Beautiful (Lyrics).mp3"
+    backgroundMusic:"/background_music/Taylor Swift - Youre On Your Own, Kid (Lyrics).mp3"
   },
   googleAPI:{
     messageForm: "https://docs.google.com/forms/d/e/1FAIpQLSf9-Tfxquv4A15l0rcHwduHzc4zKj5fpJzFJ01YDBbRCLlWLQ/formResponse",   //done
