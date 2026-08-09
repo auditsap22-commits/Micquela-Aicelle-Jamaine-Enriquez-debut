@@ -160,7 +160,7 @@ const attireGuide = {
       ] as const,
   
       description:
-      "Comfortable semi-formal attire in Champagne, Sand, Dusty Mauve, Terracotta, Antique Gold, or Caramel. Please avoid denim and baggy clothing.",    },
+      "Comfortable semi-casual boho chic attire in Champagne, Sand, Dusty Mauve, Terracotta, Antique Gold, or Caramel. Please avoid denim and baggy clothing.",    },
   
     gentlemen: {
       colors: [
@@ -324,7 +324,7 @@ function DressCodePaletteDisplay() {
   className={`${aboveTheBeyond.className} mt-1 text-lg leading-none sm:mt-1.5 sm:text-xl md:text-2xl`}
   style={{ color: "var(--color-motif-accent)" }}
 >
-  Boho Chic
+  BOHO CHIC
 </p>
 
 <div className="mx-auto mt-3 flex max-w-xs items-center justify-center gap-2 sm:mt-4 sm:max-w-sm md:max-w-md">
@@ -1221,14 +1221,14 @@ export function Details() {
                   </p>
                 </ReminderCard>
 
-                <ReminderCard title="Strictly Formal" variant="accent">
+                <ReminderCard title="BOHO CHIC" variant="accent">
                   <div className="space-y-2.5">
                     <p>
                       Kindly follow our suggested attire and color palette above to match her debut
                       theme.
                     </p>
                     <ColorPalette colors={attireGuide.sponsors.ladies.colors} />
-                    <p>Strictly no casual clothes, shoes, or white-colored attire.</p>
+                    <p>Please avoid denim, baggy clothing, or white-colored attire.</p>
                   </div>
                 </ReminderCard>
 

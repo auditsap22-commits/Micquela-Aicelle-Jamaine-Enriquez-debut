@@ -244,7 +244,7 @@ function getFaqItems(siteConfig: SiteConfig): FAQItem[] {
     },
     {
       question: "What is the dress code?",
-      answer: `${dressTheme}. Please dress according to the attire guidelines and color palette in the Event Details section. Strictly no casual clothes, shoes, or white-colored attire.`,
+      answer: `${dressTheme} — semi-casual attire. Please dress according to the attire guidelines and color palette in the Event Details section. Please avoid denim, baggy clothing, or white-colored attire.`,
     },
     {
       question: "Are guests allowed to take photos during the program?",
@@ -267,7 +267,7 @@ function getFaqItems(siteConfig: SiteConfig): FAQItem[] {
     },
     {
       question: `How can I help make ${debutantNickname}'s debut memorable?`,
-      answer: `• Pray for favorable weather and blessings as she celebrates this milestone.\n\n• RSVP as soon as your schedule is cleared.\n\n• Dress appropriately and follow our ${dressTheme} dress code.\n\n• Be on time.\n\n• Follow the seating arrangement.\n\n• Stay until the end of the program.\n\n• Join the activities and enjoy!`,
+      answer: `• Pray for favorable weather and blessings as she celebrates this milestone.\n\n• RSVP as soon as your schedule is cleared.\n\n• Dress in semi-casual ${dressTheme} attire and follow our color palette.\n\n• Be on time.\n\n• Follow the seating arrangement.\n\n• Stay until the end of the program.\n\n• Join the activities and enjoy!`,
     },
   ]
 }

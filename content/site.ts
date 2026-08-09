@@ -94,7 +94,7 @@ export const siteConfig = {
     image: ["/Details/debutlocation.png", "/Details/debutlocation2.png","/Details/image.png"],
   },
   dressCode: {
-    theme: "STRICTLY FORMAL",
+    theme: "BOHO CHIC",
     sponsors: {
       title: "Sponsors",
       ninang: {
