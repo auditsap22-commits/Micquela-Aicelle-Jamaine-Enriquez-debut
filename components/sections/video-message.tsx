@@ -123,6 +123,7 @@ function VideoMessageTitle() {
 
 export function VideoMessage() {
   const siteConfig = useSiteConfig()
+  const debutantNickname = siteConfig.couple.debutNickname || siteConfig.couple.debutName
   const uploadUrl = siteConfig.snapShare?.googleDriveLink ?? ""
 
   return (
@@ -158,19 +159,19 @@ export function VideoMessage() {
               style={{ color: palette.body }}
             >
               <p>
-                As we begin this new chapter under the Lord&apos;s guidance, we are deeply grateful
-                for everyone He has placed in our lives.
+                As we prepare for this special milestone, we are deeply grateful for everyone who
+                has been part of {debutantNickname}&apos;s journey.
               </p>
               <p style={{ color: palette.accent }}>
                 You are a blessing we hold close to our hearts.
               </p>
               <p>
-                We would love to receive a short video message from you—something we can keep and
-                look back on through the years ahead.
+                We would love to receive a short video message from you—something {debutantNickname}{" "}
+                can keep and look back on for years to come.
               </p>
               <p>
-                Your words will make our wedding day, and our life together, even more meaningful.
-                Thank you for your love and support.
+                Your words will make her debut celebration even more meaningful. Thank you for your
+                love and support.
               </p>
             </div>
 

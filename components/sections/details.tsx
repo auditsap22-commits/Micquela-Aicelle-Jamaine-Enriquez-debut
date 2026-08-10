@@ -146,8 +146,10 @@ const ct = {
 
 const attireGuide = {
   sponsors: {
-    image: "/Details/dresscode.png",
-    imageAspect: "500/400",
+    images: [
+      { src: "/envelope/Attire-one.png", aspect: "474/593" },
+      { src: "/envelope/Attire-two.png", aspect: "736/649" },
+    ],
   
     ladies: {
       colors: [
@@ -534,6 +536,7 @@ function AttirePaletteGroup({
 function AttireCard({
   title,
   image,
+  images,
   alt,
   imageAspect,
   children,
@@ -541,13 +544,18 @@ function AttireCard({
   imageClassName = "object-contain object-center w-full h-full",
 }: {
   title: string
-  image: string
+  image?: string
+  images?: readonly { src: string; aspect: string }[]
   alt: string
-  imageAspect: string
+  imageAspect?: string
   children: ReactNode
   belowImage?: ReactNode
   imageClassName?: string
 }) {
+  const imageItems =
+    images ??
+    (image && imageAspect ? [{ src: image, aspect: imageAspect }] : [])
+
   return (
     <div className="relative group h-full">
       <div
@@ -573,16 +581,22 @@ function AttireCard({
           </h4>
         </div>
 
-        <div className="relative flex w-full shrink-0 items-center justify-center overflow-hidden bg-[#FAF7F2]">
-          <div className="relative w-full" style={{ aspectRatio: imageAspect }}>
-            <Image
-              src={image}
-              alt={alt}
-              fill
-              className={`${imageClassName} transition-transform duration-700 group-hover:scale-[1.01]`}
-              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 80vw, 1024px"
-            />
-          </div>
+        <div className="relative flex w-full shrink-0 flex-col items-center justify-center overflow-hidden bg-[#FAF7F2]">
+          {imageItems.map((item, index) => (
+            <div
+              key={item.src}
+              className="relative w-full"
+              style={{ aspectRatio: item.aspect }}
+            >
+              <Image
+                src={item.src}
+                alt={`${alt} ${imageItems.length > 1 ? index + 1 : ""}`.trim()}
+                fill
+                className={`${imageClassName} transition-transform duration-700 group-hover:scale-[1.01]`}
+                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 80vw, 1024px"
+              />
+            </div>
+          ))}
         </div>
 
         {belowImage}
@@ -1098,8 +1112,7 @@ export function Details() {
           <div className="mx-auto w-full max-w-5xl">
           <AttireCard
             title="Guests"
-            image={attireGuide.sponsors.image}
-            imageAspect={attireGuide.sponsors.imageAspect}
+            images={attireGuide.sponsors.images}
             alt="Guests attire guide"
             belowImage={<DressCodePaletteDisplay />}
           >
